@@ -1,0 +1,39 @@
+\ProvidesPackage{theorems}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsopn}
+\usepackage{amsthm}
+%define fitting styles
+\newtheoremstyle{generalpurposetheorem}
+{1em} % Space above
+{.5em} % Space below
+{\itshape} % Body font
+{} % Indent amount
+{\bfseries} % Theorem head font
+{.} % Punctuation after theorem head
+{.5em} % Space after theorem head
+{} % Theorem head spec (can be left empty, meaning `normal')
+
+\newtheoremstyle{generalpurposedef}
+{1em}
+{.5em}
+{}
+{}
+{\bfseries}
+{.}
+{.5em}
+{}
+%------
+%use for theorems and such
+\theoremstyle{generalpurposetheorem}
+\newtheorem{thm}{Satz}[chapter]
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{cor}[thm]{Korollar}
+\newtheorem{prop}[thm]{Proposition}
+%----
+%use for definitions and examples
+\theoremstyle{generalpurposedef}
+\newtheorem{bsp}[thm]{Beispiel}
+\newtheorem{defn}[thm]{Definition}

@@ -1,0 +1,14 @@
+\ProvidesPackage{styles}
+%for chapters and sections
+\pagestyle{ruled}
+\chapterstyle{bringhurst}
+\renewcommand\printchapternum{\large \thechapter.~\scshape}
+\setlength{\parindent}{.75em}
+\setlength{\parskip}{1.5em}
+\setsecheadstyle{\large \bfseries}
+\setbeforesecskip{2em}
+\setaftersecskip{1em}
+%------------------
+%general purpose appearence
+\usepackage[left=3cm,right=3cm,top=2.5cm,bottom=2.5cm]{geometry}
+\usepackage[colorlinks=true,linkcolor=blue,unicode]{hyperref}    
