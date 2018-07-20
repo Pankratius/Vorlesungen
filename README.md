@@ -6,3 +6,5 @@ Wir versuchen hier, Vorlesungsmitschriften zu folgenden Vorlesungen zur Verfügu
 [Einführung in die Algebra, Schröer](einfalg1819.pdf)
 
 [Analysis 3, Koch](ana31819.pdf)
+
+_Hinweise auf mögliche Fehler_ bitte über den _Issues_-Tab.
