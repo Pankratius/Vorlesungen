@@ -1,6 +1,6 @@
 ## Wintersemester 2018/19
 
-Wir versuchen hier, Vorlesungsmitschriften zu folgenden Vorlesungen zur Verfügung zu stellen:
+Wir versuchen hier, Mitschriften zu folgenden Vorlesungen zur Verfügung zu stellen:
 
 
 [Einführung in die Algebra, Schröer](EinfAlg_WS18.pdf)
