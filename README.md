@@ -1,4 +1,4 @@
-# Vorlesungsmitschriften im Wintersemester 2018/19 an der Universität Bonn
+## Wintersemester 2018/19
 
 Wir versuchen hier, Vorlesungsmitschriften zu folgenden Vorlesungen zur Verfügung zu stellen:
 
