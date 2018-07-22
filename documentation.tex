@@ -1,0 +1,36 @@
+\documentclass[11pt,twoside]{memoir}
+
+
+\usepackage{packages/setup}
+\usepackage{packages/styles}
+
+\usepackage{packages/theorems}
+
+
+\include{documentation/titlepage}
+
+
+
+\begin{document}
+	
+\frontmatter
+\maketitle
+\tableofcontents
+\include{documentation/frontmatter}
+\mainmatter
+\chapter{Struktur}
+\section{Dokumentenstruktur}
+\begin{itemize}
+\item Das Dokument ist prinzipiell in 3 Teile gegliedert - \verb|frontmatter|, \verb|mainmatter|, \verb|backmatter|. In \verb|frontmatter| sollte momentan nun die Titelseite, sowie Inhaltsverzeichnis und Vorwort. In \verb|mainmatter| befinden sich die eigentlichen Notizen, und in \verb|backmatter| momentan ein Index.
+\item Neue Kapitel kann man mit dem \verb|\chapter|-Command erstellen. Sie beginnen immer auf einer neuen Seite.
+\item Neue Sections kann man mit dem \verb|\section|-Command erstellen. Sie werden immer zentriert dargestellt.
+\item Neue Subsections kann mit dem \verb|subsection|-Command erstellen. Momentan erhalten sie eine Nummer, werden aber nicht im Inhaltsverzeichnis dargestellt. Dies kann man über Anpassen von \verb|\setsecnumdepth{subsection}| bzw. Hinzufügen von \verb|\maxtocdepth{subsection}| ändern.
+\item in \verb|styles.sty| ist das Aussehen der einzelnen Überschriften geregelt, jeweils unter \verb|\set<sec/subsec/subsubsec><feature>|.
+\end{itemize}
+
+
+
+\backmatter
+\printindex
+
+\end{document}
