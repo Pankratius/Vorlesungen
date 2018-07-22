@@ -1,14 +1,47 @@
 \ProvidesPackage{styles}
-%for chapters and sections
+%--------------------
+%chapter style
 \pagestyle{ruled}
 \chapterstyle{bringhurst}
 \renewcommand\printchapternum{\large \thechapter.~\scshape}
 \setlength{\parindent}{.75em}
 \setlength{\parskip}{1.5em}
-\setsecheadstyle{\large \bfseries}
+%section style
+\setsecheadstyle{\centering \bfseries}
 \setbeforesecskip{2em}
 \setaftersecskip{1em}
+%subsection style
+\newcommand{\subsec}[1]{\subsection{#1}:~}
+\setsubsecheadstyle{\itshape}
+\setaftersubsecskip{0pt}
+\setbeforesubsecskip{3em}
+\setsecnumdepth{subsection}
+%----
+%end of lecture
+\newcounter{lecture}
+\addtocounter{lecture}{1}
+\setbeforesubsubsecskip{1em}
+\setaftersubsubsecskip{.5em}
+\setsubsubsecheadstyle{\small \normalfont}
+\usepackage[yyyymmdd,hhmmss]{datetime}
+\renewcommand{\dateseparator}{-}
+\def\dotfill#1{\cleaders\hbox to #1{.}\hfill}
+\makeatletter
+\def\myrulefill{\leavevmode\leaders\hrule height .7ex width 1ex depth -0.6ex\hfill\kern\z@}
+\makeatother
+\newcommand{\lec}{\subsubsection{\noindent\myrulefill~\fbox{Vorlesung \arabic{lecture}}~\myrulefill}\stepcounter{lecture}}
 %------------------
 %general purpose appearence
 \usepackage[left=3cm,right=3cm,top=2.5cm,bottom=2.5cm]{geometry}
 \usepackage[colorlinks=true,linkcolor=blue,unicode]{hyperref}    
+%---------
+%import index package
+\usepackage{makeidx}
+\makeindex
+%boldface index reference
+\makeatletter
+\def\toidx{\@ifnextchar[{\@with}{\@without}}
+\def\@with[#1]#2{\textbf{#1}\index{#2}}
+\def\@without#1{\textbf{#1}\index{#1}}
+\makeatother
+

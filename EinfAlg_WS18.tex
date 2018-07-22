@@ -1,15 +1,13 @@
 \documentclass[11pt,twoside]{memoir}
 
-\usepackage[utf8]{inputenc}
-\usepackage[german]{babel}
-\usepackage{lipsum}
 
+\usepackage{packages/setup}
+\usepackage{packages/styles}
+
+\usepackage{packages/theorems}
 
 
 \include{einfalg/titlepage}
-\usepackage{packages/styles}
-\usepackage{packages/theorems}
-
 
 
 
@@ -17,12 +15,26 @@
 	
 \frontmatter
 \maketitle
-\tableofcontents*
-
+\tableofcontents
 \include{einfalg/frontmatter}
 \mainmatter
 \chapter{Gruppen}
-\section{Definitionen - Grundlegendes}
 
+\section{Definitionen - Grundlegendes}
+\lipsum[1-5]
+\section{Abbildungen von Gruppen}
+\subsec{Gruppenhomomorphismen}
+\lipsum[1]
+\subsec{Gruppenisomorphismen}
+\begin{thm}\label{thm:Apfel}
+	Ich bin ein Apfel.
+\end{thm}
+\lec
+
+\begin{defn}
+	Ein \toidx{Gruppen\isom} ist ein Isomorphismus in der Kategorie der Gruppen.
+\end{defn}
+\backmatter
+\printindex
 
 \end{document}

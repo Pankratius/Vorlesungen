@@ -5,6 +5,7 @@
 \usepackage{amssymb}
 \usepackage{amsopn}
 \usepackage{amsthm}
+\usepackage{cleveref}
 %define fitting styles
 \newtheoremstyle{generalpurposetheorem}
 {1em} % Space above
@@ -29,11 +30,23 @@
 %use for theorems and such
 \theoremstyle{generalpurposetheorem}
 \newtheorem{thm}{Satz}[chapter]
+\crefname{thm}{Satz}{S{\"a}tz}
 \newtheorem{lem}[thm]{Lemma}
+\crefname{lem}{Lemma}{Lemmata}
 \newtheorem{cor}[thm]{Korollar}
+\crefname{cor}{Korollar}{Korollare}
 \newtheorem{prop}[thm]{Proposition}
+\crefname{prop}{Proposition}{Propositionen}
 %----
 %use for definitions and examples
 \theoremstyle{generalpurposedef}
 \newtheorem{bsp}[thm]{Beispiel}
+\crefname{bsp}{Beispiel}{Beispiele}
 \newtheorem{defn}[thm]{Definition}
+\crefname{defn}{Definition}{Definitionen}
+%-----
+%------
+%------
+%abbreviations:
+\newcommand{\homo}{homomorphismus}
+\newcommand{\isom}{isomorphismus}
