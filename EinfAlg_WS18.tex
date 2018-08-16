@@ -5,6 +5,7 @@
 \usepackage{packages/styles}
 
 \usepackage{packages/theorems}
+\usepackage{packages/mymathtools}
 
 
 \include{einfalg/titlepage}
@@ -15,7 +16,9 @@
 	
 \frontmatter
 \maketitle
-\tableofcontents
+\begin{KeepFromToc}
+	\tableofcontents
+\end{KeepFromToc}
 \include{einfalg/frontmatter}
 \mainmatter
 \chapter{Gruppen}
@@ -38,8 +41,26 @@
 \section{Normalteiler und Quotientengruppen}
 \begin{prop}
 	Normalteiler sind ziemlich cool.
+	\[
+	\begin{tikzcd}
+	G \ar{r}{\phi} \ar[swap]{d}{\pi} & H\\
+	G/N \ar[swap]{ur}{\exists! f}
+	\end{tikzcd}
+	\]
+	Wir erhalten für den Fall, dass $\phi$ surjektiv ist, folgendes Bild:
+
+	\[
+	\begin{tikzcd}
+	G \ar[\surarr]{r}{\pi}  \ar[bend left = 25]{rrr}{\phi}& G/\ker\phi \ar{r}{\cong} & \im \phi \ar[\embarr]{r}{} & H
+	\end{tikzcd}
+	\]
 \end{prop}
 \lec
+\thispagestyle{rlast}
+
+\appendix
+\chapter{Übungsaufgaben}
+\section{some useful stuff from one of the exercise sheets}
 \backmatter
 \printindex
 

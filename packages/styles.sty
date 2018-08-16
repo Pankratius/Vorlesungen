@@ -45,3 +45,8 @@
 \def\@without#1{\textbf{#1}\index{#1}}
 \makeatother
 
+%pagestyle for current last page, which is supposed to show current version number
+%(hope that we don't need to put it somewhere, where a new chapter starts, the some things get ugly)
+\copypagestyle{rlast}{ruled}
+\makeevenfoot{rlast}{\thepage}{}{\small \itshape \today,\currenttime}
+\makeoddfoot{rlast}{\small \itshape \today,\currenttime}{}{\thepage}
