@@ -2,6 +2,9 @@
 
 
 \usepackage{packages/setup}
+\usepackage{packages/bibconfig}
+%loads bibliography package for this document
+\addbibresource{einfalg/lit.bib}
 \usepackage{packages/styles}
 
 \usepackage{packages/theorems}
@@ -10,7 +13,10 @@
 
 \include{einfalg/titlepage}
 
-
+\makeatletter
+\newlength{\@thlabel@width}%
+\newcommand{\thmenumhspace}{\settowidth{\@thlabel@width}{\itshape1.}\sbox{\@labels}{\unhbox\@labels\hspace{\dimexpr-\leftmargin+\labelsep+\@thlabel@width-\itemindent}}}
+\makeatother
 
 \begin{document}
 	
@@ -56,12 +62,72 @@
 	\]
 \end{prop}
 \lec
+\begin{defn}
+	Ein kommutatives Diagramm
+	\[
+	\begin{tikzcd}
+	0\ar{r}&M_1\ar{r}&N\ar{r}&M_2\ar{r}&0
+	\end{tikzcd}
+	\]
+	heißt \toidx{split}, falls es isomorph zu einem Diagramm der Form
+	\[
+	\begin{tikzcd}
+	0\ar{r}&M_1\ar{r}\ar{d}{\sim}&N\ar{r}\ar{d}{\sim}&M_2\ar{r}\ar{d}{\sim}&0\\
+	0\ar{r}&M_1'\ar{r}&M_1'\oplus M_2'\ar{r}&M_2'\ar{r}&0
+	\end{tikzcd}
+	\]
+	ist.
+\end{defn}
+\begin{prop}
+	Sei $f\colon M\to N$ ein Homomorphismus zwischen $A$-Moduln $M,N$. Dann hat $f$ ein linksinverses, genau dann wenn das Diagramm
+	\[
+	\begin{tikzcd}
+	0\ar{r}& M \ar{r}{f}& N\ar{r}&\mathrm{Coker}(f)\ar{r}&0
+	\end{tikzcd}
+	\]
+	split ist.
+\end{prop}
+\begin{proof}
+	Angenommen, $f$ hat ein linksinverses, so dass 
+	\[
+	\begin{tikzcd}
+	0\ar{r}&M\ar{r}{f}\ar[swap,equal]{dr}&N\ar{d}{\psi}\\
+			&&M
+	\end{tikzcd}
+	\]
+	kommutiert.
+\end{proof}
+\begin{thm}[Zerlegungssatz für regülare Metriken]
+	Sei $(V,s)$ ein regulärer symmetrischer $K$-Vektorraum, und $U\subset V$ ein Untervektorraum. Dann gilt
+	\[\dim(V) = \dim(U) + \dim(U^{\perp})\]
+	Ist $s_u$ regulär, so gilt außerdem 
+	\begin{enumerate}
+		\item $V = V \perp U^{\perp}$
+		\item $s_{U^{\perp}}$ ist regulär
+	\end{enumerate}
+\end{thm}
+Wir betrachten nun Isometrien eines metrischen Vektorraums. Dafür definieren wir die \toidx{Isometriegruppe} eines metrischen Vektorraumes $(V,s)$ über dem Körper $K$ mit Involution $\overline{\cdot}$ als
+\[
+\gl(V,s):= \{f:V\to V\ssp f~\text{ist eine Isometrie}\}
+\]
+Für isometrische Vektorräume gelten folgenden äquivalente Bedingungen
+\begin{prop}
+	Seien $(V,s_V)$ und $(W,s_W)$ endlich-dimensionale metrische $K$-Vektorräume bezüglich der Involution $\overline{\cdot}$. Dann sind äquivalent:
+	\begin{enumerate}
+		\item $(V,s_V)\cong (W,s_W)$.
+		\item Es gibt Basen $B$ bzw. $C$ von $V$ bzw. $W$, so dass $\mathbf{c}_B(s_V) = \mathbf{c}_C(s_W)$.
+		\item Für alle Basen $B$ bzw. $C$ von $V$ bzw. $W$, ist $\mathbf{c}_B(s_V) \equiv \mathbf{c}_C(s_W)$.
+	\end{enumerate}
+\end{prop}
 \thispagestyle{rlast}
+
 
 \appendix
 \chapter{Übungsaufgaben}
 \section{some useful stuff from one of the exercise sheets}
 \backmatter
+\printbibliography[heading = bibintoc]
 \printindex
+
 
 \end{document}

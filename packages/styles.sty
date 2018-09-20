@@ -38,15 +38,26 @@
 %import index package
 \usepackage{makeidx}
 \makeindex
+%redefine emph (https://tinyurl.com/y9nxokvw)
+\makeatletter
+\DeclareRobustCommand{\em}{%
+  \@nomath\em \if b\expandafter\@car\f@series\@nil
+  \normalfont \else \bfseries \fi}
+\makeatother
 %boldface index reference
 \makeatletter
 \def\toidx{\@ifnextchar[{\@with}{\@without}}
-\def\@with[#1]#2{\textbf{#1}\index{#2}}
-\def\@without#1{\textbf{#1}\index{#1}}
+\def\@with[#1]#2{\emph{#1}\index{#2}}
+\def\@without#1{\emph{#1}\index{#1}}
 \makeatother
+
 
 %pagestyle for current last page, which is supposed to show current version number
 %(hope that we don't need to put it somewhere, where a new chapter starts, the some things get ugly)
 \copypagestyle{rlast}{ruled}
 \makeevenfoot{rlast}{\thepage}{}{\small \itshape \today,\currenttime}
 \makeoddfoot{rlast}{\small \itshape \today,\currenttime}{}{\thepage}
+
+%for enumerate
+\usepackage{enumitem}
+\setlist[enumerate]{topsep=-.5em,label=\roman*)}

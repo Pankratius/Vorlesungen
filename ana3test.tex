@@ -1,0 +1,123 @@
+\documentclass[11pt,twoside]{memoir}
+
+
+\usepackage{packages/setup}
+\usepackage{packages/bibconfig}
+%loads bibliography package for this document
+\addbibresource{einfalg/lit.bib}
+\usepackage{packages/styles}
+
+\usepackage{packages/theorems}
+\usepackage{packages/mymathtools}
+
+
+\include{einfalg/titlepage}
+
+
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\begin{document}
+	
+\frontmatter
+\maketitle
+\begin{KeepFromToc}
+	\tableofcontents
+\end{KeepFromToc}
+\include{einfalg/frontmatter}
+\mainmatter
+\chapter{Gewöhnliche Differentialgleichungen}
+\section{Satz von Picard-Lindelöff}
+Sei $F: \mathbb{R}\times \mathbb{R}^d \to \mathbb{R}^d$ und $x_0 \in \mathbb{R}^d$. Wir suchen ein $\gamma: \mathbb{R}\to \mathbb{R}^d$ so dass $\gamma(0) = x_0$ und $\gamma'(t) = F(t,\gamma(t))~\forall t\in \mathbb{R}$.
+
+\begin{bsp}
+	\begin{enumerate}
+		\item Sei $A$ eine $d\times d$-Matrix. Sei $F: M_{d\times d}(\mathbb{K}) \to M_{d\times d}(\mathbb{K})$ mit $F(B) = A$. Anfangswertproblem $U'= F(U)$ und $U_0 = 1_{\mathbb{R}^d}$. Kennen eindeutige Lösung: $U(t) = \exp(t\cdot A)$.
+		\item Sei $d = 1$ und $F(x) = x$ und $\gamma' = \gamma$. Dann ist $\gamma(t) = \exp(t)x_0$ mit $x_0 \in \mathbb{R}$.
+		\item Sei $d = 2$ und $F(x) = x$ und $\gamma' = \gamma$. Dann ist $\gamma(t) = \exp(t)x_0$.
+	\end{enumerate}
+\end{bsp}
+Annahme: $F _\mathbb{R}\times \mathbb{R}^d\to \mathbb{R}^d$ sei stetig. Dann soll gelten
+\begin{enumerate}
+	\item $|F(t,0)|\leq C$
+	\item $|F(t,x) - F(t,y)| \leq C |x-y|$ für alle $x,y\in \mathbb{R}^d$ und $t\in \mathbb{R}$.
+\end{enumerate}
+für ein $C > 0$.\\
+Genügt $F$ 2., so heißt $F$ \toidx{Lipschitz-stetig} bzgl. $x\in \mathbb{R}^d$ mit Lipschitzkonstanten $C$.
+
+\begin{thm}[\index{Satz! von Picard-Lindelöf}Picard-Lindelöf]
+	$F$ genüge der Annahme. Sei $x_0\in \mathbb{R}^d$. Dann existiert genau ein $\gamma: \mathbb{R}\to \mathbb{R}^d$, das differenzierbar ist und für das $\gamma(0) = x_0$ und $\gamma'(t) = F(t,\gamma(t))$ für alle $t\in \mathbb{R}$.
+\end{thm}
+\begin{proof}
+	Wenn $\gamma$ stetig ist, dann ist auch $t\to (t,\gamma(t)))$ stetig, da die Komponenten stetig sind. Weiterhin ist auch $t \to F(t,\gamma(t))$ als Verkettung stetiger Funktionen stetig. Da $\gamma' (t) = F(t,\gamma(t))$, folgt, dass $\gamma$ stetig differenzierbar ist.\par
+	Behauptung: Es gilt
+	\begin{align*}
+		\gamma(0) = x_0,~\gamma'(t) = F(t,\gamma(t)) \Longleftrightarrow \gamma(t) = x_0 +\int_0^t F(t,\gamma(t))~dt,
+	\end{align*}
+	weil Hauptsatz.\par
+	Es reicht also zu zeigen, dass $\gamma(t) = x_0 + \int_0^t F(t,\gamma(t))~dt$ genau eine stetige Lösung hat.\\
+	$C_b(\mathbb{R},\mathbb(R)^d)$ ist ein Banachraum. Betrachte $T: C_b(\mathbb{R},\mathbb{R}^d) \to C_b(\mathbb{R},\mathbb{R}^d)$, definiert durch
+	\begin{align*}
+		Tf(t) = \exp(-2C|t|)x_0 + \int_{0}^t e^{-2C|t|}F(s,e^{2c|s|}f(s))~ds
+	\end{align*}
+	Wohldefiniertheit:
+	\begin{align*}
+		T(0)(t) = e^{-2C|t|}x_0 + \int_{0}^t e^{-2C|t|} F(s,0)~ds\\
+		\norm{e^{-2C|t|}x_0}_{C_b(\mathbb{R},\mathbb{R}^d)} = \sup \big \{  e^{-2C|t|} |x_0|~|~t\in \mathbb{R} \big \} = |x_0|\\
+		\implies \left| \int_{0}^te^{-2C|t|}F(s,0)\right| \leq e^{-2C|t|}\cdot \left| \int_0^t|\underbrace{F(s,0)}_{\leq C,~\mathrm{nach}~1}|~ds \right|\\
+		\leq e^{-2C|t|}
+	\end{align*}
+	Gleichzeitig ist
+	\begin{align*}
+		\sup\big\{ e^{-2C|t|}~C|t| ~|~t\in \mathbb{R}\big \} = \sup\big\{ e^{-2|t|}~C|t| ~|~t\in \mathbb{R}\big \} \leq \infty
+	\end{align*}
+	Also ist $T(0) \in C_b(\mathbb{R},\mathbb{R}^d)$.\\
+	Seien $f,g\in C_b(\mathbb{R},\mathbb{R}^d)$. Dann ist
+	\begin{align*}
+		(T(f)-T(g))(t) = \int_{0}^t e^{-2C|t|}(F(s,e^{2C|s|}f(s)) - F(s,e^{2C|s|} g(s))~ds.
+	\end{align*}
+	Sei $t>0$. Dann ist nach dem Lemma
+	\begin{align*}
+		\left| (T(f) - T(g))(t)\right| \leq \int_0^t e^{-2Ct} \left| F(s, e^{2Cs}f(s)) - F(s,e^{2Cs}g(s))\right|~ds
+	\end{align*}
+	Nach Annahme 2 gilt
+	\begin{align*}
+		\leq \int_0^t e^{-2Ct}C\left| e^{2Cs}f(s)- e^{2Cs}g(s)\right|~ds = \int_0^te^{-2C(t-s)}C|f(s)-g(s)|~ds\\
+		\leq C \int_0^t e^{-2C(t-s)} \norm{f-g}_{C_b(\mathbb{R},\mathbb{R}^d)}~ds\\
+		= \norm{f-g}_{C_b(\mathbb{R},\mathbb{R}^d)} \int_0^tCe^{2C(t-s)}~ds\\
+		\leq \frac{1}{2} \norm{f-g}_{C_b(\mathbb{R},\mathbb{R}^d)}
+	\end{align*}
+	Also ist $T(f)(t) = (T(f)(t) - T(0)(t)) + T(0)(t)$ wohldefiniert.\\
+	Weiters ist $T$ eine Kontraktion mit $\theta = 1/2$. Nach dem Satz von Banach existiert nun genau ein $f\in C_b(\mathbb{R},\mathbb{R}^d)$ mit $f = T(f)$.
+	\begin{align*}
+		f = T(f) \Longleftrightarrow f(t) = e^{-2C|t|}x_0 + \int_0^te^{-2C|t|}F(s,e^{2Cs}f(s))~ds\\
+		f = T(f) \Longleftrightarrow \gamma(t) = e^{2C|t|}f(t)
+	\end{align*}
+	genügt
+	\begin{align*}
+		\gamma(t) = x_0 + \int_0^t F(s,\gamma(s))~ds.
+	\end{align*}
+	Damit haben wir eine Lösung konstruiert.\par
+	Es bleibt die Eindeutigkeit zu zeigen. Problem: Sei $\gamma$ ein Lösung. Ist dann $e^{-2C|t|}\gamma(t) =: f(t)$ in $C_{\mathbb{R},\mathbb{R}^d}$?\\
+	Beobachtung: Wir können Konstruktion auch über $C_b([-t_0,t_0],\mathbb{R}^d)$ für $t_0 >0$ durchführen. Dann ist aber $\left.e^{-2C|t|}\gamma(t)\right|_{[-t_0,t_0]} \in C_b([-t_0,t_0],\mathbb{R}^d)$. Dann gibt uns der Satz von Banach die Eindeutigkeit.
+\end{proof}
+\begin{bsp}
+	Sei $A\in M_{d\times d}(\mathbb{K})$ und $\dot{B} = AB$, mit $B(0) = 1_{\mathbb{R}^d}$. Betrachte die Iteration
+	\begin{align*}
+		& B_0 = 1_{\mathbb{R}^d},~B(t) = 1_{\mathbb{R}^d} + \int_0^t A\cdot B(s)~ds\\
+		& B_{j+1} = 1_{\mathbb{R}^d} + \int_0^tAB_{j}(s)~ds\\
+		& B_{1} = 1_{\mathbb{R}^d} + \int_0^t A~ds = 1_{\mathbb{R}^d} + tA\\
+		& B_2 = 1_{\mathbb{R}^d}  + \int_0^t A(1+sA)~ds = 1 + tA + t^2/2A^2\\
+		& \implies B_n =  \sum_{j=0}^n \frac{1}{j!}(tA)^j \to \exp(tA)
+	\end{align*}
+\end{bsp}
+
+
+
+\appendix
+\chapter{Übungsaufgaben}
+\section{some useful stuff from one of the exercise sheets}
+\backmatter
+\printbibliography[heading = bibintoc]
+\printindex
+
+
+\end{document}
