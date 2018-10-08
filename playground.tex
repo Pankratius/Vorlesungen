@@ -1,0 +1,254 @@
+\documentclass[11pt,twoside]{memoir}
+
+
+\usepackage{packages/setup}
+\usepackage{packages/bibconfig}
+%loads bibliography package for this document
+\addbibresource{einfalg/lit.bib}
+\usepackage{packages/styles}
+
+\usepackage{packages/theorems}
+\usepackage{packages/mymathtools}
+
+
+\include{einfalg/titlepage}
+
+\makeatletter
+\newlength{\@thlabel@width}%
+\newcommand{\thmenumhspace}{\settowidth{\@thlabel@width}{\itshape1.}\sbox{\@labels}{\unhbox\@labels\hspace{\dimexpr-\leftmargin+\labelsep+\@thlabel@width-\itemindent}}}
+\makeatother
+
+\begin{document}
+	
+\frontmatter
+\maketitle
+\begin{KeepFromToc}
+	\tableofcontents
+\end{KeepFromToc}
+\include{einfalg/frontmatter}
+\mainmatter
+\chapter{Gruppen}
+
+\section{Definitionen - Grundlegendes}
+\lipsum[1-5]
+\section{Abbildungen von Gruppen}
+\subsec{Gruppenhomomorphismen}
+\lipsum[1]
+\subsec{Gruppenisomorphismen}
+\begin{lem}\label{thm:Apfel}
+	Ich bin ein Apfel.
+\end{lem}
+\lec
+
+\begin{defn}
+	Ein \toidx{Gruppen\isom} ist ein Isomorphismus in der Kategorie der Gruppen. \Cref{thm:Apfel}
+\end{defn}
+\newpage
+\section{Normalteiler und Quotientengruppen}
+\begin{prop}\label{trialprop}
+	Normalteiler sind ziemlich cool.
+	\[
+	\begin{tikzcd}
+	G \ar{r}{\phi} \ar[swap]{d}{\pi} & H\\
+	G/N \ar[swap]{ur}{\exists! f}
+	\end{tikzcd}
+	\]
+	Wir erhalten für den Fall, dass $\phi$ surjektiv ist, folgendes Bild:
+
+	\[
+	\begin{tikzcd}
+	G \ar[\surarr]{r}{\pi}  \ar[bend left = 25]{rrr}{\phi}& G/\ker\phi \ar{r}{\cong} & \im \phi \ar[\embarr]{r}{} & H
+	\end{tikzcd}
+	\]
+\end{prop}
+\lec
+\begin{defn}
+	Ein kommutatives Diagramm
+	\[
+	\begin{tikzcd}
+	0\ar{r}&M_1\ar{r}&N\ar{r}&M_2\ar{r}&0
+	\end{tikzcd}
+	\]
+	heißt \toidx{split}, falls es isomorph zu einem Diagramm der Form
+	\[
+	\begin{tikzcd}
+	0\ar{r}&M_1\ar{r}\ar{d}{\sim}&N\ar{r}\ar{d}{\sim}&M_2\ar{r}\ar{d}{\sim}&0\\
+	0\ar{r}&M_1'\ar{r}&M_1'\oplus M_2'\ar{r}&M_2'\ar{r}&0
+	\end{tikzcd}
+	\]
+	ist.
+\end{defn}
+\begin{prop}
+	Sei $f\colon M\to N$ ein Homomorphismus zwischen $A$-Moduln $M,N$. Dann hat $f$ ein linksinverses, genau dann wenn das Diagramm
+	\[
+	\begin{tikzcd}
+	0\ar{r}& M \ar{r}{f}& N\ar{r}&\mathrm{Coker}(f)\ar{r}&0
+	\end{tikzcd}
+	\]
+	split ist.
+\end{prop}
+\begin{proof}
+	Angenommen, $f$ hat ein linksinverses, so dass 
+	\[
+	\begin{tikzcd}
+	0\ar{r}&M\ar{r}{f}\ar[swap,equal]{dr}&N\ar{d}{\psi}\\
+			&&M
+	\end{tikzcd}
+	\]
+	kommutiert.
+\end{proof}
+\begin{thm}[Zerlegungssatz für regülare Metriken]
+	Sei $(V,s)$ ein regulärer symmetrischer $K$-Vektorraum, und $U\subset V$ ein Untervektorraum. Dann gilt
+	\[\dim(V) = \dim(U) + \dim(U^{\perp})\]
+	Ist $s_u$ regulär, so gilt außerdem 
+	\begin{enumerate}
+		\item $V = V \perp U^{\perp}$
+		\item $s_{U^{\perp}}$ ist regulär
+	\end{enumerate}
+\end{thm}
+Wir betrachten nun Isometrien eines metrischen Vektorraums. Dafür definieren wir die \toidx{Isometriegruppe} eines metrischen Vektorraumes $(V,s)$ über dem Körper $K$ mit Involution $\overline{\cdot}$ als
+\[
+\gl(V,s):= \{f:V\to V\ssp f~\text{ist eine Isometrie}\}
+\]
+Für isometrische Vektorräume gelten folgenden äquivalente Bedingungen
+\begin{prop}
+	Seien $(V,s_V)$ und $(W,s_W)$ endlich-dimensionale metrische $K$-Vektorräume bezüglich der Involution $\overline{\cdot}$. Dann sind äquivalent:
+	\begin{enumerate}
+		\item $(V,s_V)\cong (W,s_W)$.
+		\item Es gibt Basen $B$ bzw. $C$ von $V$ bzw. $W$, so dass $\mathbf{c}_B(s_V) = \mathbf{c}_C(s_W)$.
+		\item Für alle Basen $B$ bzw. $C$ von $V$ bzw. $W$, ist $\mathbf{c}_B(s_V) \equiv \mathbf{c}_C(s_W)$.
+	\end{enumerate}
+\end{prop}
+\chapter{Homological Algebra}
+\section{Cat. Prelim}
+\subsection{Additive Categories}
+\begin{defn}
+	Let $M,N$ be objects in a category $\cat{C}$. A \morph $\phi\in \hom_{\cat{C}}(M,N)$ is called a \toidx{monomorphism}, if for all objects $Z$ in $\cat{C}$ and morphisms $\zeta_1,\zeta_2\in \hom_{\cat{C}}(Z,M)$, $\zeta_1\circ\phi=\zeta_2\circ \phi\implies \zeta_1=\zeta_2$,
+	\[
+	\begin{tikzcd}
+	Z\ar[shift left]{r}{\zeta_1}\ar[shift right,swap]{r}{\zeta_2}&M\ar{r}{\phi}&N.	\end{tikzcd}
+	\]
+\end{defn}	
+\begin{lem}
+	Let $\cat{A}$ be an additive category. For all $M,N$ objects in $\cat{A}$ and morphisms $\phi \in \hom_{\cat{A}}(M,N)$ the following are equivalent:
+	\begin{enumerate}
+		\item $\phi$ is a monomorphism.
+		\item For all objects $Z$ in $\cat{A}$ and $\zeta \in \homc{C}(Z,A)$, $\zeta \circ \phi \implies \phi = 0$.
+	\end{enumerate}
+\end{lem}
+\subsection{Abelian Categories}
+\begin{defn}
+	An additive category $\cat{A}$ is called \toidx{abelian} if kernels and cokernels exist in $\cat{A}$; every monomorphism is the kernel of some morphism and every epimorphism is the cokernel of some morphism.
+\end{defn}
+\begin{prop}
+	$R-\cmod$ is an abelian category.
+\end{prop} 
+\begin{proof}
+	We will show that every mono\morph is the \tker of some mono\morph. Let $\phi:M\to N$ be a mono\morph; hence $\phi$ is injective. Consider now the projection $\pi: N \msurarr \coker\phi$. Then, by the first isomorphism theorem (\cref{trialprop}, $\ker \pi = \im \phi \cong M$ and the inclusion map $\ker \pi \membarr N$ is injective.\\
+	Let $Z$ be another $R$-module and $\zeta:Z\to M$ a morphism such that $\pi \circ \zeta = 0$. Consider the following commutative diagram
+	\[
+	\begin{tikzcd}
+	Z\ar{r}{\zeta}\ar[dashed]{dr}\ar[dashed, bend left = -10]{ddr} \ar[bend left=25]{rr}{0} & N \ar{r}{\pi}& \coker \phi \\
+	& \ker \pi \ar[hookrightarrow]{u}& \\
+	& M \ar[leftrightarrow]{u}{\cong} \ar[bend left= -35,swap]{uu}{\phi}&
+	\end{tikzcd}
+	\]
+	Hence $\phi:M\to N$ is a kernel of $\coker \phi$.
+\end{proof}
+This notion continues to hold in every abelian category.
+\begin{prop}
+	In an abelian category $\cat{A}$, every kernel is the kernel of its cokernel; every cokernel is the cokernel of its \tker.
+\end{prop}
+\begin{proof}
+	Let $\phi:A\to B$ be the \tcker of some morphism $Z\to A$, and let $\iota: K\to A$ be the kernel of $\phi$. Since $Z\to A \to B$ is zero, $Z\to A$ factors uniquely to through $\iota$, by the definition of the kernel:
+	\[
+	\begin{tikzcd}
+		Z\ar{r}\ar[dashed]{dr} & A \ar{r}{\phi} &B\\
+		&K \ar{u}{\iota}&
+	\end{tikzcd}
+	\]
+	Now let $A \to C$ be any morphism such that $K\to A\to C$ is the zero-\morph. Then the induced morphism $Z\to A \to C$ is also zero, and hence factors through $\phi$, since $\phi$ is the cokernel of $Z\to A$:
+	\[
+		\begin{tikzcd}
+		& C&\\
+		Z\ar{r}\ar[dashed]{dr} \ar{ur} & A\ar{u} \ar{r}{\phi} &B\ar[dashed]{ul}\\
+		&K \ar{u}{\iota}&
+		\end{tikzcd}
+	\]
+	But this implies that every morphism $A\to C$, such that $K\to A\to C = 0$, factors uniquely through $A\to B$. Hence the cokernel $A\to B$ is the cokernel of its kernel $K\to A$.\par
+	As exercise, we show the dual part as well. Let $\phi: A\to B$ be the kernel of some morphism $B\to Z$, and $\pi: B \to C$ be the cokernel of $\phi$. Since $A\to B \to Z = 0$, $B \to Z$ factors uniquely through the cokernel $B\to C$ of $\phi$:
+	\[
+	\begin{tikzcd}
+	&C\ar[dashed]{dr}&\\
+	A\ar{r}{\phi}&B \ar{u}\ar{r}& Z
+	\end{tikzcd}
+	\]
+	Now let $K \to B$ be any morphism such that the composition $K\to B \to C$ is zero. Then the induced map $A\to B\to Z$ is also zero, and hence factors uniquely through $\phi:A\to B$, as $\phi$ is the kernel of $B\to Z$:
+		\[
+		\begin{tikzcd}
+		&C\ar[dashed]{dr}&\\
+		A\ar{r}{\phi}&B \ar{u}\ar{r}& Z\\
+		& K \ar{u}\ar[dashed]{ul}\ar{ur}&
+		\end{tikzcd}
+		\]
+\end{proof}
+\begin{lem}
+	Let $\phi:A\to B$ be a morphism in an abelian categorie $\cat{A}$m and assume that $\phi$ is both a mono\morph and an epi\morph. Then $\phi$ is an iso\morph.
+\end{lem}
+\begin{lem}
+	The inclusion $i_A:A\to A \amalg B$ is a monomorphism.
+\end{lem}
+\begin{proof}
+	Consider the following diagram:
+	\[
+	\begin{tikzcd}
+	Z \ar{r}{\zeta} & A\ar[bend left=30]{rr}{\id_A} \ar[swap]{r}{i_A}  & A \amalg B \ar[dashed]{r}{\exists!\pi_a} & A\\
+	&&B\ar{u}{i_B} \ar[bend left = -20]{ur}{0} &
+	\end{tikzcd}
+	\]
+	where $B$ is arbitrary and $\zeta:Z\to A$ is a morphism such that $\i_A\circ \zeta=0$. But then $\pi_A\circ i_A \circ \zeta = 0$, but $\pi_A\circ i_A = \id_A$, hence $0=\id_A\circ\zeta=\zeta$, so $i_A$ is a monomorphism.
+\end{proof}
+\subsection{Images; canonical decomposition of morphisms}
+\begin{thm}
+	Ever morphism $\pphi:A\to B$ in an abelian category $\cat{A}$ may be decomposed as
+	\[
+	\begin{tikzcd}
+	A\ar[bend left=25]{rrr}{\pphi} \ar[\surarr]{r} & C \ar[swap]{r}{\tilde{\pphi}}&K\ar[\monarr]{r}&B
+	\end{tikzcd}
+	\]
+	where $A\to C$ is the cokernel of the kernel of $\pphi$ and $K\to B$ is the kernel of the cokernel of $\pphi$. The induced morphism $\tilde{\pphi}:C\to K$ is uniquely determined and is an isomorphism.
+\end{thm}
+
+\begin{lem}
+	Let $\pphi:A\to B$ be a morphism in an abelian category, and let $\iota:K\to B$ be the kernel of the cokernel of $\pphi$. Then
+	\begin{enumerate}
+		\item $\iota$ is a monomorphism
+		\item $\pphi$ factors through $\iota$; and
+		\item $\iota$ is initial with these property.
+	\end{enumerate}
+\end{lem}
+\begin{proof}
+	As $\iota$ is a kernel, it is automatically a monomorphism. In addition, we know that $A\to B\to \coker \pphi$ is the zero-morphism, so it factors uniquely through the kernel of the cokernel of $\pphi$:
+	\[
+	\begin{tikzcd}
+	A\ar{r}{\pphi}\ar[dashed]{dr}\ar[bend left]{rr}{0}&B\ar{r}{\pi_B}&\coker \pphi\\
+	&K\ar{u}&
+	\end{tikzcd}
+	\]
+%	Let $\lemma:L\mmonarr B$ be any monomorphism through which $\pphi$ also factors, then $\iota$ must also factor 
+\end{proof}
+\begin{defn}
+	Let $\pphi$ be a morphism in an abelian category. The \toidx{image} of $\pphi$ is the kernel of the cokernel of $\pphi$. The \toidx{coimage} is the cokernel of the kernel of $\pphi$. They are denoted by $\im \pphi$ and $\coim \pphi$ respectivley.
+\end{defn}
+\thispagestyle{rlast}
+
+
+\appendix
+\chapter{Übungsaufgaben}
+\section{some useful stuff from one of the exercise sheets}
+\backmatter
+\printbibliography[heading = bibintoc]
+\printindex
+
+
+\end{document}

@@ -1,0 +1,117 @@
+\chapter{Nullstellen von Polynomen}
+\section{Reelle und komplexe Wurzeln}
+Sei $n\in \nne$. Für $z\in \cc$ heißen die Nullstellen von $X^n-z\in \cc[X]$ die $n$-ten \toidx{Wurzeln} von $z$.
+Sei $r\in \rr,r\geq 0$. Dann existiert eine eindeutig bestimmte reelle Zahl $w\geq 0$ mit $w^n=r$. Wir schreiben $\sqrt[n]{r}:=w$.\par
+Sei $z=r\exp(i\alpha)$ mit $r\geq 0$ reell und $\alpha \in [0,2\pi)$ eine komplexe Zahl. Setze
+\[
+\sqrt[n]{z}:= \sqrt[n]{r}\exp(i\alpha/n),
+\]
+und definiere $\sqrt[2]{z}=:\sqrt{z}$. Definiere weiterhin
+\[
+\zeta_n:= \exp(2\pi i/n).
+\]
+Die Menge der $\zeta_n^j$ für $0\leq j\leq n-1$ heißen $n$-te \toidx{Einheitswurzeln}. Dies sind gerade die Nullstellen von $X^n-1\in \cc[X]$.
+
+\section{Formeln für Nullstellen vom Grad $n\leq 4$}
+c.f. Formeln von Cardano und Ferrari.
+
+\section{Körpererweiterungen}
+\begin{defn}
+	Sei $L$ ein Körper. Eine Teilmenge $K\subseteq L$ heißt \toidx{Teilkörper} von $L$, falls gilt
+	\begin{enumerate}
+		\item $0,1\in K$
+		\item $a+b\in K,~ab\in K$ für alle $a,b\in K$
+		\item $-a\in K$ für alle $a\in K$
+		\item $a^{-1}\in K$ für alle $a\in K^{\times}$
+	\end{enumerate}
+\end{defn}
+Durch Einschränkung der Addition und Multiplikation ist $K$ wieder ein Körper. In diesem Fall heißt das Tupel $L/K:=(K,L)$ eine \toidx{Körpererweiterung}. Wir dafür auch $K\subset L$ und sagen, dass $L$ eine Körpererweiterung von $K$ ist.
+\begin{lem}
+	Sei $L$ ein Körper, $I$ eine Indexmenge und $K_i$ ein Teilkörper für alle $i\in I$. Dann ist
+	\[
+	K:= \bigcap_{i\in I} K_i
+	\]
+	wieder ein Teilkörper.
+\end{lem}
+\begin{proof}
+	Wir rechnen schnell die Eigenschaften nach:
+	\begin{enumerate}
+		\item Es gilt $0,1\in K_i$ für alle $i$, also auch $0,1\in K$.
+		\item Seien $a,b\in K_i$ für alle $i$. Dann ist auch $a+b$ und $ab$ in $K_i$ für alle $i$, weil die $K_i$ jeweils Teilkörper sind. Also auch $a+b,ab\in K$.
+		\item genauso.
+		\item genauso.
+	\end{enumerate}
+\end{proof}
+\begin{defn}
+	Sei $L$ ein Körper, $M\subseteq L$ eine Teilmenge. Dann ist
+	\[
+	(M):= \bigcap_{M\subseteq F\subseteq L} F,
+	\]
+	mit $F$ Teilkörper, der von $M$ \emph{erzeugte Teilkörper} \index{Teilkörper!erzeugter}. \\
+	Sei $L/K$ eine Körpererweiterung und $M\subseteq L$ eine Teilmenge von $L$. Definiere
+	\[
+	K(M):= (K\cup M)\subset L.
+	\]
+	$K(M)$ entsteht an $K$ durch \toidx{Adjungtion} von $M$.
+\end{defn}
+\begin{bsp}
+	Betrachte $\rr/\qq$ und
+	\[
+	\qq(\sqrt{2}) := \{ a+b\sqrt{2}\ssp a,b\in \qq\}.
+	\]
+\end{bsp}
+Für $M = {x_1,...,x_n}\subset L$ endlich schreibt man vereinfacht auch
+\[
+K(M)=: K(x_1,...,x_n).
+\]
+\begin{defn}
+	$L/K$ ist \emph{einfach} \index{Körpererweiterung!einfache}, falls es ein $x\in L$ gibt mit $K(x)=L$.
+\end{defn}
+\begin{defn}
+	Für $M=\{0,1\}$ heißt $P:= (M)$ der \toidx{Primkörper} von $L$. Jeder Teilkörper von $L$ enthält $p$
+\end{defn}
+\begin{bsp}
+	Der Primkörper von $\mathbb{C}$ ist $\mathbb{Q}$.
+\end{bsp}
+\section{Auflösbarkeit durch Radikale}
+\begin{defn}
+	$L/K$ ist eine \toidx{Radikalerweiterung} von $L$ falls gilt:
+	\begin{enumerate}
+		\item es gibt $x_1,...,x_n\in L$ mit $K(x_1,...,x_n) = L$
+		\item Es gibt $r_1,...,r_n\in \nne$ mit $x_1^{r_1}\in K$ und $x_i^{r_i}\in K(x_1,...,x_{i-1})$ für $2\leq i\leq n$.
+	\end{enumerate}
+	Wir sagen: \glqq $L$ entsteht aus $K$ durch sukzessive Adjungtion von Wurzeln\grqq.
+\end{defn}
+\begin{defn}
+	$f\in K[X]$ ist \emph{durch Radikale auflösbar}, falls es eine Radikalerweiterung $L/K$ gibt, so dass $f$ eine Nullstelle in $L$ hat.
+\end{defn}
+\begin{thm}[Cadano und Ferrari]
+	Sei $f\in \qq[X]$ mit $\deg f\leq 4$. Dann ist $f$ auflösbar.
+\end{thm}
+Ein Ziel der Vorlesung wird es sein, zu verstehen, wann $f\in \qq[X]$ durch Radikale auflösbar ist.
+
+\chapter{Konstruktion mit Zirkel und Lineal}
+Ein weiteres Ziel der Vorlesung wird es sein, die klassischen Konstruktionsprobleme zu untersuchen.\par
+Identifiziere $\cc \cong \rr^2$. Gegeben sei nun $M\subset \cc$ mit $|M|\geq 2$. Definiere
+\begin{enumerate}
+	\item $G(M) := \{\text{affine Geraden }G\text{ in }\rr^2\text{ mit }|G\cap M|\geq 2\}$
+	\item $C(M) := \{\text{reelle Kreise }C\text{ in }\rr^2\text{mit: Mittlepunkt von }C\in M\text{ und Radius von }C=||z_1-z_2||,z_1,z_2\in M\}$
+\end{enumerate}
+Durch folgende Operation erhalten wir wieder komplexe Zahlen:
+\begin{itemize}
+	\item $(ZL1)$: Schnitt zweier Geraden aus $G(M)$
+	\item $(ZL2)$: Schnitt einer Gerade aus $G(M)$ und eines Kreises aus $C(M)$
+	\item $(ZL3)$: Schnitt zweier Kreise aus $C(M)$.
+\end{itemize}
+Setze
+\[
+ZL(M):= \{z\in \cc\ssp z\in M\text{ oder }z\text{ entsteht aus }M\text{durch Anwendung von }(ZL1,(ZL2),(ZL3)\}.
+\]
+Definiere jetzt
+\[
+M_0 := M, M_{i+1}:= ZL(M_i)\text{ und }M_{\infty}:= \bigcup_{i\geq 0} M_i.
+\]
+Die Elemente von $M_{\infty}$ heißen die von $M$ durch Zirkel und Lineal \toidx{konstruierbare Punkte}.
+\begin{lem}
+	$M_{\infty} = ZL(M_{\infty})$.
+\end{lem}

@@ -4,19 +4,43 @@
 \usepackage{tikz-cd}
 %surjective map:
 \newcommand{\surarr}{twoheadrightarrow}
+\newcommand{\monarr}{rightarrowtail}
+\newcommand{\mmonarr}{rightarrowtail}
+\newcommand{\msurarr}{\twoheadrightarrow}
 %embedding:
 \newcommand{\embarr}{hookrightarrow}
+\newcommand{\membarr}{\hookrightarrow}
 
 %%%
-%abbrevations:
+%abbreviations:
 %abbreviations - text:
-\newcommand{\homo}{homomorphismus~}
-\newcommand{\isom}{isomorphismus~}
-\newcommand{\abb}{abbildung~}
+\newcommand{\morph}{morphism~}
+\newcommand{\homo}{homomorphism~}
+\newcommand{\isom}{isomorphism~}
+\newcommand{\abb}{map~}
+\newcommand{\tker}{kernel~}
+\newcommand{\tcker}{cokernel~}
+\newcommand{\homc}[1]{\hom_{\cat{#1}}}
 %abbreviations - symbols:
 \DeclareMathOperator{\im}{Im}
 \DeclareMathOperator{\id}{id}
 \DeclareMathOperator{\gl}{GL}
+\DeclareMathOperator{\coker}{coker}
+\DeclareMathOperator{\coim}{coim}
+\newcommand{\pphi}{\varphi}
 
+
+%blackboard symbols
+\newcommand{\nn}{\mathbb{N}}
+\newcommand{\nne}{\mathbb{N}_1}
+\newcommand{\rr}{\mathbb{R}}
+\newcommand{\cc}{\mathbb{C}}
+\newcommand{\qq}{\mathbb{Q}}
 %divider in set notation
 \newcommand{\ssp}{~|~}
+
+%%
+%categorystuf
+\newcommand{\cat}[1]{\mathsf{#1}}
+\newcommand{\cmod}{\mathsf{Mod}}
+\newcommand{\cab}{\mathsf{Ab}}
