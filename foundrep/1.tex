@@ -1,0 +1,167 @@
+\chapter{Algebras and modules}
+\textit{Conventions:} In this lecture, rings will always be unital, and ring homomorphisms $f$ always fulfill $f(1)=1$. Rings do \textit{not} have to be commutative.
+\section{Algebras - Basics}
+Let $k$ be a commutative ring.
+\begin{defn}
+	A $k$-\toidx{algebra} $A$ is a ring $A$, togehter with a structure of a $k$-module on $A$, such that
+	\begin{equation}\label{1:comp}\tag{$\ast$}
+		\text{for all }a,b\in A,\lambda \in K:~(\lambda a)b=a(\lambda b)= \lambda(ab)
+	\end{equation}
+\end{defn}
+
+\begin{defn}
+	Let $A,B$ be $k$-algebras. A \emph{homomorphism of algebras}\index{homomorphism!of algebras} is a map $f:A\to B$ that is both $k$-linear and a ring homomorphism.
+\end{defn}
+\begin{rem}
+	Let $A$ be a ring. Define
+	\[
+		Z(A):= \{a\in A~|~\forall b\in A: ab=ba\},
+	\]
+	which is a commutative subring and is called the \toidx{center} of $A$.
+\end{rem}
+\begin{rem}
+	Let $A$ be a ring. Giving a $k$-algebra structure on $A$ is the same as giving a ring homomorphism $k\to Z(A)$. More precisley:
+	\begin{enumerate}
+		\item If $A$ is a $k$-algebra, then $p:k\to A,~\lambda\mapsto \lambda 1$ satisfies $\im p\subseteq Z(A)$ and is a ring homomorphism. (the first statement follows from \eqref{1:comp} and the second one from the fact that $A$ has a $k$-module structure).
+		 \item Let $\varphi:k\to Z(A)$ be a ring homomorphism. Define
+		 \[
+		 \lambda a:= \varphi(\lambda)a,
+			\]
+		for all $\lambda \in k$. This defines a $k$-algebra structure on $A$ (Scalar multiplication with elements from $k$ in $A$ follows from the distributivity in $A$, and \eqref{1:comp} since $\im(\varphi)\sse Z(A)$).
+		\item Let $A,B$ be $k$-algebras and $f:A\to B$ a homomorphism of rings. Then $f$ is a homomorphism of $k$-algebras if and only if the following diagram commutes:
+		\[
+		\begin{tikzcd}
+			A\ar{rr}{f}&&B\\
+			Z(A)\ar[hookrightarrow]{u}&&\ar[hookrightarrow]{u}Z(B)\\
+			&k\ar{ul}{\phi_A}\ar[swap]{ur}{\phi_B}&
+		\end{tikzcd}.
+		\]
+	\end{enumerate}
+\end{rem}
+\begin{bsp}
+	\begin{enumerate}
+		\item Let $V$ be a $k$-module. Consider $\eno_k(V)$. This has a ring structure given by
+		\[
+		\eno_k(V)\times \eno_k(V)\to \eno_k(V),~(\phi,\psi)\mapsto \pphi\circ \psi.
+		\]
+		Then $\eno_k(V)$ is both a ring and a $k$-module, and becomes a $k$-algebra via
+		\[
+		\pphi: k\to \eno_k(V),~\lambda \mapsto \lambda \id.
+		\]
+		Note that $\im \pphi \sse Z(A)$. If $k$ is a field, then $Z(\eno_k(V))=\{\lambda \id ~|~\lambda \in k\}$.
+		\item Take $V=k^n$ (free module of rank $n$). Then $\eno_k(V)\cong \mat_n(k)$. Define
+		\[
+		T_u:=\{ n\varphi \in \mat_n(k)~|~\varphi \text{ is upper triangular}\},
+		\]
+		i.e. $T_u$ presevers flags in $k^n$. Then $T_u$ is a \toidx{subalgebra} of $\mat_n(k)$, i.e. is both a subring and a $k$-submodule of the original algebra.
+		\item Let $G$ be a group. Define to be the \toidx{group algebra} of $k[G]$ as follows:
+		\begin{itemize}
+			\item As $k$-module, is defined as the free module on $G$,
+			\[
+			k[G]:= k^{(G)} = \{ \sum_{g\in G}\lambda_{g}g~|~\lambda_g\in k,~\lambda_g\neq 0\text{ for only finitely many }g\in G\}.
+			\]
+			\item Multiplication: Let $a:= \sum \lambda_g g$, $b=\sum \mu_g g$ and define:
+			\[
+			ab:= \sum_{g\in G,h\in G}\lambda_g\mu_h(gh) = \sum_{j\in G}\left(\sum_{gh=j}\lambda_g\mu_h\right)j.\]
+			This multiplication is associative, $k$-bilinear, distributive and $\left.1\right|_{k[G]}=e$. In addition, \eqref{1:comp} is satisfied.
+	\end{itemize}
+\end{enumerate}
+\end{bsp}
+\section{Quivers - Basics}
+\begin{defn}
+	A \toidx{quiver} is a \glqq directed graph\grqq. Formally, a quiver is a quadruple $(Q_0,Q_1,s,t)$ consiting of sets $Q_0$ (\toidx{vertices}) and $Q_1$ (\toidx{arrows}) and maps $s:Q_1\to Q_0$, $t:Q_1\to Q_0$. For $\alpha \in Q_1$, we call $s(\alpha)$ the \toidx{source} of $\alpha$ and $t(\alpha)$ the \toidx{target} of $\alpha$:
+	\[
+	\begin{tikzcd}
+		s(\alpha)\ar{r}{\alpha}&t(\alpha).
+	\end{tikzcd}
+	\]
+\end{defn}
+\begin{bsp}
+	\begin{enumerate}
+		\item $Q=(\{1\},\emptyset,...)$ is visualized as: $1$
+		\item $Q=(\{1\},\{\alpha\},...)$ is visualized as $\begin{tikzcd}1\arrow[out=90,in=0,loop]\end{tikzcd}$
+		\item $Q=(\{1,2\},\{\alpha,\beta\},s(\alpha)=s(\beta)=1,t(\alpha)=t(\beta)=2)$ is visualized as $\begin{tikzcd}1\ar[shift left]{r}{\alpha}\ar[shift right,swap]{r}{\beta}&2\end{tikzcd}$
+	\end{enumerate}
+	\end{bsp}
+\begin{defn}
+	Let $Q$ be a quiver sucht that both $Q_0$ and $Q_1$ are finite.
+	\begin{enumerate}
+		\item Let $\ell\in \zz_{\geq 1}$. A \toidx{path} of length $\ell$ is a sequence $\alpha_{\ell}...,\alpha_1$ of arrows, such that $t(\alpha_i)=s(\alpha_{i+1})$ for $1\leq i \leq \ell-1$,
+		\[
+		\begin{tikzcd}
+			\circ \ar{r}{\alpha_1}&\circ\ar{r}{\alpha_2}&\circ \hdots\ar{r}{\alpha_{\ell}}&\circ.
+		\end{tikzcd}
+		\]
+		Define $Q_{\ell}$ to be the set of all paths of length $\ell$. \\
+		Let $p:\alpha_{\ell}...\alpha_1$ be a path. Define $s(p):=s(\alpha_1)$ and $t(p):=s(\alpha_{\ell})$.\\
+		Formally define $Q_0$ to be the set of all paths of length zero. Denote by $\eepsilon_i$ for $i\in Q_0$ the constant path at $i$. $\eepsilon_i$ is called a \emph{lazy path}\index{path!lazy}. We set $s(\varepsilon_i)=t(\eepsilon_i):=i$.
+		\item Let $p=\alpha_{\ell}...\alpha_i$ and $q=\beta_m...\beta_1$ be paths of length $\ell$ and $m$ respectivley, with $\ell,m\geq 1$. If $t(p)=s(q)$, then set $q\circ p:= \beta_m....\beta_1\alpha_{\ell}...\alpha_1$. This is a path of length $\ell+m$.\\
+		For $p$ a path of length $\geq 0$ and $\eepsilon_i$ a lazy path:
+		\begin{itemize}
+			\item if $t(p)=i$, set $\eepsilon_i\circ p := p$,
+			\item if $s(p)=i$, set $p\circ \eepsilon_i:= p$.
+		\end{itemize}
+		In all others cases, the composition is not defined.
+	\item Define
+	\[
+	Q_{\ast}:= \bigcup_{\ell\geq 0}Q_{\ell},
+	 \]
+	 the set of all paths. Define the \toidx{path-algebra} $kQ$:
+	 \begin{itemize}
+		 \item As a $k$-module, $kQ:= k^{(Q_{\ast})}$.
+		 \item Multiplication: Let $a=\sum \lambda_pp,~b=\sum\mu_p p$. Define
+		 \[
+		 ab:= \sum_{p,q\in Q_{\ast}}\lambda_p\mu_q(p\cdot q),
+		\]
+		where
+		\[
+		p\cdot q:= \begin{cases} p\circ q,&\text{if it is defined, i.e }t(q)=s(p)\\ 0,&\text{else}\\\end{cases}.
+		\]
+		The multiplication is associative (due to the associativity of the composition of paths) and $k$-bilinear by definition. In addition, distributivity and \eqref{1:comp} are fulfilled.
+		\item The identity is given by $\sum \eepsilon_i$.
+	 \end{itemize}
+	\end{enumerate}
+\end{defn}
+\begin{bsp}
+	\begin{enumerate}
+		\item $Q=1$, then $kQ=k$.
+		\item $Q=\begin{tikzcd}1\arrow[out=90,in=0,loop]\end{tikzcd}$, then $Q_{\ast}=\{\alpha^n~|~n\geq 0\}$ and $kQ = k[t]$.
+		\item $Q =\begin{tikzcd}1\ar[shift left]{r}{\alpha}\ar[shift right,swap]{r}{\beta}&2\end{tikzcd}$. Then
+		$Q_{\ast} = \{\eepsilon_1,\eepsilon_2,\alpha^n,\beta^n~|~n\geq 0\}$ and
+		\[
+		kQ = k\eepsilon_1\oplus k\eepsilon_2\oplus k\alpha \oplus k\beta.
+		\]
+		A multiplication table is given by\\
+		\begin{center}
+			\begin{tabular}{|c|c|c|c|c|}
+				\hline
+				&$\eepsilon_1$&$\eepsilon_2$&$\alpha$&$\beta$\\ \hline
+				$\eepsilon_1$&$\eepsilon_1$&$0$&$0$&$0$\\ \hline
+				$\eepsilon_2$&$0$&$\eepsilon_2$&$\alpha$&$\beta$\\ \hline
+				$\alpha$&$\alpha$&$0$&$0$&$0$\\ \hline
+				$\beta$&$\beta$&$0$&$0$&$0$\\ \hline
+			\end{tabular}
+		\end{center}
+	\end{enumerate}
+\end{bsp}
+\begin{lem}
+	Let $k$ be a field, $A$ a $k$-algebra and $n:=\dim(A)<\infty$. Then there exists an injective homomorphism of $k$-algebras $\pphi:A\to \mat_n(k)$.
+\end{lem}
+\begin{proof}
+	By choosing a basis of $A$, we get an isomorphism $\eno_k(A)\cong \mat_n(k)$. So it suffices to find an injective homomorphism of $k$-algebras $\pphi:A\to \eno_k(A)$.\\
+	Consider
+	\[
+	\pphi:A\to \eno_k(A),~\varphi(a):A\to A,b\mapsto ab.
+	\]
+	\begin{itemize}
+		\item $\pphi(a)$ is $k$-linear for all $a$ by the distributivity in $A$ and the condition \eqref{1:comp}.
+		\item $\pphi$ is $k$-linear by the distributivity in $A$ and the condition \eqref{1:comp}.
+		\item Let $a,a'\in A$. Then
+		\[
+		\pphi(aa')(b)=(aa')(b)=a(a'b)=\left(\pphi(a)\circ\pphi(a')\right)(b).
+		\]
+	\end{itemize}
+	Hence $\pphi$ is indeed a homomorphism of $k$-algebras.\\
+	To show that $\pphi$ is injective, let $a\in \ker \pphi$, hence $ab=0$ for all $b\in A$. But in particular, $0=a1=a$.
+	\end{proof}
+\lec
