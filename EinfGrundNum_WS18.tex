@@ -1,0 +1,42 @@
+\documentclass[11pt,twoside]{memoir}
+
+
+\usepackage{packages/setup}
+\usepackage[ngerman]{babel}
+\usepackage{packages/bibconfig}
+%loads bibliography package for this document
+\addbibresource{einfalg/lit.bib}
+\usepackage{packages/styles}
+
+\usepackage{packages/theorems}
+\usepackage{packages/mymathtools}
+
+
+
+
+\include{einfalg/titlepage}
+
+\makeatletter
+\newlength{\@thlabel@width}%
+\newcommand{\thmenumhspace}{\settowidth{\@thlabel@width}{\itshape1.}\sbox{\@labels}{\unhbox\@labels\hspace{\dimexpr-\leftmargin+\labelsep+\@thlabel@width-\itemindent}}}
+\makeatother
+
+\begin{document}
+
+\frontmatter
+\maketitle
+\begin{KeepFromToc}
+	\tableofcontents
+\end{KeepFromToc}
+\include{einfgrundnum/frontmatter}
+\mainmatter
+\include{einfgrundnum/1}
+\thispagestyle{rlast}
+\appendix
+
+\backmatter
+\printbibliography[heading = bibintoc]
+\printindex
+
+
+\end{document}

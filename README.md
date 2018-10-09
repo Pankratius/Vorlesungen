@@ -5,4 +5,4 @@ Wir versuchen hier, Mitschriften zu folgenden Vorlesungen zur Verfügung zu stel
 
 [Einführung in die Algebra, Schröer](EinfAlg_WS18.pdf)
 
-[Analysis 3, Koch](Ana3_WS18.pdf)
+[Einführung in die Grundlagen der Numerik](EinfGrundNum_WS18.pdf)

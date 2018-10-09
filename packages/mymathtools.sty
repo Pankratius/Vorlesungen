@@ -1,5 +1,10 @@
 \ProvidesPackage{mymathtools}
-
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsopn}
+\usepackage{amsthm}
 %for commutative diagramms
 \usepackage{tikz-cd}
 %surjective map:
@@ -25,11 +30,18 @@
 \DeclareMathOperator{\im}{Im}
 \DeclareMathOperator{\id}{id}
 \DeclareMathOperator{\gl}{GL}
+\DeclareMathOperator{\og}{O}
+\DeclareMathOperator{\sqm}{M}
 \DeclareMathOperator{\coker}{coker}
 \DeclareMathOperator{\coim}{coim}
 \newcommand{\pphi}{\varphi}
+\newcommand{\glr}[1]{\gl_{#1}(\mathbb{R})}
+\newcommand{\orr}[1]{\og_{#1}(\mathbb{R})}
+\newcommand{\mnr}[1]{\sqm_{#1}(\mathbb{R})
 
+%norms and stuff
 
+\newcommand{\eukno}[1]{\left|\left|#1\right|\right|_2}
 %blackboard symbols
 \newcommand{\nn}{\mathbb{N}}
 \newcommand{\nne}{\mathbb{N}_1}

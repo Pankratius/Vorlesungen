@@ -1,0 +1,66 @@
+\chapter{Lineare Gleichungssysteme}
+\section{Orthogonalisierungsverfahren}
+
+
+Betrachte $A\in \glr{n}$, wobei $A$ schlecht konditioniert sein kann. Wir wollen ein Gleichungssystem der Form $Ax=b$, mit $b\in \rr^n$ gegeben, lösen. Dazu suchen wir eine Orthogonalmatrix $Q\in \orr{n}$ und eine obere Dreiecksmatrix $R\in \mnr{n}$ mit $A=QR$. Dann erhalten wir das äquivalente Problem
+\[
+Ax=b \Longleftrightarrow QRx=b \Longleftrightarrow Rx=Q^T b.
+\]
+
+\subsection{Eigenschaften orthogonaler Matrizen}
+\begin{lem}\label{1:iso}
+	Sei $Q\in \orr{m}$ orthogonal. Dann ist auch $Q^T$ orthogonal und es gilt
+	\[
+		\eno{Qx}= \eno{Q^Tx}=\eno{x}
+	\]
+\end{lem}
+\begin{proof}
+	Es gilt
+	\[
+	\eno{Qx}^2 = x^TQ^TQx = x^Tx=\eno{x}.
+	\]
+	Genauso für $Q^T$.
+\end{proof}
+\begin{lem}
+	Sei $A\in \glr{n}$ regulärn und $Q\in \orr{n}$ orthogonal. Dann gilt
+	\[ \kappa_2(QA)=\kappa_2(A)
+	\]
+\end{lem}
+\begin{proof}
+	Die Matrixnorm $\eno{A}$ ist durch die euklidsche Norm induziert, i.e.
+	\[
+	\eno{A} = \max_{x\neq 0} \frac{\eno{Ax}}{\eno{x}}.
+	\]
+	Also folgt aus \cref{1:iso}, dass $\eno(QA)=\eno(A)$ gilt.\\
+	Betrachte jetzt
+	\begin{align*}
+		\eno{A^{-1}Q^T} &= \max_{x\neq 0}\frac{\eno{A^{-1}Q^Tx}}{\eno{x}}
+										&= \max_{x\neq 0}\frac{\eno{A^{-1}Q^Tx}}{\eno{Q^Tx}}
+										&\overset{y:=Q^Tx}=  \max_{y\neq 0} \frac{\eno{A^{-1}}}{\eno{y}} = \eno{A^{-1}}
+	\end{align*}
+\end{proof}
+Also ist für das LGS $Rx=Q^Tb:$ $\kappa_2(R)=\kappa_2(A)$. Also hat sich die Kondition des Problems nicht verschlechtert.
+
+\subsection{Anwendung:Lineare Ausgleichsgeraden}
+Betrachte für gegebenes $b\in \rr^n$ und $A\in \mnr{n}$ das Optimierungsproblem
+\[
+\min_{x\in \rr^n} \eno{Ax-b}.
+\]
+Dieses Problem ist äquivalent zur Optimierung von $\eno{Ax-b}^2$. \par
+Seien nun $m$ Tupel $(y_i,f_i)\in \rr^2$ ($1\leq i\leq m$) gegeben. Gesucht ist diejenige affine Gerade $c+dy$ in $\rr^2$, so dass die Summe der Quadrate der Punkte von der Gerade minimal ist. Wir erhalten also das Optimierungsproblem
+\[
+\min_{(c,d)\in \rr^2} \left(\sum_{i=1}^m(c+dy_i-f_i)^2\right) = \min_{(c,d)\in \rr^2} \eno{\begin{pmatrix}1 &y_1\\\vdots &\vdots\\1&y_m\end{pmatrix}\cdot \begin{pmatrix}c\\d\end{pmatrix}-\begin{pmatrix}f_1\\\vdots\\f_m\end{pmatrix}}.
+\]
+Betrachte allgemeiner das Polynom
+\[
+p(y) = \sum_{k=0}^{n-1}a_ky^k.
+\]
+Gesucht sind jetzt die Koeffizienten $a_0,...,a_{n-1}$ mit
+\[
+\sum_{j=1}^m\left(p(y_j)-f_j\right)^2
+\]
+ist minimal. Schreibe dies ebenfalls als Optimierungsproblem:
+\[
+\min_{a_0,...,a_{n-1}} \eno{\begin{pmatrix}y_1^0&\hdots&y_1^{n-1}}\\\vdots&\ddots&\vdots\\y_m^0&\hdots& y_m\end{pmatrix}\cdot \begin{pmatrix}a_0\\\vdots\\a_{n-1}\end{pmatrix}-\begin{pmatrix}f_1\\\vdots\\f_m\end{pmatrix}}^2.
+\]
+\lec
