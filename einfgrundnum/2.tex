@@ -1,0 +1,149 @@
+Die Existenz der Lösung des Optimierungsproblems folgt aus
+\[
+\lim_{x\to \infty}\eukno{Ax-b}\to \infty,
+\]
+und einer anschließenden Anwendung des Satzes von Weierstraß auf die kompakten Niveaumengen der Abbildung.
+\begin{thm}(Weierstraß)\label{2:wei}
+  Sei $X$ ein kompakter metrischer Raum und $f:X\to \rr$ eine stetige Abbildung. Dann nimmt $f$ auf $X$ sowohl ein Maximum als auch ein Minimum an.
+\end{thm}
+Sei $f:X\to \rr$, mit $X\subseteq \rr$. Dann heißt $x_0\in X$ ein \emph{lokales Maximum} bzw. \emph{lokales Minimum}, falls es eine Umgebung $x\in V$ gibt, so dass $f(x)\leq f(x_0)$ bzw. $f(x)\geq f(x_0)$ für alle $x\in V$ gilt. \index{Extremstelle}
+\begin{lem}
+  Sei $U\subset \rr^n$ offen, und $f:U\to \rr$. Angenommen, $f$ hat in $x_0\in U$ eine Extremstelle und ist in $x_0$ partiell differenzierbar. Dann gilt
+  \[
+  \nabla f(a) = 0.
+  \]
+\end{lem}
+\begin{proof}
+  Betrachte für ein hinreichend kleines $\eepsilon>0$ und $1\leq j\leq n$ die Funktion
+  \[
+  F:(-\eepsilon,\eepsilon)\to \rr,~t\mapsto F(x_0+te_j).
+  \]
+  Dann hat $F$ in $t=0$ eine Extremstelle, und es gilt
+  \[
+  0=F'(0)=\partial_jf(x_0)
+  \]
+\end{proof}
+Betrachte zur Lösung des Optimierungsproblems nun immer die Funktion
+\[
+f:\rr^n\to \rr,~x\mapsto \frac{1}{2}\eukno{Ax-b}^2.
+\]
+Dann gilt für beliebiges $\overline{x}\in \rr^n$
+\begin{align*}
+  \langle \nabla f(\overline{x}),h\rangle &= \langle A\overline{x}-b,Ah\rangle\\
+                                         &= \langle A^T(A\overline{x}-b),h\rangle
+\end{align*}
+Also gilt für eine Extremstelle $\overline{x}$
+\begin{equation}\label{2:neq}\tag{NE}
+\nabla f(\overline{x}) = A^T(A\overline{x}-b) \overset{!}{=}0 \Longleftrightarrow \boxed{A^TA\overline{x}=A^T b} .
+\end{equation}
+Zur Lösung des Optimierungsproblems müssen wir also ebenfalls ein Gleichungssystem lösen. Die Gleichung \eqref{2:neq} heißt \toidx{Normalengleichung}.\par
+\color{purple}
+Für $A\in \rr^{m,n}$ ist $B:=AA^T$ symmetrisch. Weiterhin ist $B$ positiv semi-definit, denn es gilt
+\[
+\langle x,Bx\rangle= x^TBx=x^TAA^Tx=\langle A^Tx,A^Tx\rangle =\eukno{A^Tx}\geq 0.
+\]
+Weiterhin impliziert dies, dass alle Eigenwerte von $x$ größer gleich null sind. Sei dazu $\lambda$ ein Eigenwert und $x$ ein korrespondierender Eigenvektor von $B$,
+\[
+0\leq \langle Bx,x\rangle  = \langle \lambda x,x\rangle = \lambda \eukno{x}^2.
+\]
+Also ist $B$ positiv semi-definit. Angenommen, $A$ hat nun vollen Rang. Dann ist $A^T$ injektiv. Sei $x$ ein Eigenvektor von $B$ zum Eigenwert $0$. Dann gilt
+\[
+0 = \langle x,Bx\rangle = \eukno{A^Tx}^2\implies A^Tx=0\implies x=0.
+\]
+Also hat $B$ nur positive Eigenwerte. Nach dem euklidschen Spektralsatz \cite[20.25]{schroer} ist $B$ aber diagonalisierbar. Also ist $B$ sogar invertierbar,
+\color{black} und die Normalengleichung hat hier jeweils eine eindeutig bestimmte Lösung. Im folgende habe $A$ also immer maximalen Rang.\\
+Weil $AA^T$ symmetrisch positiv-definit ist, kann man \eqref{2:neq} mit der Choleskyzerlegung lösen. Es gilt aber $\kappa_2(AA^T)=\kappa_2(A)^2$,\todo[inline]{Wie ist die Kondition von $A$ im nicht-quadratischen Fall definiert?} weshalb weitere Lösungsverfahren betrachtet werden müssen.\par
+Dazu definieren wir die \emph{erweiterte Orthogonalzerlegung} \index{Orthogonalzerlegung!erweiterte} von $A\in \rr^{m,n}$, mit $m\geq n$ durch
+\[
+A = QR,~\text{mit }Q\in \og_m{\rr}~\text{und}~R=\left[\begin{array}{c}\hat{R}\\\hline 0\end{array}\right],
+\]
+wobei $\hat{R}\in \rr^{n,n}$ eine obere Dreiecksmatrix ist. $R$ heißt in diesem Fall \emph{erweiterte obere Dreiecksmatrix} \index{obere Dreiecksmatrix!erweiterte}\\
+Angenommen, eine solche Zerlegung existiert. Dann gilt
+\begin{align*}
+  \eukno{Ax-b}^2&= \eukno{QRx-b}^2\\
+  &=\eukno{QRX-QQ^Tb}^2\\
+  &= \eukno{Q(Rx+Q^Tb)}\\
+  &= \eukno{\left[\begin{array}{c}\hat{R}\\\hline0\end{array}\right]x-\left(\begin{array}{c}y_1\\\hline y_2\end{array}\right)}\\
+  &= \eukno{\hat{R}x'-y_1}^2+\eukno{y_2}^2,
+\end{align*}
+für passend gewählte $y_1,y_2$. Weil $y_2$ aber fix ist, reicht es,
+\[
+\eukno{\hat{R}x-y_1}^2
+\]
+zu minimieren.
+\begin{thm}
+  Sei $1\leq n \leq m$ und $A\in \rr^{m,n}$, mit $\deg A = n$. Angenommen, $A$ hat eine erweiterte Orthogonalzerlegung. Sei
+  \[
+  Q^T=:\left( \begin{array}{c} y_1\\\hline y_2\end{array}\right),
+  \]
+  mit $y_1\in \rr^{n}$ und $y_2\in \rr^{m-n}$. Dann sind äquivalent
+  \begin{enumerate}
+    \item $\overline{x}\in \rr^n$ löst das Optimierungsproblem \eqref{1:opt}.
+    \item $\hat{R}x=y_1$.
+  \end{enumerate}
+\end{thm}
+\section{Gram-Schmidt-Verfahren}
+Wir wollen die Existenz einer Orthogonalzerlegung von $A$ zeigen.
+\color{purple}
+Dazu verwenden wir \cite[11.32]{schroer}
+\begin{prop}(Gram-Schmidtsches Orthogonalisierungsverfahren) Sei $V$ ein $n$-dimensionaler euklidischer Vektorraum und $(b_1,...,b_n)$ eine geordnete Basis von $V$. Für $1\leq i\leq n$ sei
+  \[
+  V_i:= \mathrm{Lin}(b_1,...,b_i),
+  \]
+  die also eine Flagge
+  \[
+  0=V_0\subset V_1\subset...\subset V_n = V
+  \]
+  bilden. Dann gibt es eine geordnete Orthogonalbasis $(\hat{b}_n,...,\hat{b}_n)$ von $V$, so dass
+  \begin{equation}\label{2:flag}\tag{$\ast$}
+  V_i = \mathrm{Lin}(\hat{b}_1,...,\hat{b}_n)
+  \end{equation}
+  gilt.
+\end{prop}
+\begin{thm}
+  Für jede reguläre Matrix $A\in\gl_(\rr)$ existiert eine orthogonale Matrix $Q\in \orr{n}$ und eine obere Dreiecksmatrix $R\in \mat{n}$, so dass $A=QR$ gilt.
+\end{thm}
+\begin{proof}
+  Aus \eqref{2:flag} folgt, dass für die Abbildung
+  \[
+  g:V\to V,~b_i\mapsto \hat{b}_i
+  \] oben die Koordinatenmatrix bezüglich $B$ in oberer Dreiecksform sein muss. Weiterhin ist $g$ per Definition ein Isomorphismus.\\
+  Betrachte nun den konkreten Fall für $A\in \glr{n}$. Dann bilden die Spalten von $A^{-1}$ eine geordnete Basis von $\rr^n$. Also gibt es eine obere Dreiecksmatrix $g$, so dass
+  \[gA^{-1}=Q,\]
+  wobei $Q\in \orr{n}$ orthogonal ist. Dabei haben wir benutzt, dass eine Matrix $Q$ genau dann orthogonal ist, wenn ihre Spalten eine Orthonormalbasis von $\rr^n$ bilden \cite[11.34]{schroer }. Damit erhalten wir aber
+  \[
+  A=Q^{-1}g,\]
+  und $Q^{-1}\in \orr{n}$, weil die orthogonalen Matrizen eine Gruppe bilden.
+\end{proof}
+\color{black}
+
+\section{Householder-Transformationen}
+Betrachte für ein fixes $w\in \rr^s$ mit $w^Tw=1$ die Abbildung
+\[
+H:\rr^s\to \rr^s,x\mapsto x-2ww^Tx.
+\]
+Die Abbildung $H$ heißt \toidx{Householder-Spiegelung}.
+\begin{prop}\label{2:hprop}
+  Für ein solches $H$ gilt
+  \begin{enumerate}
+    \item $H^T=H$
+    \item $H^2=E_s$,
+  \end{enumerate}
+  also ist $H$ insbesondere eine orthogonale Matrix, $H\in \orr{s}$.
+\end{prop}
+\begin{proof}
+  \begin{enumerate}
+    \item $H^T=(E_s-2ww^T)^T=E_s^T-2(w^T)(w^T)=E_s-2ww^T=H$\color{purple}
+    \item  Es gilt $\rr^s=\mathrm{Lin}(w)\perp \left(\mathrm{Lin}(w)\right)^{\perp}$. Weil $H$ linear ist, genügen die folgenden beiden Ergebnisse
+    \[H(w) = w-2(ww^T)w = w-2w(w^Tw) = w-2w=-w,
+    \]
+    und für $v\perp w$
+    \[
+    H(v) = v-2(ww^T)v=v-2w(w^Tv)=v.
+    \]
+  \end{enumerate}
+  \color{black}
+\end{proof}
+
+
+\lec

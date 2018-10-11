@@ -5,11 +5,14 @@
 \usepackage[ngerman]{babel}
 \usepackage{packages/bibconfig}
 %loads bibliography package for this document
-\addbibresource{einfalg/lit.bib}
+\addbibresource{einfgrundnum/lit.bib}
 \usepackage{packages/styles}
 
 \usepackage{packages/theorems}
+%replace this shit
 \usepackage{packages/mymathtools}
+\usepackage{todonotes}
+
 
 
 
@@ -20,7 +23,6 @@
 \newlength{\@thlabel@width}%
 \newcommand{\thmenumhspace}{\settowidth{\@thlabel@width}{\itshape1.}\sbox{\@labels}{\unhbox\@labels\hspace{\dimexpr-\leftmargin+\labelsep+\@thlabel@width-\itemindent}}}
 \makeatother
-
 \begin{document}
 
 \frontmatter
@@ -30,7 +32,8 @@
 \end{KeepFromToc}
 \include{einfgrundnum/frontmatter}
 \mainmatter
-\include{einfgrundnum/1}
+\input{einfgrundnum/1}
+\input{einfgrundnum/2}
 \thispagestyle{rlast}
 \appendix
 
