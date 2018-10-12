@@ -1,0 +1,304 @@
+\begin{defn}
+  Let $A$ be a $k$-algebra. Then the \emph{opposite algebra} \index{algebra!opposite}\index{opposite!algebra} $\op{A}$ is $A$ (as a $k$-module), and the multiplication is defined as
+  \[
+  a\cdot_{\op{A}}b = b\cdot_Ab.
+  \]
+\end{defn}
+\begin{bsp}
+  Let $Q$ be a quiver, and define $\op{Q}:= (Q_0,Q_1,\op{s},\op{t})$, where $\op{s}(\alpha):= t(\alpha)$ and $\op{t}(\alpha):= s(\alpha)$. Then $\op{kQ}=k(\op{Q})$
+\end{bsp}
+\section{Modules - Basics}
+\begin{defn}
+  Let $A$ be a $k$-algebra. A \emph{left $A$-module} $M$ \index{module!over an algebra} is a $k$-module $M$ together with a map $A\times M\to M,(a,x)\mapsto ax$, such that:
+  \begin{subequations}
+    \begin{equation}\tag{L1}
+      a(x+y)=ax+ay
+    \end{equation}
+    \begin{equation}\tag{L2}
+      (a+b)x  = ax+bx
+    \end{equation}
+    \begin{equation}\tag{L3}\label{2:l3}
+      a(bx) = (ab)x
+    \end{equation}
+    \begin{equation}\tag{L4}
+      1_Ax=x
+    \end{equation}
+    \begin{equation}\tag{L5}
+      (\lambda a)x=\lambda (ax) = a(\lambda x),
+    \end{equation}
+  \end{subequations}
+  for all $a,b\in A$, $x,y\in M$ and $\lambda \in k$.
+  If $A$ is a left $A$-module, we denote this as $\prescript{}{A}{M}$. A \emph{right $A$-module} is defined analogous, where \eqref{2:l3} becomes $(xa)b=x(ab)$. If $A$ is a right $A$-module, we denote this by $A_M$.
+\end{defn}
+\begin{rem}
+  A right $A$-module is the same as a left $\op{A}$-module.
+\end{rem}
+\begin{defn}
+  Let $A$ be a $k$-algebra, and $M,N$ left $A$-modules. A \emph{homomorphism of left $A$-modules} \index{homomorphism!of $A$-algebras} $f:M\to N$ is a $k$-linear map such that
+  \[
+  f(ax) = af(x)
+  \]
+  for all $a\in A$ and $x\in M$.\\
+  Define the set of all left $A$-algebra homomorphisms as
+  \[
+  \hom_{A}(M,N):= \hom_{A}(\prescript{}{A}{M},\prescript{}{A}{M}) := \{f:M\to N \ssp f \text{ is a homomorphism of left }A\text{-modules}\}.
+  \]
+  A homomorphism of left $A$-modules is an \emph{isomorphism} if it is a bijective homomorphism of left $A$-modules. \\
+  \emph{Homomorphism of right $A$-modules} are defined analogous.
+\end{defn}
+
+\begin{rem}
+  Let $M,N$ be left $A$-modules. Then
+  \begin{enumerate}
+    \item $\hom_A(M,N)$ has a $k$-module structure given by
+    \[
+    \lambda f:M\to N,~x\mapsto \lambda f(x) = f(\lambda x).
+    \]
+    This is well defined, as $k$ lies in the center of $A$.
+    \item In general, $\hom_A(M,N)$ has neither a left nor a right $A$-module structure.
+    \item $f$ is an isomorphism if and only if there is a homomorphism of left $A$-modules $g:N\to M$ such that
+    \[
+    g\circ f = \id_{M}~\text{and}~f\circ g = \id_{N}.
+    \]
+    \item Let $f:M\to M'$ and $g:N\to N'$ be \color{purple}homomorphisms of left $A$-modules\color{black}. Then we obtain $k$-linear maps
+    \begin{align*}
+      f^\ast &:\hom_A(M',N)\to \hom_A(M,N),~h\mapsto h\circ f\\
+      g_{\ast} &: \hom_A(M,N) \to \hom_A(M,N'),~h\mapsto g\circ h.
+    \end{align*}
+  \end{enumerate}
+\end{rem}
+\begin{rem}
+  Let $A$ be a $k$-algebra and $M,N$ left $A$-modules.
+  \begin{enumerate}
+    \item A subset $M'\subseteq M$ is called a \emph{submodule} \index{submodule! of $A$-module} if
+      \begin{itemize}
+        \item[(SM1)] $0\in M'$
+        \item[(SM2)] $x,x'\in M'\implies x+x'\in M'$
+        \item[(SM3)] $a\in A,x\in M'\implies ax\in M'.$
+      \end{itemize}
+      \color{purple} In particular, submodules of $A$-modules are submodules of the underlying $k$-module, as follows using (L4)\color{black}
+    \item Let $M$ be a submodule. Then the \emph{quotient} \index{quotient!of an $A$-module} has a left $A$-module structure in the obvious way. The projection
+    \[
+    \pi: M\to M'
+    \]
+    is a homomorphism of left $A$-modules.
+    \item A \emph{left ideal} \index{ideal} is left $A$-submodule of $\prescript{}{A}{A}$. Similar, a \emph{right ideal} is right $A$-submodule of $A_A$. For a left ideal $I\subseteq A$, the quotient $A/I$ is a left $A$-module, but in general not an algebra.
+    \item A \emph{two-sided ideal} $I\subset A$ is both a left- and a right-ideal of $A$. Then $A/I$ has an algebra structure, by setting
+    \[
+    (x+I)(y+I):=(xy)+I.
+    \]
+    \color{purple} In general, this is only well-defined if $I$ is a two-sided ideal of $A$.\color{black}
+    \item Let $f:M\to N$ be a homomorphism of left $A$-modules. Then we obtain left $A$-modules:
+    \[
+    \ker f,~\im f,~\coker f:= N/\im f,~\coim f:= M/\ker f.
+    \]
+    In particular, $f$ factors uniquely as
+    \begin{equation}\label{2:fact}\tag{F}
+    \begin{tikzcd}
+      M \ar{r}{}  \ar[bend left = 25]{rrr}{f}& \coim f \ar{r}{\exists !}[swap]{\cong} & \im f \ar{r}{} & N
+    \end{tikzcd}.
+  \end{equation}
+    \item Let $\{M_i\subset M\ssp i\in I\}$ be a family of left $A$-submodules, for some index set $I$. Then
+    \[\bigcap_{i\in I}M_i~\text{and}~\sum_{i\in I}M_i\]
+    are left $A$-modules.
+    \item Let $x\in M$. Define
+    \[
+    Ax:= \{ ax\ssp a\in A\},
+    \]
+    which is a left $A$-submodule. Similar, for $x\in M_A$, define $xA:= \{ xa\ssp a\in A\}$, which is a right $A$-submodule. For a subset $E\subset M$,
+    \[
+    \sum_{x\in E}Ax = \bigcap_{\substack{E\subseteq M'\subseteq M\\M' \text{ submodule}}}M'.
+    \]
+    $M$ is called \toidx{finitely generated}, if there are $x_1,...,x_n\in M$, such that
+    \[
+    M = \sum_{i=1}^{n}Ax_i.
+    \]
+    \item Let $\{M_i\ssp i\in I\}$ be a family of left $A$-modules. Then
+    \[
+    \prod_{i\in I}M_i:=\color{purple} \{ (x_i)_{i\in I}\ssp x_i\in M_i\}\color{black}
+    \]
+    \color{purple} is called the \emph{product} \index{product!of $A$-modules}\color{black}, and
+    \[
+    \bigoplus_{i\in I}M_i:= \{(x_i)_{i\in I}\ssp x_i\in M_i,~x_i\neq 0\text{ for only finitely many }i\}
+    \]
+    \color{purple} is called the \emph{coproduct} \index{coproduct!of $A$-modules}.\color{black} They are both left $A$-modules. The \emph{projection}
+    \[
+    \pi_j: \prod_{i\in I}M_i\to M_j,~(x_i)_{i\in I}\mapsto x_j
+    \]
+    and the \emph{inclusion}
+    \[
+    \iota_j: \bigoplus_{i\in I}x_j \mapsto (\delta_{ij}x_j)_{i\in I}
+    \]
+    are morphism of left $A$-modules.
+    \item A left $A$-module $M$ is finitely generated if and only if there is a surjective homomorphism of left $A$-modules
+    \[
+    \begin{tikzcd}
+      A^n:= \bigoplus_{i=1}^{n}A\ar[\surarr]{r}&M
+    \end{tikzcd}
+    \]
+    for some $n\geq 1$.
+    $A$ is called \toidx{finitely presented}, if there is an exact sequence of left $A$-modules
+    \[
+    \begin{tikzcd}
+      A^m\ar{r}&A^{n}\ar{r}&M\ar{r}&0
+    \end{tikzcd}
+    \]
+    for some $m,n\geq 1$.
+  \end{enumerate}
+\end{rem}
+
+\begin{prop}
+  Let
+  \begin{equation}\tag{$\ast$}\label{2:ast}
+    \begin{tikzcd}
+      M_1\ar{r}{f_1}&M_2\ar{r}{f_2}&M_3\ar{r}&0
+    \end{tikzcd}
+  \end{equation}
+  and
+  \begin{equation}\tag{$\ast\ast$}\label{2:2ast}
+    \begin{tikzcd}
+      0\ar{r}&N_1\ar{r}{g_1}&N_2\ar{r}{g_2}&N_3
+    \end{tikzcd}
+  \end{equation}
+  be sequences of left $A$-modules.
+  \begin{enumerate}
+    \item The following are equivalent:
+      \begin{enumerate}
+        \item[a)] \eqref{2:ast} is exact.
+        \item[b)] For all left $A$-modules $N$, the sequence
+        \[
+        \begin{tikzcd}
+        0\ar{r}&\hom_A(M_3,N)\ar{r}{f_2^{\ast}}& \hom_A(M_2,N)\ar{r}{f_1^{\ast}} &\hom_A(M,N)
+        \end{tikzcd}
+        \]
+        is exact.
+      \end{enumerate}
+    \item The following are equivalent:
+      \begin{enumerate}
+        \item[a)] \eqref{2:2ast} is exact.
+        \item[b)] For all left $A$-modules $M$, the sequence
+        \[
+        \begin{tikzcd}
+          0\ar{r}&\hom_A(M,N_1)\ar{r}{g_{1,\ast}}& \hom_A(M,N_2)\ar{r}{g_{2,\ast}}&\hom_A(M,N_3)
+        \end{tikzcd}
+        \]
+        is exact.
+      \end{enumerate}
+  \end{enumerate}
+  \end{prop}
+  \begin{proof}
+    We will only prove \textit{a)}$\implies$ \textit{b)} of \textit{ii)}.
+    \color{purple}
+    \begin{lem}\label{2:ker}
+      Let $K,M,N$ be left $A$-modules, and $\zeta: K\to M,~\pphi:M\to N$ be homomorphisms of left $A$-modules, such that $\pphi\circ \zeta= 0$. Then there is a unique homomorphism $\overline{\zeta}$, such that
+      \[
+      \begin{tikzcd}
+        K\ar{r}{\zeta}\ar[swap]{rd}{\exists!\overline{\zeta}}\ar[bend left]{rr}{0}&M\ar{r}{\pphi}&N\\
+        &\ker\pphi \ar[hookrightarrow]{u}&
+      \end{tikzcd}
+      \] commutes.
+    \end{lem}
+    \color{black}
+    \begin{itemize}
+      \item $g_{1,\ast}$ injective: Let $h\in \ker (g_{1,\ast})$. Then
+      \[
+      g_1\circ h: \begin{tikzcd} M\ar[bend left]{rr}{0}\ar{r}{h}&N_1\ar{r}{g_1}&N_2\end{tikzcd}
+      \]
+      and since $g_1$ is injective, it follows $h=0$.
+      \item $\im g_{1,\ast}\subseteq \ker g_{2,\ast}$: Since \ref{2:2ast} is exact, it follows that $g_2\circ g_1=0$. For $h\in \im g_{1,\ast}$ there exists an $h':M\to N_1$ such that $h=g_1\circ h'$, and hence $g_2\circ h = g_2\circ g_1\circ h' = 0$.
+      \item $\ker g_{2,\ast}\subseteq \im g_{1,\ast}$: As \eqref{2:2ast} is exact, $\ker g_2=\im g_1$ holds.\\
+      Let $h:M\to N_2\in\ker g_{2,\ast}$, i.e. $g_2\circ h=0$:
+      \[
+      \begin{tikzcd}
+        &&M\ar[swap]{d}{h}\ar{rd}{0}&\\
+        0\ar{r}&N_1\ar{r}{g_1}&N_2\ar{r}{g_2}&N_3
+      \end{tikzcd}.
+      \]
+      By \cref{2:ker}, $h$ factors uniquely through $\ker g_2=\im g_1$:
+      \[
+      \begin{tikzcd}
+        &&M\ar[swap]{d}{h}\ar{rd}{0}\ar[bend left,dashed]{dd}&\\
+        0\ar{r}&N_1\ar{r}{g_1}&N_2\ar{r}{g_2}&N_3\\
+        &&\im g_1\ar[hookrightarrow]{u}{\iota}&
+      \end{tikzcd}.
+      \]
+      But since $g_1$ is injective, \eqref{2:fact} implies that there is a uniquely determined isomorphism $\begin{tikzcd}\tilde{g}_1:N_1\ar{r}&\im g_1\end{tikzcd}$.\\
+      Putting everything together, we obtain the following commutative diagram:
+      \[
+      \begin{tikzcd}
+        &&M\ar[swap]{d}{h}\ar{rd}{0}\ar[bend left,dashed]{dd}&\\
+        0\ar{r}&N_1\ar{r}{g_1}\ar[bend right,dashed]{dr}{\exists !\tilde{g}_1}&N_2\ar{r}{g_2}&N_3\\
+        &&\im g_1\ar[hookrightarrow]{u}{\iota}&
+      \end{tikzcd}.
+      \]
+      Setting $h':= \tilde{g}_1^{-1}\circ h'$, we obtain
+      \[
+      g_1\circ h' = \iota\circ \tilde{g}_1\circ \tilde{g}_1^{-1}\circ \tilde{h}= \iota \circ \tilde{h}= h.
+      \]
+    \end{itemize}
+    \end{proof}
+  \begin{prop}
+    Let $A$ be a $k$-algebra. To give a left $A$-module structur is the same as to give a $k$-module structure $V$ together with a homomorphism $\pphi:A\to \eno_k(V)$ of $k$-algebras.\\
+    To give a right $A$-module structure is the same as giving a $k$-module structure $V$ together with a homomorphism $\pphi:A\to \op{\eno_k(V)}$.
+  \end{prop}
+
+
+\section{Representation of quivers}
+Let $k$ be a field and $Q$ be a quiver.
+\begin{defn}
+  A \emph{representation} \index{quiver!representation} \index{representation!quiver} over $k$ consists of
+  \begin{itemize}
+    \item a $k$-vector space $X_i$ for all $i\in Q_0$,
+    \item a $k$-linear map
+    \[
+    X_{\alpha}:X_{s(\alpha)}\to X_{t(\alpha)}
+    \]
+    for each $\alpha\in Q_1$
+  \end{itemize}
+\end{defn}
+\begin{bsp}[Continue \cref{1:quiv}]\label{2:quivref}
+  \begin{enumerate}
+    \item Let $Q=\cdot$. Then a representation of $Q$ is simply a $k$-vector space.
+    \item Let $Q=\begin{tikzcd}1\arrow[out=90,in=0,loop]\end{tikzcd}$. Then a representation of $Q$ is a $k$-vector space $V$ together with an endomorphism $\pphi \in \eno_k(V)$:
+    \[
+    Q=\begin{tikzcd}V\arrow[out=90,in=0,loop,"f"]\end{tikzcd}.
+    \]
+    \item Let $Q =\begin{tikzcd}1\ar[shift left]{r}{\alpha}\ar[shift right,swap]{r}{\beta}&2\end{tikzcd}$, the \emph{Kronecker Quiver}. Then a representation of $Q$ is a pair of vector spaces $V,W$ and two linear maps $f,g \in \hom_K(V,W)$:
+    \[
+    Q =\begin{tikzcd}V\ar[shift left]{r}{f}\ar[shift right,swap]{r}{g}&W\end{tikzcd}
+    \]
+  \end{enumerate}
+\end{bsp}
+
+\begin{defn}
+  Take $X,Y$ to be two representations of $Q$ over $k$. A \emph{homomorphism of representations} \index{homomorphism!of representations} $f:X\to Y$ is a tupel $(f_i)_{i\in Q_0}$ of linear maps $f_i:X_i\to Y_i$, such that for all $\alpha \in Q_1$ the diagram
+  \[
+  \begin{tikzcd}
+    X_{s(\alpha)}\ar{r}{f_{s(\alpha)}} \ar[swap]{d}{X_\alpha}&Y_{s(\alpha)}\ar{d}{Y_{\beta}}\\
+    X_{t(\alpha)}\ar[swap]{r}{f_{t(\alpha)}} & Y_{t(\alpha)}
+  \end{tikzcd}
+  \] commutes.
+\end{defn}
+\begin{bsp}[Continue \cref{2:quivref}]
+  \begin{enumerate}
+    \item Homomorphisms of representations are $k$-linear maps $X\to Y$.
+    \item Homomorphisms of representations $(V,\pphi)$ and $(W,\psi)$ are $k$-linear maps $f:V\to W$, such that
+    \[
+    \begin{tikzcd}
+      V\ar{r}{f}\ar[swap]{d}{\pphi}&W\ar{d}{\psi}\\
+      V\ar[swap]{r}{f}&W
+    \end{tikzcd}
+  \] commutes
+    \item Homomorphisms of representations $(V_1,V_2,A,B)$ and $(W_1,W_2,C,D)$ are pairs $(f_1,f_2)$ of linear maps $f_1:V_1\to W_1$ and $f_2:V_2\to W_2$, such that $A\circ f_1=f_2\circ A$ and $B\circ f_1=f_2\circ B$.
+  \end{enumerate}
+\end{bsp}
+\begin{defn}
+  An \emph{isomorphism of representations} $f:X\to Y$ is a homomorphism of representations, such that there exists $g:Y\to X$ homomorphism of representations satisfying
+  \[
+  g\circ f=\id_X~\text{and}~f\circ g=\id_y.
+  \]
+  An isomorphism of representations is a homomorphism of representations such that each map $f_i$ is bijective.
+
+\end{defn}
+
+\lec
