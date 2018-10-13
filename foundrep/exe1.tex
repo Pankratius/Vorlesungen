@@ -1,0 +1,41 @@
+\section{Sheet 1}
+\input{foundrep/sol1}
+\hrule
+\begin{prop}
+Let $k$ be a field, $k[X]$ the polynomial ring and $p\in k[X]$ a polynomial with $\deg p=n$. Then
+	\[
+	k[X]/(p)
+	\]
+is a $n$-dimensional $k$ vector space, and a basis is given by
+	\[
+	\{1,x,...,x^{n-1}\}.
+	\]
+\end{prop}
+The following propositions are taken from \cite{aluffi}.\\
+Let $R$ be any commutative ring.
+\begin{prop}
+  Let $I_1,...,I_k$ be ideals of $R$ such that $I_i+I_j=(1)$ for all $i\neq j$. Then the natural homomorphism
+  \[
+  \pphi :R\to R/I_1\times \hdots \times R/I_k
+  \]
+  is surjective and induces an isomorphism
+  \[
+  \frac{R}{I_1\hdots I_k}\to R/I_1\times \hdots \times R/I_k
+  \]
+\end{prop}
+\begin{cor}[Chinese remainder theorem]
+  Let $R$ be a PID and $a_1,...,a_k\in R$ be elements such that $\gcd(a_i,a_j)=1$ for all $i\neq j$. Let $a=a_1\hdots a_k$. Then the function
+  \[
+  \pphi: R/(a)\to R/(a_1)\times \hdots \times R/(a_k).
+  \]
+\end{cor}
+\begin{prop}[Yoneda Lemma\index{Lemma!Yoneda}]
+	Let $\cat{C}$ be a category, $X$ an object of $\cat{C}$ and consider the contravariant functor
+	\[
+	h_X:= \hom_{\cat{C}}(-,X).
+	\]
+	Then for every contravariant functor $\fcr{F}:\cat{C}\to \cat{Set}$, there is a bijection between the set of natural transformations $h_x\nattraf\fcr{F}$ and $\fcr(X)$.
+\end{prop}
+\begin{defn}[\cite{assem1}]
+	The (Jacobson) \emph{radical} $\rad A$ of a $K$-algebra $A$ is the intersection of all maximal right ideals in $A$. It is the same as the intersetion of all left-sided maximal right ideals in $A$. Furthermore, $\rad A$ is a two-sided ideal.
+\end{defn}

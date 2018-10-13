@@ -33,7 +33,7 @@
 \crefname{thm}{theorem}{theorem}
 \newtheorem{lem}[thm]{Lemma}
 \crefname{lem}{lemma}{lemmata}
-\newtheorem{cor}[thm]{Korollar}
+\newtheorem{cor}[thm]{Corollary}
 \newtheorem{prop}[thm]{Proposition}
 %----
 %use for definitions and examples
@@ -42,5 +42,9 @@
 \newtheorem{defn}[thm]{Definition}
 \newtheorem{rem}[thm]{Remark}
 %-----
+%use for solutions of exercises
+\theoremstyle{generalpurposedef}
+\newtheorem{sol}{Solution}[section]
+\crefname{sol}{solution}{solution}
 %------
 %------

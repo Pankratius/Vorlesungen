@@ -3,7 +3,7 @@
 \section{Algebras - Basics}
 Let $k$ be a commutative ring.
 \begin{defn}
-	A $k$-\toidx{algebra} $A$ is a ring $A$, togehter with a structure of a $k$-module on $A$, such that
+	A $k$-\toidx{algebra} $A$ is a ring $A$, together with a structure of a $k$-module on $A$, such that
 	\begin{equation}\label{1:comp}\tag{$\ast$}
 		\text{for all }a,b\in A,\lambda \in K:~(\lambda a)b=a(\lambda b)= \lambda(ab)
 	\end{equation}
@@ -27,7 +27,7 @@ Let $k$ be a commutative ring.
 		 \[
 		 \lambda a:= \varphi(\lambda)a,
 			\]
-		for all $\lambda \in k$. This defines a $k$-algebra structure on $A$ (Scalar multiplication with elements from $k$ in $A$ follows from the distributivity in $A$, and \eqref{1:comp} since $\im(\varphi)\sse Z(A)$).
+		for all $\lambda \in k$. This defines a $k$-algebra structure on $A$ (\eqref{1:comp} holds since $\im(\varphi)\sse Z(A)$).
 		\item Let $A,B$ be $k$-algebras and $f:A\to B$ a homomorphism of rings. Then $f$ is a homomorphism of $k$-algebras if and only if the following diagram commutes:
 		\[
 		\begin{tikzcd}
@@ -40,7 +40,7 @@ Let $k$ be a commutative ring.
 \end{rem}
 \begin{bsp}
 	\begin{enumerate}
-		\item Let $V$ be a $k$-module. Consider $\eno_k(V)$. This has a ring structure given by
+		\item Let $V$ be a $k$-module. Then $\eno_k(V)$ has a ring structure given by
 		\[
 		\eno_k(V)\times \eno_k(V)\to \eno_k(V),~(\phi,\psi)\mapsto \pphi\circ \psi.
 		\]
@@ -51,10 +51,10 @@ Let $k$ be a commutative ring.
 		Note that $\im \pphi \sse Z(A)$. If $k$ is a field, then $Z(\eno_k(V))=\{\lambda \id ~|~\lambda \in k\}$.
 		\item Take $V=k^n$ (free module of rank $n$). Then $\eno_k(V)\cong \mat_n(k)$. Define
 		\[
-		T_u:=\{ n\varphi \in \mat_n(k)~|~\varphi \text{ is upper triangular}\},
+		T_u:=\{ \varphi \in \mat_n(k)~|~\varphi \text{ is upper triangular}\},
 		\]
 		i.e. $T_u$ presevers flags in $k^n$. Then $T_u$ is a \toidx{subalgebra} of $\mat_n(k)$, i.e. is both a subring and a $k$-submodule of the original algebra.
-		\item Let $G$ be a group. Define to be the \toidx{group algebra} of $k[G]$ as follows:
+		\item Let $G$ be a group. Define the \toidx{group algebra} $k[G]$ of $G$ as follows:
 		\begin{itemize}
 			\item As $k$-module, is defined as the free module on $G$,
 			\[

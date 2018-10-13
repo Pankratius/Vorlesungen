@@ -1,0 +1,43 @@
+\begin{sol}
+  \begin{enumerate}
+    \item $\pphi_m$ is $k$-linear:
+    \begin{itemize}
+      \item $\pphi(a+b)x=(a+b)x\overset{(L1)}{=}ax+bx=\pphi(a)x+\pphi(b)x$
+      \item $\pphi(\lambda a)=(\lambda a)x\overset{(L5)}{=}\lambda(ax)=\lambda\pphi(a)x$.
+    \end{itemize}
+    $\pphi$ is ring homomorphism:
+    \begin{itemize}
+      \item $\pphi(ab)=(ab)x\overset{(L3)}{=}a(bx)=\pphi(a)\pphi(b)x$
+      \item $\pphi(1_A)\overset{(L4)}{=}(1_A)x=x$.
+    \end{itemize}
+    As these relations hold for all $x$, the assertion follows.
+    \item $V_{\pphi}$ is already a $k$-module.
+    \begin{itemize}
+      \item (L1) $a(x+y)=(\pphi(a))(x+y)\overset{\pphi \in \eno_k(V)}{=}(\pphi(a))(x)+(\pphi(a))(y) = ax+ay$
+      \item (L2) $(a+b)x=(\pphi(a+b))x\overset{\pphi\text{ endo of } k-\text{algebras}}{=}(\pphi(a)+\pphi(b))x=\pphi(a)x+\pphi(b)x=ax+bx$
+    \end{itemize}
+  \end{enumerate}
+\end{sol}
+
+\begin{sol}
+  \begin{enumerate}
+    \item Asumme that $I$ is a non-zero ideal of $A$. Let $a=(a)_{ij}\neq 0$ be an arbitrary matrix in $I$. Then there exist elementary matrixes, such that $a_{11}\neq 0$. Define
+    \[
+    b\in \mat_n(k),(b)_{ij}:= \begin{cases} 1&\text{if }i=j=1\\0&\text{else}\\\end{cases}
+    \]
+    and $E_n$ as the identiy matrix. Then we get
+    \[
+    \left(\frac{1}{a_{11}} E_n\right)\cdot b \cdot a\cdot b = b.\]
+    By repeatetly using permutation matrixes, it is possible to write any matrix as sum of products of $a$ with permutation matrix on the left- and right. Hence $a$ generates all of $A$, and $I=A$.
+    \item As $k$ is a field, $\mat_n(k)\cong \eno_k(k^n)$ holds for a choosen basis of $k^n$, and $\dim \eno_k(k^n)=n^2$. Hence $\dim \mat_n(k)=n^2$ as a $k$-vector space. In addition, $\dim \eno_k(M)=m^2$, where $m:=\dim M$ is the dimension of $M$ as a $k$-vector space.\\
+    Consider now the map
+    \[
+    \pphi:\mat_n(k)\to \eno_k(M),~a \mapsto: a:(x\mapsto ax),
+    \]
+    which maps a matrix $a$ to the linear map induced by the $\mat_n(K)$-algebra structure on $M$. This is a homomorphism of $k$-algebras, and in particular, the kernel of $\pphi$ is a two-sided ideal of $\mat_n(k)$, as
+    \[a0x=0ax=0\]
+    holds for any $a\in \mat_n(k)$.
+    Now i) implies that either $\ker \pphi=0$ or $\ker \pphi = \mat_n(k)$. But since $\pphi(E_n)=\id_{M}$, where $E_n$ is the $n\times n$ identity matrix, the latter one is not possible. Hence $\ker \pphi =0$, and $\pphi$ is an injective map of $k$-vector spaces. But this implies $\dim A\leq \dim \eno_K(V)$, so $m\geq n$.
+
+  \end{enumerate}
+\end{sol}
