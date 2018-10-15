@@ -1,0 +1,48 @@
+\begin{defn}
+	Die \emph{Frechet-Ableitung} bezeichnet die gewöhnliche totale Ableitung einer Funktion $\rr^n\to \rr$.
+\end{defn}
+\begin{defn}
+Sei $A\in \mat_n(\mathbb{K})$. Der \toidx{Spektralradius} von $A$ ist definiert als
+\[
+\rho(A):= \max \{|\lambda_1|,...,|\lambda_n|\},
+\]
+wobei $\lambda_1,...,\lambda_n$ die (möglicherweise komplexen) Eigenwerte von $A$ darstellen.
+\end{defn}
+\begin{prop}\label{exe0:specr}
+  Sei $M\in \mat_n(\rr)$, und
+  \[
+    \pphi:\rr^n\to \rr^n,x\mapsto Mx+c.
+  \]
+  Dann sind äquivalent:
+  \begin{enumerate}
+    \item Für den Spektralradius $p$ gilt $p(M)<1.$
+    \item Die Fixpunktiteration
+    \[
+    x_{k+1}:= \pphi(x_k)\]
+    konvergiert für ein beliebiges $x_0\in \rr^n$.
+  \end{enumerate}
+\end{prop}
+\setcounter{sol}{1}
+\begin{sol}
+  Es gilt für das in der Aufgabenstellung spezifizierte $\psi$:
+  \[
+  \{\text{Eigenwerte von }\psi\} = \lambda + (1-\lambda)\cdot\{\text{Eigenwerte von }\pphi\},
+  \]wobei jeweils nur der lineare Teil betrachtet wurde. Nutze nun \cref{exe0:specr}.
+\end{sol}
+\begin{prop}
+  Das Jacobi-Verfahren für die Matrix
+  \[
+  A=D-L-R
+  \]
+  konvergiert, falls für die Matrix
+  \[
+  I_{\text{Jac}.}:= D^{-1}(L+R)
+  \]
+  der Spektralradius größer 1 ist. Es konvergiert nicht, wenn der Spektralradius kleiner 1 ist.
+\end{prop}
+\begin{defn}
+  Die \emph{Newton-Iteration} ist gegeben durch
+  \[
+  x_{k+1}:= x_k - \frac{f(x_k)}{f'(x_k)}
+  \]
+\end{defn}

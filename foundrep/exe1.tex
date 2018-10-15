@@ -39,3 +39,16 @@ Let $R$ be any commutative ring.
 \begin{defn}[\cite{assem1}]
 	The (Jacobson) \emph{radical} $\rad A$ of a $K$-algebra $A$ is the intersection of all maximal right ideals in $A$. It is the same as the intersetion of all left-sided maximal right ideals in $A$. Furthermore, $\rad A$ is a two-sided ideal.
 \end{defn}
+
+\begin{defn}
+	Let $f,g:X\to Y$ be morphisms in a category $\cat{C}$. Then a morphism $e:E\to X$ is called \emph{equalizer} of $f$ and $g$ if $f\circ e=g\circ e$ and for all other morphisms $o:O\to X$, such that $f\circ o=g\circ o$, there is a unique morphis $O\to E$, such that the following diagram commutes:
+	\[
+	\begin{tikzcd}
+		E\ar{r}{e}&X\ar[shift left = .5ex]{r}\ar[shift right = .5ex]{r}&X\\
+		O\ar[dashed]{u}{\exists !}\ar{ur}{o}&&.
+	\end{tikzcd}
+	\]
+\end{defn}
+\begin{prop}
+	Equalizers exists in abelian categories.
+\end{prop}  

@@ -1,0 +1,257 @@
+\chapter{Basics - Fields}
+\section{Algebraic Field Extensions}
+Let $L/K$ be a field extension. \par
+Recall from lecture 1:
+\begin{defn}
+  $L/K$ is called \emph{extension by radicals}\index{extension!by radicals}, if
+  \begin{enumerate}
+    \item There are finitely many $x_1,...,x_n\in L$, such that
+    \[
+    L=K(x_1,...,x_n);
+    \]
+    \item there are $r_1,...,r_n\geq 1$, such that
+    \[
+    x^{r_1}\in K\text{ and }x_i^{r_i}\in K(x_1,...x_{i-1})\text{ for }2\leq i\leq n.
+    \]
+  \end{enumerate}
+\end{defn}
+\begin{defn}
+  An element $x\in L$ is called \toidx{algebraic! element of a field extension} over $K$, if there is a non-zero polynomial $0\neq f\in K[X]$, such that $f(x)=0$. Otherwise, $x$ is called \toidx{transcendental}.
+\end{defn}
+\begin{bsp}
+  \begin{enumerate}
+    \item Consider $\cc/\qq$. Then the $n$-th roots of unity $\rho_n^k:=\exp(2\pi i/n)^k$ are algebraic over $\qq$, as they are the roots of $X^n-1$.
+    \item $\sqrt[3]{2}$ is an albraic over $\qq$ (for $\cc/\qq$), as it is a root of $X^3-2$.
+  \end{enumerate}
+\end{bsp}
+\begin{prop}
+  Consider $\cc/\qq$. Then there are only countably many $x\in \cc$ that are algebraic over $\qq$.
+\end{prop}
+\begin{proof}
+  The rationals are countable, and hence so is $\qq^n$.\\
+  There is a bijection
+  \[
+  \qq^n \Leftrightarrow \{\text{polynomials of degree }\leq n-1\},
+  \]
+  so
+  \[
+  \qq[x]=\bigcup_{n\in \nn} \{\text{polynomials of degree }\leq n-1\}
+  \]
+  is countable. Since any polynomial in $\qq[X]$ has only finitely many roots, the assertion follows.
+\end{proof}
+\color{purple}
+\begin{prop}
+  Let $x\in L$ be algebraic over $K$. Then there is a uniquely determined irreducible and normend polynomial $f$ in $K[X]$, such that $f(x)=0$.
+\end{prop}
+\begin{proof}
+  This is supposed to be the same as in LA2.
+\end{proof}
+\color{black}
+This polynomial is called the \emph{minimal polynomial of $x$ over $K$} \index{polynomial!minimal} and is denoted by $\mu_{x,K}$. Its degree is denoted by
+\[
+[x:K]:= \deg \mu_{x,K}
+\]
+and is called the \emph{degree of $x$ over $K$} \index{degree!of an algebraic element}. For $x\in L$ transcendental, we set
+\[
+[x:K]:=\infty \text{ and }0:=\mu_{x,K}.
+\]
+
+\begin{bsp}
+  \begin{enumerate}
+    \item For $a\in L$, \tfae:
+    \begin{enumerate}
+      \item $a\in K$
+      \item $[a,K]=1$
+      \item $\mip{x}{K}=X-a$
+    \end{enumerate}
+  \item Since $i\in \cc\setminus \rr$, we have $[i:\rr]\geq 2$. On the other hand, for $f\in \rr[X],f:= X^2+1$, $f(i)=0$ holds. So $[i,\rr]=2$ and $\mip{i}{\rr}=X^2+1$.
+\end{enumerate}
+\end{bsp}
+\begin{defn}
+  A field extension $L/K$ is called \emph{algebraic}\index{algebraic!field extension} \index{field extension!algebraic}, if all $x\in L$ are algebraic over $K$. Otherwise, $L/K$ is called \emph{transcendental} \index{field extension!transcendental} \index{transcendental!field extension}.
+\end{defn}
+\begin{bsp}
+  $\cc/\qq$ and $\rr/\qq$ are both transcendental field extensions.
+\end{bsp}
+For a field extension $L/K$, $L$ has the structure of a $K$-vector space, given by the restriction of the multiplication. The dimension of $L$ as a $K$-vector space is denoted by
+  \[
+  [L:K]:=\dim_K L.
+  \] We say that $L/K$ is a \emph{finite} field extension \index{field extension!finite}, if $[L:K]<\infty$.
+\begin{lem}\label{3:fdalg}
+  Let $L/K$ be a finite. Then:
+  \begin{enumerate}
+    \item $L/K$ is algebraic.
+    \item For all $x\in L$, $[x:K]\leq [L:K]$.
+  \end{enumerate}
+\end{lem}
+\begin{proof}
+  Let $[L:K]:= n$ and $x\in L$ be arbitrary. Then the vector system
+  \[
+  (1,x,...,x^n)
+  \]
+  is linear dependent, so there are $\lambda_0,...,\lambda_n\in K$, such that
+  \[\lambda_0+\lambda_1x+...+\lambda_nx^n=0.\]
+  Therefor, for the polynomial
+  \[ p:= \lambda_0+...+\lambda_nX^n\in K[X]\]
+  the relation
+  \[
+  p(x)=0\]
+  holds. So $L/K$ is algebraic, and $[x:K]\leq [L:K]$, as $\deg \mip{x}{K}\leq \deg p$.
+\end{proof}
+\begin{thm}\label{3:algfield}
+  Let $L=K(x)$ be a field extension. Then
+  \[
+  [x:K]=[L:K].
+  \]
+\end{thm}
+\begin{proof}
+  Assume that $x$ is transcendental over $K$. Then \cref{3:fdalg} implies that $[L:K]=\infty$, and by definition $[x:K]=\infty$.\par
+  Assume that $x$ is algebraic over $K$, and set $n:=[x:K]$, $f:=\mip{x}{K}$. Then the vector system
+  \[
+  (1,...,x^{n-1})
+  \]
+  is linearly independent (otherwise there would be a polynomial of degree $n-1$ which anihilates $x$). Set
+  \[
+  \tilde{K}:= K+Kx+...+Kx^{n-1},
+  \]
+  which is a $K$-subspace of $L$. As $(1,...,x^{n-1})$ is linearly independent, it is a basis of $\tilde{K}$, and hence $\dim_K\tilde{K}=n$. We now show that $\tilde{K}$ is also a subfield of $L$:
+    As $\tilde{K}$ is a $K$-subspace of $L$, it is a additive subgroup of $(L,+)$.\par
+    \textit{$\tilde{K}$ is closed under multiplication: } It suffices to show that for all $1\leq i,j\leq n-1$ $x^i\cdot x^j\in \tilde{K}$, as elements in $\tilde{K}$ are linear combinations of scalar multiples of $x^i$  for $0\leq i\leq j$. Consider now the polynomial $X^{i+j}\in K[X]$. Euclidean division gives polynomials $q,r\in K[X]$, such that
+    \begin{equation}\label{3:ij}\tag{$\ast$}
+    X^{i+j}=qf+r,
+    \end{equation}
+    with $\deg r \leq \deg f =n-1$. So there are $b_0,...,b_{n-1}\in K$, such that
+    \[
+    r=b_0+b_1X+...+b_{n-1}X^{n-1}A\in K[X].
+    \]
+    Evaluating \eqref{3:ij} at $x$, we get
+    \[
+    x^{i+j}=r(x)=b_0+...+b_{n-1}x^{n-1},
+    \] since $f(x)=0$. But this implies that $x^{i+j}\in \tilde{K}$.\par
+    \textit{$\tilde{K}$ is closed under inversion: }Let $0\neq y\in \tilde{K}$. As $\dim_K\tilde{K}=n$, $y$ is algebraic over $K$. Let
+    \[
+    \mip{y}{K}=X^{m}+...+c_0.
+    \]
+    Then $c_0\neq 0$, as $\mip{y}{K}$ is irreducible. Rearanging, we get
+    \[
+    1 = y\left(\frac{-c_1}{c_0}+\frac{-c_2}{c_0}y+...+\frac{-c_n}{c_0}y^{n-1}\right),
+    \]
+    so
+    \[
+    y^{-1}=
+    y\left(\frac{-c_1}{c_0}+\frac{-c_2}{c_0}y+...+\frac{-c_n}{c_0}y^{m-1}\right)\in \tilde{K},
+    \]
+    as $\tilde{K}$ is closed under addition and multiplication.\par
+    This shows that $\tilde{K}$ is a subfield of $K(x)$. But as $K(x)$ is the inclusion minimal field extension of $K$, this implies $\tilde{K}=K(x)$. But
+    \[
+    \dim_K(\tilde{K}) = [x:K],
+    \]
+    which concludes the proof.
+\end{proof}
+\begin{cor}
+  Let $x\in L$, such that $[x:K]=n$. Then
+  \begin{enumerate}
+    \item Then $K(x)/K$ is finite and algebraic.
+    \item $[K(x):K]=n$
+    \item $\{1,...,x^{n-1}\}$ is a basis of $\tilde{K}$.
+  \end{enumerate}
+\end{cor}
+\begin{proof}
+  Consider the field extension $K(x)/K$, then apply theorem \cref{3:algfield}, and i) follows from \cref{3:fdalg}.
+\end{proof}
+
+\begin{bsp}
+  \begin{enumerate}
+    \item $[\rr,\qq]=\infty$.
+    \item $[\qq(\sqrt[3]{2}),\qq]\leq 3$, as $\mip{\sqrt[3]{2}}{\qq}\mid (X^3-2)$
+    \item Let $\rho$ be a $n$-th root of unity, then
+    \[
+    [\qq(\rho),\qq]\leq n-1,\]
+    as
+    \[
+    X^n-1=(X-1)(X^{n-1}+...+X+1).
+    \]
+    \item Consider $\cc/\rr$. Then
+    \[
+    [\rr(x),\rr]= \begin{cases}1,&\text{if }x\in \rr\\2,&\text{else}\end{cases}.
+    \]
+  \end{enumerate}
+\end{bsp}
+\begin{defn}
+  A subfield $Z\subset L$ is called an \emph{intermediate field}\index{field!indermediate} of $L/K$, if
+  \[
+  K\subseteq Z \subseteq L.
+  \]
+\end{defn}
+\begin{thm}[\toidx{degree formular}]\label{3:deg}
+  Let $Z$ be an indermediate field of $L/K$. Then
+  \[
+  [L:K] = [L:Z][Z:K].
+  \]
+\end{thm}
+\begin{proof}
+  Assume $[L:Z]=r$ and $[Z:K]=s$, with $r,s\in \nn$. Let $(w_1,...,w_r)$ be a basis of $L/Z$ and $(v_1,...,v_r)$ a basis of $Z/K$. Now, let
+  \[
+  y=\lambda_1w_1+...+\lambda_rw_r\in L~\text{with }\lambda_in Z\text{ and }w_1,...,w_r\in L.
+  \]
+  But since $\lambda_i\in Z$, there are $\mu_{i,1},...,\mu_{i,s}\in K$ such that
+  \[
+  \lambda_i = \mu_{i,1}v_1+...+\mu_{i,s}v_s.
+  \]
+  So
+  \[
+  y = \sum_{\substack{1\leq i\leq r\\1\leq j\leq s}} \mu_{ij}v_jw_i,\]
+  and hence
+  \[
+  \{ w_iv_j\ssp 1\leq i\leq r,1\leq j\leq s\}
+  \]
+  is a system of generators of $L/K$. Assume that
+  \[
+    0=\sum_{\substack{1\leq i\leq r\\1\leq j\leq s}} \mu_{ij}v_jw_i\implies \sum_{j=1}^r \alpha_{i,j}v_j=0\implies \alpha_{i,j}=0,\]
+    as both the $w_i$ and the $v_j$ are linearly independent. This shows that the $w_iv_j$ are a basis of $L/K$.\par
+    Assume that $[L:Z]=\infty$ or $[Z:K]=\infty$. This already implies $[L:K]=\infty$.
+
+\end{proof}
+\begin{cor}
+  Let $L/K$ be finite. Then $[x:K]$ divides $[L:K]$ for all $x\in K$.
+\end{cor}
+\begin{proof}
+  Use $[x:K]=[K(x):K]$ and $[L:K]=[L:K(x)][K(x):L]$.
+\end{proof}
+\begin{thm}
+  Let $L/K$ be a field extension. The following are equivalent:
+  \begin{enumerate}
+    \item $L/K$ is finite.
+    \item $L/K$ is algebraic, and there are $x_1,...,x_n\in L$, such that
+    \[
+    L=K(x_1,...,x_n)
+    \]
+    \item There are $x_1,...,x_n\in L$ such that
+    \[
+    L=K(x_1,...,x_n)
+    \]
+    and $x_1$ is algebraic over $K$, $x_i$ is algebraic over $K(x_{1},...,x_{i-1})$ for $2\leq i \leq n$.
+  \end{enumerate}
+\end{thm}
+\begin{proof}
+   i) $\implies$ ii):  As $[L:K]<\infty$, \cref{3:deg} implies $[x:K]<\infty$, for all $x\in L$, so $L/K$ is algebraic. Assume now there is a $x_1\in L\setminus K$. Then
+   \[
+   n_1:= [K(x_1):K]\geq 2\].
+   If there is another $x_2\in L/K(x_1)$, then
+   \[
+   n_2:= [K(x_1,x_2):K(x_2)]\implies n_1n_2>n_1.\]
+   Continuing inductivley, this has to stop after finitely many $x_i$, as $[L:K]$ is finite.\par
+   ii) $\implies$ iii): clear.\par
+   iii) $\implies$ i): Let $L=K(x_1,...,x_n)$. Set
+   \[
+   K_0 := K, ..., K_i:=K(x_1,...,x_i).
+   \]
+   As $x_i$ is algebraic over $K_{i-1}$, this implies
+   \[
+   [K_i:K_{i-1}]<\infty .
+   \]
+   Continuing inductivley, \cref{3:deg} implies
+   \[
+   [L:K] = \prod_{i=1}^{n}n_i<\infty .
+   \]
+ \end{proof}

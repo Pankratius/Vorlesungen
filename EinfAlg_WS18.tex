@@ -2,7 +2,7 @@
 
 
 \usepackage{packages/setup}
-\usepackage[ngerman]{babel}
+\usepackage[english]{babel}
 \usepackage{packages/bibconfig}
 %loads bibliography package for this document
 \addbibresource{einfalg/lit.bib}
@@ -28,10 +28,14 @@
 \end{KeepFromToc}
 \include{einfalg/frontmatter}
 \mainmatter
-\include{einfalg/1}
+\setcounter{chapter}{2}
+\setcounter{lecture}{3}
+\input{einfalg/3}
 \lec
 \thispagestyle{rlast}
 \appendix
+\chapter{Insights from the exercise sheets}
+\input{einfalg/exe1}
 
 \backmatter
 \printbibliography[heading = bibintoc]

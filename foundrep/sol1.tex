@@ -14,8 +14,22 @@
     \item $V_{\pphi}$ is already a $k$-module.
     \begin{itemize}
       \item (L1) $a(x+y)=(\pphi(a))(x+y)\overset{\pphi \in \eno_k(V)}{=}(\pphi(a))(x)+(\pphi(a))(y) = ax+ay$
-      \item (L2) $(a+b)x=(\pphi(a+b))x\overset{\pphi\text{ endo of } k-\text{algebras}}{=}(\pphi(a)+\pphi(b))x=\pphi(a)x+\pphi(b)x=ax+bx$
+      \item (L2) $(a+b)x=(\pphi(a+b))x\overset{\pphi\text{ homo of } k-\text{algebras}}{=}(\pphi(a)+\pphi(b))x=\pphi(a)x+\pphi(b)x=ax+bx$
+      \item (L3) $(ab)x=(\pphi(ab))x\overset{\pphi\text{ homo of } k-\text{algebras}}{=}(\pphi(a)\pphi(b))x=a(bx)$
+      \item (L4) $1_ax=(\pphi(1_a))x\overset{\pphi\text{ homo of } k-\text{algebras}}{=}\id x=x$
+      \item (L5) $(\lambda a)(x)=((\pphi(\lambda a))x\overset{\pphi\text{ homo of } k-\text{algebras}}{=} (\lambda\pphi(a))x=\lambda(ax)$ and \\$a(\lambda x)=(\pphi(a)(\lambda x))\overset{\pphi(a)\text{ endo of } k-\text{module}}{=}\lambda (\pphi(a))x=\lambda (ax)$,
     \end{itemize}
+    for all $a,b\in A,x,y\in V$ and $\lambda \in k$.
+    \item We regard $V$ and $W$ as $A$-modules in the sense of part ii). Assume that $\psi(a)\circ f=f\circ \pphi(a)~(\ast)$ for all $a\in A$. Then
+    \[
+    f(ax)=f((\pphi(a))x)\overset{\ast}{=}(\psi(a))(f(x))=af(x),
+    \]
+    for all $x\in X$.
+    Hence $f$ is an $A$-module homomorphism.\\
+    Assume that $f$ is a a-module homomorphism, then
+    \[
+    (\psi(a))(f(x))=a(f(x))=f(ax)=f((\pphi(a))x)\]
+    for all $x\in V$. Hence $\psi(a)\circ f - f\circ \pphi(a)=0$ and so $(\ast)$ holds.
   \end{enumerate}
 \end{sol}
 

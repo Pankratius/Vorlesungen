@@ -1,0 +1,19 @@
+\section{Sheet 1}
+\begin{prop}
+Let $\alpha: R\to S$ be a homomorphism of commutative rings, and  $s\in S$ arbitrary. Then there is a unique ring homomorphism $\overline{\alpha}:R[x]\to S$ extending $\alpha$ and sending $x\to s$:
+\[
+\begin{tikzcd}
+  R\ar{r}{\alpha}\ar{d}&S\\
+  R[x]\ar[swap,dashed]{ur}{\overline{\alpha}}&
+\end{tikzcd}
+\]
+\end{prop}
+\begin{cor}
+  Let $n\in \mathbb{N}$. Then there is a ring homomorphism $\zz[x]\to \zz/n\zz[x,y]$:
+  \[
+  \begin{tikzcd}
+    \zz \ar[\surarr]{r}\ar{d}&\zz/n\zz\ar[\embarr]{r}&\zz/n\zz[x]\ar[\embarr]{r}&\zz/n\zz[x,y]\\
+    \zz[x]\ar[dashed,bend right=10]{urrr}
+  \end{tikzcd}.
+  \]
+\end{cor}
