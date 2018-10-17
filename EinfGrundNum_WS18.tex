@@ -12,8 +12,33 @@
 %replace this shit
 \usepackage{packages/mymathtools}
 \usepackage{todonotes}
+%for colorful matrices:
+\newcommand\x{\times}
+\usepackage[customcolors]{hf-tikz}
 
-
+\tikzset{style green/.style={
+    set fill color=green!50!lime!60,
+    set border color=white,
+  },
+  style cyan/.style={
+    set fill color=cyan!90!blue!60,
+    set border color=white,
+  },
+  style orange/.style={
+    set fill color=orange!80!red!60,
+    set border color=white,
+  },
+  hor/.style={
+    above left offset={-0.15,0.31},
+    below right offset={0.15,-0.125},
+    #1
+  },
+  ver/.style={
+    above left offset={-0.1,0.3},
+    below right offset={0.15,-0.15},
+    #1
+  }
+}
 
 
 
@@ -34,12 +59,14 @@
 \mainmatter
 \input{einfgrundnum/1}
 \input{einfgrundnum/2}
+\input{einfgrundnum/3}
 \thispagestyle{rlast}
 \appendix
 \chapter{Insights from the exercise sheets}
 \setcounter{section}{-1}
 \section{Sheet 0}
 \input{einfgrundnum/exe0}
+\input{einfgrundnum/exe1}
 \backmatter
 \printbibliography[heading = bibintoc]
 \printindex

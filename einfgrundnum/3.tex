@@ -1,0 +1,99 @@
+Die Idee ist jetzt, eine gegebene Matrix $A$ durch Householder-Transformationen in eine verallgemeinerte obere Dreiecksform zu bringen. Dazu wollen  wir zuerst einen Vektor $w\in \rr^2$ finden, so dass die Spiegelung der ersten Spalte von $A$ an $w$ ein skalares Vielfaches des ersten Einheitsvektors ist. Induktiv fährt man dann mit der $m-1\times n-1$-Teilmatrix fort:
+
+\[
+  \left(\begin{array}{cccc}
+     \tikzmarkin[ver=style cyan]{col 1}a_{11}  & \x &\x  &\x \\
+    \x  & a_{22} &\x  &\x  \\
+    \x  &  \x  &  \x& \x \\
+    \x  & \x   &  \x &\x \\
+    \x  \tikzmarkend{col 1}&  \x  & \x  &  \x \\
+  \end{array}\right) \leadsto \left(\begin{array}{cccc}
+     \tikzmarkin[ver=style cyan]{col 2}\x  & \x &\x  &\x \\
+    0  & \tikzmarkin[ver=style green]{col 3}a_{22} &\x  &\x  \\
+    0 &  \x  &  \x& \x \\
+    0  & \x   &  \x &\x \\
+    0  \tikzmarkend{col 2}& \tikzmarkend{col 3} \x  & \x  &  \x \\
+  \end{array}\right)\leadsto  \left(\begin{array}{cccc}
+     \tikzmarkin[ver=style cyan]{col 4}\x  & \x &\x  &\x \\
+    0  & \tikzmarkin[ver=style green]{col 5}\x &\x  &\x  \\
+    0 &  0 &  \x& \x \\
+    0  & 0   &  \x &\x \\
+    0  \tikzmarkend{col 4}& \tikzmarkend{col 5} 0  & \x  &  \x \\
+  \end{array}\right)
+\]
+
+\begin{lem}\label{3:spieg}
+  Sei $0\neq x\in \rr^s$, so dass $x\ni \lin e_1$. Für
+  \[
+  w:= \frac{x+\sigma e_1}{\eukno{x+\sigma e_1}}\text{ mit }\sigma = \pm \eukno{x}
+  \]
+  gilt:
+  \begin{enumerate}
+    \item $\eukno{w}=1$,
+    \item $(E_s-2ww^T)x = -\sigma e_1$
+  \end{enumerate}
+\end{lem}
+
+\begin{proof}
+  Es gilt $\eukno{x+\sigma e_1}$, da $x$ und $e_1$ nach Voraussetzung linear unabhängig sind. i) folgt dann sofort. ii) folgt durch rechnen:
+  \begin{align*}
+    \eukno{x+\sigma e_1}^2 = \langle x+\sigma e_1,x+\sigma e_1\rangle &= \ip{x}{x}+2\ip{x}{e_1}+\sigma^2 \ip{e_1}{e_1}\\
+    &= 2\ip{x}{x}+2\sigma \ip{e_1}{x}\\
+    &= 2\ip{x+\sigma e_1}{x}
+  \end{align*}
+  Mit der Definition von $w$ folgt
+  \begin{align*}
+    2w^Tx&= \frac{2(x+\sigma e_1)^Tx}{\eukno{x+\sigma e_1}} \\
+    &= \frac{2\ip{x+\sigma e_1}{x}}{\eukno{x+\sigma e_1}}\\
+    &= 2\eukno{x+\sigma e_1},
+  \end{align*}
+  so dass wir schlussendlich
+  \[
+    2ww^Tx = \frac{x+\sigma e_1}{\eukno{x+\sigma e_1}}\eukno{x+\sigma e_1}\implies (E_s-2ww^T)x = x-\left(x+\sigma e_1\right) = -\sigma e_1
+  \]
+  erhalten.
+\end{proof}
+Sei nun $a\in \rr^{m,n}$ mit vollem Rang. Setze
+\[
+A^{(1)}:= A,\text{ und }\]
+\todo[inline]{matrix $A^{(k)}$ hinzufügen.}
+Wir suchen nun eine orthogonale Matrix $\hat{H}_k\in \orr{m}$, so dass
+
+\[
+A^{(k+1)}=\hat{H}_k A^{(k)}\text{ mit }\hat{H}_k = \begin{pmatrix}I_{k-1}&0\\0&H_k\end{pmatrix},
+\]
+\todo[inline]{woher kommen die beiden Matrizen?}
+Nach \cref{3:spieg} gibt es aber eine Householder-Transformation $H_k$, so dass
+\[
+H_k \begin{pmatrix}\tilde{a}_{k,k}^{(k)}\\\vdots\\\tilde{a}^{(k)}_{m,k}\end{pmatrix} = \begin{pmatrix}-\sigma_k\\0\\\vdots\end{pmatrix}
+\]
+ist.
+Iterativ erhalten wir eine Matrix
+\[
+R:=\hat{H}_{n^{\ast}-1}\hdots \hat{H}_1A\in \rr^{m,n}
+\]
+die in verallgemeinerter oberer Dreiecksform ist. Also gilt, weil die $\hat{H}_k$ orthogonal sind,
+\[
+A = \left(\hat{H}_{n^{\ast}-1}\hdots \hat{H}_1\right)^TR=\hat{H}_1^T\hdots \hat{H}^T_{n^{\ast}-1}R
+\]
+Also haben wir gezeigt:
+\begin{thm}[Existenz einer $QR$-Zerlegung\index{Orthogonalzerlegung!Existenz}]\label{3:hh}
+  Zu jeder Matrix $A\in \rr^{m,n}$ mit $m>n$ und maximialem Rang gibt es eine orthogonale Matrix $Q\in \orr{n}$ sowie eine reguläre Matrix $R\in \rr{m,n}$ mit
+  \[
+  R \left(\begin{array}{c}\hat{R}\\\hline 0\end{array}\right)\text{ und }\hat{R}\in \mat_n(\rr) \text{ in oberer Dreiecksform},
+  \]
+  so dass
+  \[
+  A=QR.
+  \]
+\end{thm}
+\begin{bsp}
+  Betrachte
+  \[
+  A = \begin{pmatrix} 3&5\\0&2\\0&0\\4&5\end{pmatrix}\in \rr{4,2}
+  \]
+  \begin{enumerate}
+    \item Spiegelung von $v_1:=(3,0,0,4)^T$ auf $(-1,0,0,0)^T$: Setze $\sigma_1 = 1$ und es gilt $\eukno{v_1}=5$. Nach \cref{3:spieg} ist für 
+  \end{enumerate}
+\end{bsp}
+\lec

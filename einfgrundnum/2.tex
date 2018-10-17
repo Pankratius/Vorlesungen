@@ -55,7 +55,7 @@ Also hat $B$ nur positive Eigenwerte. Nach dem euklidschen Spektralsatz \cite[20
 Weil $AA^T$ symmetrisch positiv-definit ist, kann man \eqref{2:neq} mit der Choleskyzerlegung lösen. Es gilt aber $\kappa_2(AA^T)=\kappa_2(A)^2$,\todo[inline]{Wie ist die Kondition von $A$ im nicht-quadratischen Fall definiert?} weshalb weitere Lösungsverfahren betrachtet werden müssen.\par
 Dazu definieren wir die \emph{erweiterte Orthogonalzerlegung} \index{Orthogonalzerlegung!erweiterte} von $A\in \rr^{m,n}$, mit $m\geq n$ durch
 \[
-A = QR,~\text{mit }Q\in \og_m{\rr}~\text{und}~R=\left[\begin{array}{c}\hat{R}\\\hline 0\end{array}\right],
+A = QR,~\text{mit }Q\in \og_m{\rr}~\text{und}~R=\left(\begin{array}{c}\hat{R}\\\hline 0\end{array}\right),
 \]
 wobei $\hat{R}\in \rr^{n,n}$ eine obere Dreiecksmatrix ist. $R$ heißt in diesem Fall \emph{erweiterte obere Dreiecksmatrix} \index{obere Dreiecksmatrix!erweiterte}\\
 Angenommen, eine solche Zerlegung existiert. Dann gilt
@@ -63,7 +63,7 @@ Angenommen, eine solche Zerlegung existiert. Dann gilt
   \eukno{Ax-b}^2&= \eukno{QRx-b}^2\\
   &=\eukno{QRX-QQ^Tb}^2\\
   &= \eukno{Q(Rx+Q^Tb)}\\
-  &= \eukno{\left[\begin{array}{c}\hat{R}\\\hline0\end{array}\right]x-\left(\begin{array}{c}y_1\\\hline y_2\end{array}\right)}\\
+  &= \eukno{\left(\begin{array}{c}\hat{R}\\\hline0\end{array}\right)x-\left(\begin{array}{c}y_1\\\hline y_2\end{array}\right)}\\
   &= \eukno{\hat{R}x'-y_1}^2+\eukno{y_2}^2,
 \end{align*}
 für passend gewählte $y_1,y_2$. Weil $y_2$ aber fix ist, reicht es,
@@ -101,7 +101,7 @@ Dazu verwenden wir \cite[11.32]{schroer}
   gilt.
 \end{prop}
 \begin{thm}
-  Für jede reguläre Matrix $A\in\gl_(\rr)$ existiert eine orthogonale Matrix $Q\in \orr{n}$ und eine obere Dreiecksmatrix $R\in \mat{n}$, so dass $A=QR$ gilt.
+  Für jede reguläre Matrix $A\in\gl_n(\rr)$ existiert eine orthogonale Matrix $Q\in \orr{n}$ und eine obere Dreiecksmatrix $R\in \mat_n{\rr}$, so dass $A=QR$ gilt.
 \end{thm}
 \begin{proof}
   Aus \eqref{2:flag} folgt, dass für die Abbildung
