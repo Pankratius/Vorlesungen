@@ -1,0 +1,246 @@
+Let $Q$ be a quiver over a field $k$.
+\begin{rem}\label{3:qfunct}
+  \begin{enumerate}
+    \item Let $X$ be a representation of $Q$ over $k$. Associate a left $kQ$-module $M=F(X)$ as follows:
+    \begin{itemize}
+      \item As $k$-vector space, let
+      \[
+      M:= \bigoplus_{i\in Q_0}X_i .
+      \]
+      \item Define the action of $kQ$ on $M$ by an action of paths. Let $p$ be a path of length $\geq 1$. Define
+      \[
+      X_p: X_{s(p)}\to X_{t(p)}\text{ given by }X_p=X_{\alpha_{\ell}}\circ \hdots \circ X_{\alpha_i},
+      \]
+      \color{purple}with $X_p\in \hom_k(X_{s(p)},X_{t(p)})$\color{black}. Use this to define a $k$-linear map $\tilde{X}_p:M\to M$ as composition:
+      \[
+      \begin{tikzcd}
+        \tilde{X}_p:M={\displaystyle \bigoplus_{i\in Q_0}}X_i\ar[\surarr]{r}{\pi_{s(p)}}&X_{s(p)}\ar{r}{X_p}&X_{t(p)}\ar[\embarr]{r}{\iota_{t(p)}}&{\displaystyle \bigoplus_{i\in Q_0}}X_i
+      \end{tikzcd}
+    \]
+    If the length of $p=0$, \color{purple} then $p$ is a lazy part at some $i\in Q_0$\color{black}, and we set
+    \[
+    X_{\eepsilon_i}:= \id_{X_i},
+    \]
+    and $\tilde{X}_{\eepsilon_i}$ like $\tilde{X}_p$.\\
+    Now these $k$-linear endomorphisms define a $kQ$-module structure on $M$, given by:
+    \begin{align*}
+    kQ\times M\to M,~\left(a:= \sum_{p\in Q_{\ast}}\lambda_p\cdot p,(x_i)_i=:x\right)\mapsto a.x:&=\sum_{p\in Q_{\ast}}\lambda_p\cdot \tilde{X}_p(x)\\&=\sum_{p\in Q_{\ast}}\lambda_p\cdot (\iota_{t(p)}X_p(x_{s(p)})),
+    \end{align*}
+    \color{purple} where we denote an element in $M$ by a sequence $(x_i)_i$ with $x_i\in X_i$.\color{black}
+    \item We check that this actually defines a $kQ$-module structure:
+    \begin{itemize}
+      \item (L3): Assume that $a,b\in kQ$. By the bilinearity of the multiplication, we can assume that $a=p$ and $b=q$ are both paths in $Q_{\ast}$. Then
+      \begin{align*}
+        a.(b.x)&= \tilde{X}_p\left(\tilde{X}_q(x)\right)\\
+               &= \iota_{t(p)}X_p\underbrace{\pi_{s(p)}\iota_{t(q)}}X_{q}(x_{s(q)}),
+      \end{align*}
+      where
+      \[
+      \pi_{s(p)}\iota_{t(q)}=\begin{cases} \id_{X_q},&\text{if }t(q)=s(p)\\0,&\text{otherwise}\end{cases}.
+    \]
+    This gives
+    \[
+    a.(b.x) = \begin{cases}\iota_{t(p)}X_pX_q(x_{s(q)}),&\text{if }t(q)=s(p)\\0&\text{otherwise}\end{cases}.
+    \]
+    Additionally,
+    \[
+    (a.b).x= \begin{cases} \tilde{X}_{p\circ q}&\text{if }f(q)=s(p),\\0&\text{ otherwise}\end{cases}.
+    \]
+    \end{itemize}
+    But in the case $f(q)=s(p)$,
+    \[\tilde{X}_{p\circ q}(x)=\iota_{t(p)}\circ X_pX_q(x_{s(q)}).
+    \]
+    The construction $F$ is factorial, i.e. for $f:X\to Y$ a homomorphism of representations, $F$ induces a homomorphism of $kQ$-algebras
+    \[
+    Ff:F(X)\to F(Y)\text{ by }(Ff)((x_i)_i):= (f_i(x_i))_i.
+    \]
+    \end{itemize}
+    \item Let $M$ be a left $kQ$-module. Define a representation $X:=G(M)$ as follows
+    \begin{itemize}
+      \item As $k$-vector spaces, set
+      \[
+      X_i:= \eepsilon_iM.
+      \]
+      \item For $\alpha\in Q_{\ast}$, set
+      \[
+      X_{\alpha}:X_{s(\alpha)}\to X_{t(\alpha)},~\eepsilon_{s(\alpha)}x\mapsto \alpha \eepsilon_{s(\alpha)}x=\alpha x=\eepsilon_{t(\alpha)}\alpha x\in X_{t(\alpha)},
+      \]
+      \color{purple}as $\eepsilon_{t(\alpha)}\alpha=\alpha\eepsilon_{s(\alpha)}$\color{black}.\\
+      So $X:=((X_i)_{i\in Q_0},(X_{\alpha})_{\alpha\in Q_{\ast}})$ is a representation of $Q$.
+      \item This construction is also functorial: take $g:M\to N$ a homomorphism of left $kQ$-modules. Define $G(g):X\to Y$, with $X:= G(M)$ and $Y:=G(N)$. Set
+      \[
+      (Gg)_i:= X_i\to Y_i,~\eepsilon_ix\mapsto g(\eepsilon_ix)=\eepsilon_ig(x)\text{ with }X_i:=\eepsilon_iM\text{ and }Y_i:=\eepsilon_iN.
+      \]
+      This is indeed a homomorphism of representations: Let $\alpha \in Q_1$ be arbitrary, and consider
+      \[
+      \begin{tikzcd}
+      X_{s(\alpha)}\ar{r}{(Gg)_{s(\alpha)}}\ar[swap]{d}{X_\alpha}&Y_{s(\alpha)}\ar{d}{Y_\alpha}\\
+      X_{t(\alpha)}\ar[swap]{r}{(Gg)_{t(\alpha)}}&Y_{t(\alpha)}
+      \end{tikzcd}.
+      \]
+      Then
+      \[
+      y_{\alpha}(Gg)_{\eepsilon_{s(\alpha)}}x=Y_{\alpha}(g(\eepsilon_{s(\alpha)}x))=\alpha g(\eepsilon_{s(\alpha)}x)\]
+      and
+      \[
+      (Gg)_{\eepsilon_{t(\alpha)}}(X_{\alpha}(\eepsilon_{s(\alpha)}x)) = g(\alpha(\eepsilon_{s(\alpha)}x)) = \alpha g(\eepsilon_{s(\alpha)}x),
+      \]
+      hence the diagram commutes.
+    \end{itemize}
+  \end{enumerate}
+\end{rem}
+
+\begin{thm}
+  \begin{enumerate}
+    \item Let $M$ be a left $kQ$-module. Then $FG(M)\cong M$ as left $kQ$-modules.
+    \item Let $X$ be a representation of $Q$ over $k$. Then $GF(X)\cong X$ as representations of $Q$.
+  \end{enumerate}
+\end{thm}
+
+\begin{proof}
+  \begin{enumerate}
+    \item Denote $X:=G(M)$. Then
+    \[
+    F(X) = \bigoplus_{i\in Q_0}X_i = \bigoplus_{i\in Q_0}\eepsilon_iM
+    \]
+    as a $k$-vector space. Observe
+    \begin{itemize}
+      \item The identity in $kQ$ is given by
+      \[
+      \id_{kQ} = \sum \eepsilon_i.
+      \]
+      Hence, for all $x$ in $X$:
+      \[
+      x = \id_{kQ}x = \left(\sum \eepsilon_i\right)x = \sum\left(\eepsilon_ix_i\right)\in \sum \eepsilon_iM.
+      \]
+      \item For all $i\neq j$, $\eepsilon_i\eepsilon_j=0$ holds. So for
+      \[
+      x\in X_i=\eepsilon_iM\bigcap \sum_{j\neq i}\eepsilon_jM_j\implies x = \sum_{j\neq i} \eepsilon_jx_j\text{ for some }x_j\in M.
+      \]
+      But as $x\in \eepsilon_iM$, $\eepsilon_ix=x$. So
+      \[
+      x=\eepsilon_ix=\eepsilon_i\left(\sum_{j\neq i}\eepsilon_jx_j\right)=\sum_{j\neq i}\eepsilon_i\eepsilon_j x_j = 0.
+      \]
+    \end{itemize}
+    These observations show that
+    \[
+    \begin{tikzcd}
+    \pphi:F(X)={\displaystyle\bigoplus_{i\in Q_0}}\eepsilon_iM\ar{r}& M\end{tikzcd},~\left(\eepsilon_ix_i\right)_{i\in Q_0}\mapsto \sum \eepsilon_ix_i
+    \]
+    is an isomorphism of $k$-vector spaces. \\
+    Show that $\pphi$ is isomorphism of left $kQ$-modules:\\
+    Without loss generaly, assume that $a=p$ is a path in $Q$ (regarded as element of $kQ$), and let $x\in M$. Then
+    \begin{align*}
+      \pphi(a.x) = \pphi\left(\iota_{t(p)}X_p(x_{s(p)})\right) &= \pphi\left(\iota_{t(p)}(px_{s(p)})\right)\\
+      &= px_{s(p)},
+    \end{align*}
+    and
+    \begin{align*}
+      a.\pphi(x)= a.\sum x_i = a. \sum \epsilon_ix_i = px_{s(p)}.
+    \end{align*}
+  \item Let $M:= F(X)$ be the left $kQ$-module associated with $X$. Then
+  \[
+  G(M)_i = \eepsilon_iM = \eepsilon_i \bigoplus_{j\in Q_0}X_j = X_i,
+  \]
+  and
+  \[
+  \left( G(M)\right)_{\alpha}(x_{s(\alpha)}) = \alpha.x_{s(\alpha)} = X_{\alpha}(x_{s(\alpha)}).
+  \]
+  \end{enumerate}
+\end{proof}
+
+
+\begin{rem}
+  Let $M$ be a left $kQ$-module, with $Q$ finite and $k$ a field.
+  \begin{enumerate}
+    \item $\dim_k M = \sum_{i\in Q_0}\dim_kX_i$ where $X=\color{purple}G\color{black}(M)$,\color{purple} where $G$ is the functor from \cref{3:qfunct}\color{black}
+    \item $\dim_K kQ <\infty \Longleftrightarrow Q$ contains no \emph{oriented cycles}\index{cycle:oriented} (a path $p$ of length $\geq 1$, such that $s(p)=t(p)$)
+    \item If $Q$ has no oriented cycle, then the following are equivalent:
+      \begin{enumerate}[label=(\alph*)]
+        \item $M$ is a finitely generated $kQ$-module.
+        \item $\dim_kX_i<\infty$.
+      \end{enumerate}
+      \begin{proof}
+        (a) $\implies$ (b):(b) implies in particular, that $M$ is finitely generated as a $k$-module. But as $k\subset kQ$, (a) follows immediatley.\par
+        (b) $\implies$ (a): \coms Set $A:=kQ$,\come and let $x_1,...,x_n\in kQ$ generate $M$ as a left $kQ$-module. Then there is a $kQ$-linear surjection
+        \[
+        \begin{tikzcd}
+          A^n\ar[\surarr]{r}&M
+        \end{tikzcd}
+      \] \coms given by $e_i\mapsto x_i$, where the $(e_i)_{1\leq i\leq n}$ are a basis of $A^n$. \come As this is in particular $k$-linear, we have that
+      \[
+      \dim_kM \leq \dim_k(A^n)=n\dim_kA< \infty,
+      \]
+      as $Q$ contains no cycle.
+    \end{proof}
+    \item Under \coms $G$\come, the notion of a \glqq left submodule\grqq{} corresponds to \emph{subrepresentations} of $Q$\index{sub!-representation}\index{representation!sub-}, i.e. a tupel of subspaces $Y_i\subset X_i$ for all $i\in Q_0$ such that $X_{\alpha}(Y_{s(\alpha)})\subset Y_{t(\alpha)}$ for all $\alpha \in Q_1$.
+    \item Under \coms G\come, a direct sum of modules corresponds to \emph{direct sum of representations}\index{direct sum! of representations}\index{representation!direct sum of}: Given $X,Y$ two representations of $Q$, define a new representation $X\oplus Y$ where the vector spaces are given by
+    \[ (X\oplus Y)_i:= (X\oplus Y)_i\] and the $k$-linear maps
+    \[\begin{tikzcd}\left(X\oplus Y\right)_{\alpha}:X_{s(\alpha)}\oplus Y_{s(\alpha)}\ar{r} & X_{t(\alpha)}\oplus Y_{t(\alpha)}
+  \end{tikzcd}
+    \]
+    given by
+    \[
+    \left(
+    \begin{array}{c|c}
+      X_{\alpha}&\\\hline&Y_{\alpha}
+    \end{array}
+    \right).
+    \]
+  \end{enumerate}
+\end{rem}
+
+
+\section{Bimodules and tensor products}
+\begin{defn}
+  Let $A,B$ be $k$-algebras. A \emph{$A$-$B$-bimodule}\index{bimodule} $M$ is a set $M$, together with maps:
+  \[
+  \begin{tikzcd}
+    A\times M\ar{r}&M,(a,x)\ar[\mpt]{r}&ax\\
+    M\times B\ar{r}&M,(x,b)\ar[\mpt]{r}&xb,
+  \end{tikzcd}
+  \]
+  such that
+  \begin{enumerate}
+    \item $M$ is a left $A$-module
+    \item $M$ is a right $B$-module
+    \item for all $a\in A,b\in B$ and $x\in M$, the relation
+    \[
+    (ax)b=a(xb)
+    \] holds.
+\end{enumerate}
+We denote a $A$-$B$-bimodule by
+\[
+\prescript{}{A}{M}_B.
+\]
+\end{defn}
+
+\begin{lem}
+  Let $A,B,C$ be $k$-algebras, and consider $\prescript{}{A}{M}_B$ and $\prescript{}{A}{N}_C$, a $A$-$B$-bimodule and a $A$-$C$-bimodule respectivley. Then $\hom_A(M,N)$ becomes a $B$-$C$-bimodule via
+  \begin{itemize}
+    \item $\begin{tikzcd}B\times \hom_A(M,B)\ar{r}&\hom_A(M,N),&(b,f)\ar[\mpt]{r}&bf:M\to N,x\mapsto f(xb)\end{tikzcd}$
+    \item $\begin{tikzcd}\hom_A(M,N)\times C \ar{r}&\hom_A(M,N),&(f,c)\ar[\mpt]{r}&fc:M\to N,x\mapsto f(cx)\end{tikzcd}$
+  \end{itemize}
+\end{lem}
+\begin{proof}
+  \begin{itemize}
+    \item well-defined:
+    \[
+    bf(ax)=f((ax)b)=f(a(xb))=af(xb)=a(bf)(x)
+    \]
+    \item $\hom_A(M,N)$ is a left $B$-module:
+    Show e.g. (L3):
+    \begin{align*}
+    ((bb')f)(x)=(x(bb'))&=f((xb)b')\\
+    &= b'(f(xb))\\
+    &= b((b'f)(x))
+    \end{align*}
+    \item compatibility: \coms
+      \[
+      ((af)b)(x) = f((ax)b)=f(a(xb))=(a(fb))(x).
+      \]
+    \come
+  \end{itemize}
+\end{proof}
+
+\lec

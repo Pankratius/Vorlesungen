@@ -246,7 +246,7 @@
 \section{Representation of quivers}
 Let $k$ be a field and $Q$ be a quiver.
 \begin{defn}
-  A \emph{representation} \index{quiver!representation} \index{representation!quiver} over $k$ consists of
+  A \emph{representation} $X$ of $Q$ \index{quiver!representation} \index{representation!quiver} over $k$ consists of
   \begin{itemize}
     \item a $k$-vector space $X_i$ for all $i\in Q_0$,
     \item a $k$-linear map
@@ -274,7 +274,7 @@ Let $k$ be a field and $Q$ be a quiver.
   Take $X,Y$ to be two representations of $Q$ over $k$. A \emph{homomorphism of representations} \index{homomorphism!of representations} $f:X\to Y$ is a tupel $(f_i)_{i\in Q_0}$ of linear maps $f_i:X_i\to Y_i$, such that for all $\alpha \in Q_1$ the diagram
   \[
   \begin{tikzcd}
-    X_{s(\alpha)}\ar{r}{f_{s(\alpha)}} \ar[swap]{d}{X_\alpha}&Y_{s(\alpha)}\ar{d}{Y_{\beta}}\\
+    X_{s(\alpha)}\ar{r}{f_{s(\alpha)}} \ar[swap]{d}{X_\alpha}&Y_{s(\alpha)}\ar{d}{Y_{\alpha}}\\
     X_{t(\alpha)}\ar[swap]{r}{f_{t(\alpha)}} & Y_{t(\alpha)}
   \end{tikzcd}
   \] commutes.
