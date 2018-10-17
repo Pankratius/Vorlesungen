@@ -16,7 +16,8 @@
 %embedding:
 \newcommand{\embarr}{hookrightarrow}
 \newcommand{\membarr}{\hookrightarrow}
-
+%mapsto
+\newcommand{\mpt}{mapsto}
 %%from  foundrep:
 
 
@@ -54,7 +55,10 @@
 
 %norms and stuff
 
-\newcommand{\eukno}[1]{\left|\left|#1\right|\right|_2}
+\newcommand{\eukno}[1]{\left|\left|#1\right|\right|}
+\newcommand{\ip}[2]{\langle #1,#2\rangle}
+\DeclareMathOperator{\lin}{Lin}
+\DeclareMathOperator{\sgn}{sgn}
 %blackboard symbols
 \newcommand{\nn}{\mathbb{N}}
 \newcommand{\nne}{\mathbb{N}_1}
@@ -77,5 +81,9 @@
 %module stuff
 \DeclareMathOperator{\rad}{rad}
 
+%algebra stuff
+
 %field extension stuff
 \newcommand{\mip}[2]{\mu_{#1,#2}}
+
+%for tikzcd:
