@@ -1,0 +1,56 @@
+\setcounter{sol}{1}
+\begin{gsol}
+  \begin{enumerate}
+    \item Sei $a\in L$ algebraisch über $Z$. Dann gibt es $\lambda_1,...,\lambda_n\in Z$, so dass für
+    \[
+    p:= \sum_{i=0}^n \lambda_iX^i \in Z[X]
+    \]
+    $p(z)=0$ gilt, und insbesondere ist $z$ algebraisch über
+    \[
+      K(\lambda_1,\hdots,\lambda_n).
+    \]
+     Da $\lambda_i\in Z$ gilt, sind sie algebraisch über $K$, weil $Z/K$ eine algebraische Erweiterung ist. Betrachte nun die Körpererweiterung
+    \[
+    \begin{tikzcd}
+      K(\lambda_1,\hdots,\lambda_n,z)\ar[dash]{d}\\
+      K(\lambda_1,\hdots,\lambda_n,)\ar[dash]{d}\\
+      K
+    \end{tikzcd}
+    \]
+    Aus Satz 3.7 folgt, dass $K(\lambda_1,\hdots,\lambda_n,z)/K$ eine algebraische Erweiterung von $K$ ist, und damit, dass $z$ algebraisch über $K$ ist.
+    \item Angenommen $L/K$ ist algebraisch. Indem man Elemente aus $Z$ als Elemente aus $L$ auffässt, sind sie schon algebraisch über $K$. Indem man Elemente aus $K$ als Elemente aus $Z$ auffässt, erhält man, dass $L/Z$ algebraisch ist.\par
+    Angenommen, $L/K$ und $L/Z$ sind algebraisch. Also $L/K$ ist nach i) auch algebraisch, indem man die Argumentation für jedes Element durchführt.
+  \end{enumerate}
+\end{gsol}
+\begin{gsol}
+  \begin{enumerate}
+    \item Da $E/K$ endlich ist, gibt es endlich viele Elemente $e_1,...,e_n\in E$, so dass $E=K(e_1,...e,_n)$ ist, wobei $e_1,...,e_n$ algebraisch über $K$, und damit auch über $F$, sind. Nach Satz 3.7. ist dann $F(e_1,...,e_n)/F$ eine endliche Erweiterung. Weil $E.F$ ein Zwischenkörper dieser Erweiterung ist, und damit ein $F$-Unterraum von $F(e_1,...,e_n)$, ist $\dim_FE.F<\infty$.
+    \item Es gilt $E.F = F(E)$. Wenn $E/K$ algebraisch ist, dann ist jedes Element aus $E$ algebraisch über $F$, weil $K\subseteq F$ gilt. Damit folgt die Aussage direkt aus Lemma 3.9.
+    \item Angenommen, $E/K$ und $F/K$ sind endlich. Aus i) folgt, dass dann $E.F/F$ endlich ist. Für die Körpererweiterung
+    \[
+    \begin{tikzcd}
+      E.F\fearr\\
+      F\fearr\\
+      K
+    \end{tikzcd}
+    \]
+    folgt dann aus der Gradformel, dass
+    \[
+    [E.F:K]=[F.K]\cdot [E.F:F]
+    \]
+    gilt, also insbesondere, dass
+    \[
+    [E.F:K]<\infty .
+    \]
+    Angenonmmen, $E.F/K$ ist endlich. Weil $E\subset E.F$ und $F\subset E.F$ insbesondere Untervektorräume sind, folgt die Aussage.
+    \item Betrachte die Körpererweiterungen
+    \[
+    \begin{tikzcd}
+      &E.F\ar[dash]{rd}\ar[dash]{ld}&\\
+      E\ar[dash]{rd}&&F\ar[dash]{ld}\\
+      &K&
+    \end{tikzcd},
+    \]
+    dann sind $E$ bzw. $F$ Zwischenkörper der Erweiterung $E.F/K$. Angenommen, $E/K$ ist algebraisch und $F/K$ ist algebraisch. Dann folgt aus ii), dass $E.F/F$ algebraisch ist,damit aus 2ii), dass auch $E.F/K$ algebraisch ist. Angenommen, $E.F/K$ ist algebraisch. Weil $E$ und $F$ Zwischenkörper dieser Erweiterung sind, gilt die Aussage insbesondere für diese beiden.
+  \end{enumerate}
+\end{gsol}
