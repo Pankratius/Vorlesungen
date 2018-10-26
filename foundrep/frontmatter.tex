@@ -1,5 +1,19 @@
 \chapter*{Introduction}
 These are my personal lecture notes for the lecture \textit{Foundations of Representation Theory} held by Dr. Hans Franzen at the University of Bonn in the winter term 2018/19.\par
 I try to update them on my website, \url{https://pankratius.github.io}.\\
-The author labels his own comments and additions in \textcolor{purple}{purple}.\par
-The book \cite{aluffi} is used by the author for further references, and highly recommended.
+I label my own comments and additions in \textcolor{purple}{purple}.\par
+The book \cite{aluffi} is used for further references, and highly recommended.\\ In addition, I want to point out that there is another student who is publishing his notes for this course (which are way better than mine). These are available under \url{cionx.github.io}.
+\subsection*{Notation}
+I try to follow Dr. Franzens notation closley. Some deviations are:
+\begin{itemize}
+  \item Categories: e.g.: $\ccat$, $\dcat$.
+  \item functors: e.g: $\ffunc,\gfunc:\ccat \to \dcat$ are functors from the category $\ccat$ to the category $\dcat$.
+  \item Natural transformations: When I want do put more data into the depiction of a natural transformation $\eta:\ffunc\to \gfunc$ (where $\ffunc,\gfunc:\ccat\to \dcat$ are functors), I follow the notation introduced in \cite{context}:
+  \[
+  \eta: \begin{tikzcd}
+  \ccat\arrow[r, bend left=50, "\ffunc"{name=U, below}]
+  \arrow[r, bend right=50, "\gfunc"{name=D}]
+  &\dcat
+  \arrow[Rightarrow, from=U, to=D]
+\end{tikzcd}\] (There are still some TikZ-related issues however).
+\end{itemize}
