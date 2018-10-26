@@ -1,0 +1,312 @@
+\begin{defn}
+  Let $\ffunc,\gfunc:\begin{tikzcd}[cramped, sep=small]\ccat\ar[shift left]{r}\ar[shift right]{r}&\dcat\end{tikzcd}$ be two functors. A natural transformation $\eta:\ffunc \to \gfunc$ is called a \toidx{natural isomorphism} if for all $x\in \ccat$, $\eta_x$ is an isomorphism in $\dcat$.\\
+  $\eta$ is a natural transformation if and only iff there is a natural transformation $\zeta:\gfunc\to \ffunc$, such that $\zeta\circ \eta=\id_{\ffunc}$ and $\eta\circ \zeta = \id_{\gfunc}$.\\
+  If $\eta$ is a natural isomorphism, we write $\eta: F\xrightarrow{\cong}G$. If there is a natural transformation between two functors, we denote this by $\ffunc \cong \gfunc$.
+\end{defn}
+\begin{defn}
+  A functor $\ffunc:\ccat\to \dcat$ is called an \toidx{equivalence of categories}, if there is a functor $\gfunc:\dcat\to \ccat$, such that
+  \[
+  \gfunc\circ\ffunc \cong \id_{\ccat}\text{ and }\ffunc \circ \gfunc \cong \id_{\dcat}.
+  \]
+  If for two categories $\ccat,\dcat$ an equivalence of categories $\ccat\to\dcat$ exists, we say that $\ccat$ and $\dcat$ are \emph{equivalent}, and write $\ccat \simeq \dcat$.
+\end{defn}
+\begin{bsp}
+  Some examples for equivalences of categories:
+  \begin{enumerate}
+    \item Let $Q$ be a finite quiver. Then \cref{3:eqcat} shows that
+    \[
+    \repc_k(Q)\simeq kQ-\mdc.\]\coms
+    \begin{proof}
+        For the functors
+        \[
+        \ffunc: \repc_k(Q)\to kQ-\mdc\text{ and }\gfunc:kQ-\mdc\to \repc_k(Q)
+        \]
+        constructed in \cref{3:qfunct} the relationships $\gfunc\ffunc(X)\cong X$ and $\ffunc\gfunc(M)\cong M$ hold for any representation $X$ and $kQ$-modules $M$, by \cref{3:eqcat}. So it suffice to check naturallity:\\
+        Let $M,N\in kQ-\mdc$ be two $kQ$-modules. Recall that as $k$-vector space,
+        \[
+        \ffunc\gfunc(M) = \bigoplus_{i\in Q_0}\eepsilon_iM\]
+        where $\eepsilon_i$ denotes the lazy path at $i\in Q_0$, and the isomorphism is given by
+        \[
+        \begin{tikzcd}
+        \pphi:\ffunc\gfunc(M)={\displaystyle\bigoplus_{i\in Q_0}}\eepsilon_iM\ar{r}& M\end{tikzcd},~\left(\eepsilon_ix_i\right)_{i\in Q_0}\mapsto \sum \eepsilon_ix_i.
+        \]
+        Now let $\alpha\in kQ-\mdc(M,N)$ be a homomorphism of left $kQ$-modules $M,N$. We need to show that the diagram
+        \[
+        \begin{tikzcd}
+          \ffunc\gfunc(M)\ar[equal]{d}&\\
+          {\displaystyle \bigoplus_{i\in Q_0}}\eepsilon_iM\ar{r}{\pphi}\ar{d}{\ffunc\gfunc(\alpha)}& M\ar[swap]{d}{\alpha}M\\
+          {\displaystyle \bigoplus_{i\in Q_0}}\eepsilon_iN\ar{r}{\pphi}&N\\
+          \ffunc\gfunc(N)\ar[equal]{u}&
+        \end{tikzcd}
+        \] commutes, i.e. that $\pphi$ is actually a natural isomorphism:
+        \begin{align*}
+          \alpha\left(\pphi(\eepsilon_ix_i)\right)&= \alpha\left(\sum_{i\in Q_0}\eepsilon_ix_i\right)\\
+          &= \sum_{i\in Q_0}\eepsilon_i \alpha(x_i),
+        \end{align*}
+        as $\alpha$ is $kQ$-linear. Furthermore:
+        \begin{align*}
+          \pphi\left(\ffunc\gfunc(M)\right) &= \pphi\left((\eepsilon_i\alpha(x_i)\right)\\
+          &= \sum_{i\in Q_0}\eepsilon_i\alpha(x_i)
+        \end{align*}
+        So $\pphi$ is indeed a natural transformation.
+        The other map is also a natural transformation. This follows from the fact that it is an isomorphism of representations, as was shown in the proof of \cref{3:eqcat}.
+    \end{proof}
+    \come
+    \item Let $G$ be a group. A \emph{representation of $G$} \index{representation!of a group} is pair $(V,\rho)$ consisting of a $k$-vector space $V$ and a group homomorphism
+    \[
+    \rho: G\to \gl(V)
+    \]
+    A morphism of \coms(group)\come representations $f:(V,\rho)\to (W,\sigma)$ is a $k$-linear map $f:V\to W$, such that for all $g\in G$, the following diagram commutes:
+    \[
+    \begin{tikzcd}
+      V\ar{r}{f}\ar[swap]{d}{\rho(g)}&W\ar{d}{\sigma(g)}\\
+      V\ar{r}{f}&W
+    \end{tikzcd}.
+    \]
+    We will show \coms maybe on the next sheet, who knows...\come that we can define an equivalence of categories
+    \[
+    \repc_k(G)\simeq k[G]-\mdc.
+    \]
+    \item The category of $k$-$\alc$ is equivalent to the category $\ccat$ of pairs $(A,\pphi)$, where $A$ is a ring and $\pphi:k\to Z(A)$ \coms is a ring homomorphism\come{} and morphisms correspond to ring homomorphism $f:A\to B$, such that the following diagram commutes:
+    \[
+    \begin{tikzcd}
+			A\ar{rr}{f}&&B\\
+			Z(A)\ar[hookrightarrow]{u}&&\ar[hookrightarrow]{u}Z(B)\\
+			&k\ar{ul}{\pphi_A}\ar[swap]{ur}{\pphi_B}&
+		\end{tikzcd}.
+		\]\coms show that this is actually all natural and well-defined\come
+    \item Let $A$ be a $k$-algebra. The category $A-\mdc$ of left $A$-modules is equivalent the category $\dcat$ of pairs $(V,\rho)$ of $k$-vector spaces $V$ and homomorphisms of $k$-algebras:
+    \[
+    \pphi:A\to \eno_k(V).\]
+    Morphisms $(V,\pphi)\to (W,\psi)$ in $\dcat$ are given by $k$-linear maps $f:V\to W$, such that the diagram
+    \[
+    \begin{tikzcd}
+      V\ar{r}{f}\ar[swap]{d}{\pphi(a)}&W\ar{d}{\psi}\\
+      V\ar{r}{f}&W
+    \end{tikzcd}
+    \]
+    commutes for all $a\in A$.
+  \end{enumerate}
+\end{bsp}
+
+\section{Functor Categories}
+\begin{defn}
+  Let $\ccat$ and $\dcat$ be categories. Define the \toidx{functor category} $\fnc(\ccat,\dcat)$ by
+  \begin{itemize}
+    \item objects are all functors $\ccat\to \dcat$; i.e. $\objcat(\fnc(\ccat,\dcat)) := \{ \ffunc:\ccat\to \dcat\ssp \ffunc\text{ is a functor}\}$
+    \item morphism between functors are natural transformations; i.e. for $\ffunc,\gfunc :\begin{tikzcd}[cramped, sep=small] \ccat\ar[shift left]{r}\ar[shift right]{r}&\dcat\end{tikzcd}$, set $\fnc(\ffunc,\gfunc)(\ccat,\dcat):= \{ \eta:\ffunc \to \gfunc\ssp \eta\text{ is a natural transformation}\}$
+    \item Composition of morphisms is given by composition of natural transformations.
+  \end{itemize}
+\end{defn}
+
+\begin{rem}
+  We are running into set-theoretic issues again. If $\ccat$ and $\dcat$ are categories in a fixed universe $U$ (i.e. $\objcat(\ccat),\objcat(\dcat)\subseteq U$) then $\objcat(\fnc(\ccat,\dcat))$ might not be a subset of $U$ any longer. As a solution, we choose another universe $V$, s.t. $U\in V$. Then $\objcat(\fnc(\ccat,\dcat))\subseteq V$ and $\fnc(\ccat,\dcat)$ is a category in $V$.
+\end{rem}
+
+\begin{bsp}
+  Let $Q$ be a quiver, $k$ a field. Consider the functor category $\fnc(\qct,k\mdas\mdc)$. For $\fcr{V}\in \objcat(\fnc(\qct,k-\mdc))$, $\fcr{V}$ is a functor
+  \[
+  \fcr{V}:\qct\to k\mdas\mdc,\begin{cases}\objcat(\qct)=Q\bast\ni i\mapsto V(i)&\text{a vector space}\\
+  \qct(i,j)\ni p\to V(p):V(i)\to V(p)&\text{a }k\text{-linear map}\end{cases}
+  \]
+  We now have a forgetful functor
+  \[
+  \ffunc:\fnc(\qct,k\mdas\mdc)\to \repc_k(Q),
+  \]
+  forgetting all paths of length $>1$. \par
+  Conversley, let $X$ be a representation of $Q$ over $k$. Define a functor
+  \[
+  \gfunc X: \qct\to k\mdas\mdc, \begin{cases}i\mapsto X_i\\p=\alpha_{\ell}\circ \hdots \circ X_{\alpha_1}\end{cases}.
+  \]
+  This yields a functor
+  \[
+  \gfunc:\repc_k(Q)\to \fnc(\qct,k-\mdc)
+  \]
+  We see that
+  \[
+  \gfunc \circ \ffunc \cong \id_{\fnc(\qct,k\mdas\mdc)}\text{ and }\ffunc\circ\gfunc\cong \id_{\repc_k(Q)}\].
+\end{bsp}
+
+\begin{defn}
+  Let $\ccat,\dcat$ be two categories, and $X\in \ccat$ an object in $\ccat$. Define
+  \[
+  \ev_X:\fnc(\ccat,\dcat)\to \dcat\]
+  by
+  \begin{itemize}
+    \item $\ev_X(\ffunc):= \ffunc(X)$
+    \item $\ev_X(\ffunc)\far{\eta}\gfunc:= \eta_X:\ffunc(X)\to\gfunc(X)$.
+  \end{itemize}
+  $\ev_X$ is called the \toidx{evaluation} \emph{at $X$}.
+\end{defn}
+
+\begin{rem}
+  Let $\ccat,\dcat$ be categories, and $X\in \ccat$ an object. Then $\ev_X$ is indeed a functor, \coms as the associativity of composition of natural transformations is inherited from the associativity of composition in $\dcat$.\come\par
+  Moreover, for $f:X\to Y$ a morphism in $\ccat$, we can define a natural transformation between the functors
+  \[
+  \ev_f:\ev_X\to \ev_Y,
+  \]
+  \coms which is, for a functor $\ffunc$, just a map $\ev_X(\ffunc)\to \ev_Y(\ffunc)$\come; by considering
+  \[
+  \begin{tikzcd}\ev_X(\ffunc)\ar{r}{(\ev_f)_F}&\ev_y(F)\\
+                          \ffunc X \ar[equal]{u}\ar{r}{Ff}&\ffunc Y \ar[equal]{u}
+                        \end{tikzcd}~\text{and setting}~(\ev_f)_F:= \ffunc f,
+        \]
+  \coms i.e. $(\ev_f)_{\ffunc}$ is induced the maps which are induced by $\ffunc$.
+  To show that the $(\ev_f)$ define indeed a natural transformation of functors
+  \[\begin{tikzcd}
+  \fnc(\ccat,\dcat) \arrow[r, bend left=50, "\ev_X"{name=U, below}]
+  \arrow[r, bend right=50, "\ev_Y"{name=D}]
+  &\dcat
+  \arrow[Rightarrow, from=U, to=D] \end{tikzcd},
+  \]
+  we need to show that for all maps (i.e. natural transformations) $\eta: \ffunc \to \gfunc$ the following diagram commutes:
+  \[
+  \begin{tikzcd}
+    \ev_X(\ffunc)\ar{r}{\ev_X(\eta)}\ar[swap]{d}{(\ev_f)_{\ffunc}}& \ev_X(\gfunc)\ar{d}{(\ev_f)_{\gfunc}}\\
+    \ev_Y(\ffunc)\ar{r}{\ev_Y{\eta}}& \ev_Y(\gfunc)
+  \end{tikzcd}.
+  \]
+  But this is just inherited, in following way:\come \\
+  Consider the extended diagram:
+  \[
+  \begin{tikzcd}
+    \ffunc(X)\ar{r}{\eta_X}\ar[equal]{d} \ar[bend right=60,swap]{ddd}{\ffunc(f)}&\gfunc(X)\ar[equal]{d}\ar[bend left=60]{ddd}{\gfunc(f)}\\
+    \ev_X(\ffunc)\ar{r}{\ev_X(\eta)}\ar{d}{(\ev_f)_{\ffunc}}& \ev_X(\gfunc)\ar[swap]{d}{(\ev_f)_{\gfunc}}\\
+    \ev_Y(\ffunc)\ar{r}{\ev_Y{\eta}}& \ev_Y(\gfunc)\\
+    \ffunc(Y)\ar[swap]{r}{\eta_Y}\ar[equal]{u}&\gfunc(Y)\ar[equal]{u}
+  \end{tikzcd}.
+  \]
+  As $\eta$ is a natural transformation, the outer diagram commutes. But this already implies that the inner one does as well. \\
+  This enables us to define another functor:
+  \[
+  \ev:\ccat \to \fnc\left(\fnc\left(\ccat,\dcat\right),\dcat\right),~\begin{cases}X\mapsto \ev_X\\ f\mapsto \ev_f\end{cases}
+  \]
+\end{rem}
+
+\section{Representable functors}
+We now consider functors of the form
+\[
+\ccat \to \stc\text{ and }\op{\ccat}\to \stc,
+\]
+for an arbitrary category $\ccat$.
+\begin{lem}[Yoneda\index{Lemma!Yoneda}]
+  Let $X\in \objcat(\ccat) = \objcat(\op{\ccat})$ be an object of $\ccat$.
+  \begin{enumerate}
+    \item Let $\ffunc: \ccat \to \stc$ be a (covariant) functor. The map
+    \[
+      \begin{tikzcd}Y^{\ffunc,X}:&\left(\fnc(\ccat,\stc)\right)(h^X,\ffunc)\ar{r}&\ffunc(X)\\
+      &(\eta:h^X\to \ffunc)\ar[mapsto]{r}&\eta_X(\id_X)\end{tikzcd},
+  \]
+  is a bijection,
+  where
+  \[
+  \begin{tikzcd}
+  \ccat \arrow[r, bend left=50, "h^X"{name=U, below}]
+  \arrow[r, bend right=50, "\ffunc"{name=D}]
+  &\stc
+  \arrow[Rightarrow, from=U, to=D] \end{tikzcd},
+  \]
+  is a natural transformation, and
+  \[
+  \eta_X: \ccat(X,X)=h^X(X)\to F(X)
+\]
+  is just a map.
+  \item Let $\gfunc:\op{\ccat}\to \stc$ be a (contravariant) functor. The map:
+  \[
+    \begin{tikzcd}Y_{\gfunc,X}:&\left(\fnc(\op{\ccat},\stc)\right)(h_X,\gfunc)\ar{r}&\gfunc(X)\\
+    &(\zeta:h_X\to \gfunc)\ar[mapsto]{r}&\zeta_X(\id_X)\end{tikzcd},
+\]
+  is a bijection.
+\end{enumerate}
+\end{lem}
+\begin{proof}
+  \begin{enumerate}
+    \item Assume that ii) holds, then this follows, as $\ccat = \left(\ccat^{\mathrm{op}}\right)^{\mathrm{op}}$ and
+    \[
+    h^X_{\ccat} = \ccat(-,X) = \op{\ccat}(X,-)=h_X^{\op{\ccat}}.
+    \]
+    \item $Y_{\gfunc,X}$ is injective: Let $\xi,\eta\in \left(\fnc(\op{\ccat},\stc)\right)(h_X,\gfunc)$ be two natural transformations
+    \[
+    \xi,\eta: \begin{tikzcd}
+    \op{\ccat} \arrow[r, bend left=50, "h_X"{name=U, below}]
+    \arrow[r, bend right=50, "\gfunc"{name=D}]
+    &\stc
+    \arrow[Rightarrow, from=U, to=D]
+  \end{tikzcd}\]
+  and suppose that
+  \[
+  \xi_X(\id_X)=\eta_X(\id_X).
+  \]
+  We need to show that this implies $\xi=\eta$, i.e. $\xi_Y=\eta_Y$ for all $Y\in \objc{\ccat}$. As these are maps of sets, it suffices to show
+  \[
+  \xi_Y(f)=\eta_Y(f)~\text{for all }f\in h_X(Y)=\ccat(X,Y).
+  \]
+  As $\xi,\eta$ are natural transformations, the diagrams
+  \begin{equation}\tag{D1}\label{6:eq1}
+  \begin{tikzcd}
+    %h_X(X)\ar[equal]{d}&\\
+    \ccat(X,X)\ar{r}{\eta_X}\ar[swap]{d}{h_X(f)}&\gfunc(X)\ar{d}{\gfunc(f)}\\
+    \ccat(X,Y)\ar{r}{\eta_Y}&\gfunc(Y)\\
+    %h_X(Y)\ar[equal]{u}&
+  \end{tikzcd}
+\end{equation}
+  and
+  \begin{equation}\tag{D2}\label{6:eq2}
+  \begin{tikzcd}
+  h_X(X)\ar[equal]{d}&\\
+  \ccat(X,X)\ar{r}{\xi_X}\ar[swap]{d}{h_X(f)}&\gfunc(X)\ar{d}{\gfunc(f)}\\
+  \ccat(X,Y)\ar{r}{\xi_Y}&\gfunc(Y)\\
+  h_X(Y)\ar[equal]{u}&
+\end{tikzcd}
+\end{equation}
+commute. This implies
+\begin{align*}
+  \gfunc(f)&(\eta_X(\id_X)) \overset{\eqref{6:eq1}}{=}\eta_Y(h_X(f)(\id_X)) = \eta_Y(f)\\
+  &\parallel\\
+  \gfunc(f)&(\xi_X(\id_X)) \overset{\eqref{6:eq2}}{=}\xi_Y(h_X(f)(\id_X)) = \xi_Y(f),
+\end{align*}
+so $Y_{\gfunc,X}$ is injective.\par
+$Y_{\gfunc,X}$ is surjective: Let $z\in \gfunc(X)$ be arbitrary. We need to find a natural transformation
+\[
+\zeta: \begin{tikzcd}
+\op{\ccat} \arrow[r, bend left=50, "h_X"{name=U, below}]
+\arrow[r, bend right=50, "\gfunc"{name=D}]
+&\stc
+\arrow[Rightarrow, from=U, to=D]
+\end{tikzcd},\]
+such that $\zeta_X(\id_X)=z$. Define for $y\in \objcat(\op{\ccat})$ a map
+\[
+\zeta_Y:\ccat(X,Y) = h_X(Y)\to \gfunc (Y),~f\mapsto \gfunc f(z).
+\]
+Show that $\zeta$ is indeed a natural transformation:
+Let $g:Y\to Y'$ be a morphism in $\ccat$, i.e. $g\in \op{\ccat}(Y',Y)$. We have to show that
+\[
+\begin{tikzcd}
+h_X(Y')\ar[equal]{d}&\\
+\ccat(Y',X)\ar{r}{zeta_{Y'}}\ar[swap]{d}{h_X(f)}&\gfunc(Y')\ar{d}{\gfunc(g)}\\
+\ccat(Y,X)\ar{r}{\zeta_Y}&\gfunc(Y)\\
+h_X(Y)\ar[equal]{u}&
+\end{tikzcd}
+\]
+commutes. \\
+Let $u\in \ccat(Y',X)$. Then
+\begin{align*}
+  \gfunc(g)(\zeta_{Y'}(u))&= \gfunc(g)(\gfunc(u) (z))\\
+                          &= \gfunc(u\circ g)(z)
+\end{align*}
+and
+\begin{align*}
+  \zeta_Y((h_x(g))(u))&= \zeta_Y(u\circ g)\\
+                    &= \gfunc(u\circ g)(z)
+\end{align*}
+Hence $\zeta$ defines a natural transformation, and
+\[
+\zeta_X(\id_X) = (\gfunc(\id_x))(z) = (\id_(\gfunc X))(z) = z
+\]
+
+  \end{enumerate}
+\end{proof}
+
+
+
+\lec

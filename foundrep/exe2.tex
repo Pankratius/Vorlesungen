@@ -1,0 +1,30 @@
+\section{Sheet 2}
+\input{foundrep/sol2}
+\subsection*{Extension and restriction of scalars}
+We do some recap from Algebra 1 (cf. \cite[27f.]{atiyah1994introduction}). For this, we go back to the commutative case: In the following, $A,B$ denote commutative, untial rings. \\
+\begin{prop}
+  Let $A\far{f}B$ be a ring homomorphism and $N$ a $B$-module. Then $N$ has a $A$-module structure, given by
+  \[
+  A\times N\mapsto N,~(a,n)\mapsto f(a)n.\]
+\end{prop}
+\begin{proof}
+  \begin{itemize}
+    \item The addition on $N_A$  is the same as the addition of $N_B$. \\
+    \item Associativity: $(ab)n = f(ab)n = (f(a)f(b))n = f(a)(f(b)n)$, as $N$ is $B$-module
+    \item Unit acts as unit: $1_An = f(1_A)n = 1_Bn = n$, as $f$ is homomorphism of rings.
+    \item Distributivity: $(a+b)n=f(a+b)n = (f(a)+f(b))n = f(a)n+f(b)n$ and $a(n+n') = f(a)(n+n') = f(a)n+f(a)n'$
+  \end{itemize}
+\end{proof}
+This way of obtaining a $A$-module structure on $N_B$ is called \toidx{restriction of scalars}. In particular, $f$ defines a $A$-module structure on $B$ in this way.\\
+\begin{prop}
+  Let $M_A$ be an $A$-module. Then
+  \[
+  M_B:= B\otimes_A M
+  \]
+
+  carries a $B$-module structure, and
+  \[
+  b(b'\otimes x) = (bb')\otimes x
+  \]
+  holds for this $B$-module. We say that the $B$-module $M_B$ was obtained from $M$ by \toidx{extension of scalars}
+\end{prop}

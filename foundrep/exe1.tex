@@ -51,4 +51,56 @@ Let $R$ be any commutative ring.
 \end{defn}
 \begin{prop}
 	Equalizers exists in abelian categories.
-\end{prop}  
+\end{prop}
+\hrule
+\subsection*{Task 1}
+See this as a functors:
+\[
+\begin{tikzcd}k\mdas\alc \ar[shift left]{r}{\fcr{V}}\ar[shift right, swap,leftarrow]{r}{\fcr{A}}&\grpc\end{tikzcd}
+\]
+Grp. alg. construction $\fcr{A}$ is left-adjoint to group of units construction $\fcr{V}$.
+\begin{enumerate}
+	\item Show that there is a natural isomorphism
+	\[
+	k\mdas\alc(\fcr{A}(G),A) \cong \grpc(G,\fcr{V}(A))
+	\]
+	for all groups $G$ and $k$-algebras $A$.
+\end{enumerate}
+\subsection*{Task 2}
+This quiver is called the \emph{linear oriented quiver}\index{quiver!linear oriented}.
+Define
+\[
+\pphi:KQ\to\lowtri_n(k)
+\]
+as linear extension of the $k$-linear map
+\[
+Q\bast\to \lowtri_n(k),~p_{ij}\mapsto (E_{ij}){kl}:= \begin{cases}1&\text{if }k=i,l=j\\0&\text{otherwise}\end{cases}
+\]
+This is indeed a homomorphism of $k$-algebras, which sends basis vectors to basis vectors.\par
+\subsection*{Task 3}
+Let $\ccat,\dcat$ be two \emph{$k$-linear} categories \index{category!linear}, i.e. $\ccat(X,Y)$ has the structure of a $k$-vector space and composition is bilinear. We say that $\ccat$ is \emph{equivalent} to $\dcat$ ($\ccat \simeq \dcat$) if there are \emph{$k$-linear} functors
+\[
+\ffunc :\ccat \to \dcat \text{ and }\gfunc:\dcat \to \ccat
+\]
+(i.e. functors that induce $k$-linear maps $\ccat(X,Y)\to \dcat(\ffunc(X),\gfunc(Y))$, and for $\gfunc$ analogous), such that there are natural isomorphisms
+\[
+\gfunc \ffunc \simeq \idfunc_{\ccat}\text{ and }\ffunc \gfunc \simeq \idfunc_{\dcat}
+\]
+\begin{thm}
+	Let $\ccat,\dcat$ be $k$-linear categories. $\ccat \simeq \dcat$ if and only if there is a fully faithful, $k$-linear and dense functor
+	\[
+	\ffunc: \ccat \to \dcat .
+	\]
+\end{thm}
+\begin{rem}
+	The proof is supposed to only invoke the Axiom of Choice, and should work for general $\hom$-Sets.
+\end{rem}
+This task basically shows that there is an equivalence of categories
+\[
+\repc(A)\simeq k\mdas \mdc(A),
+\]
+where
+\[
+\repc(A):= \{(V,\pphi)\ssp V\text{ a }k\mdas\text{vector-space, }\pphi:A\to \eno_{k}(V)\text{ a algebra-homomorphism}\}
+\]
+Calvin highly recommends the book \cite{assem1}.

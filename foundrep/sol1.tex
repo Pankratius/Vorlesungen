@@ -35,7 +35,7 @@
 
 \begin{sol}
   \begin{enumerate}
-    \item Assume that $I$ is a non-zero ideal of $A$. Let $a=(a)_{ij}\neq 0$ be an arbitrary matrix in $I$. Then there exist permutation $\sigma, \pi \in \gl_n(K)$ matrices, such that $(\sigma a \pi)_{11}\neq 0$, which is in $a$, as $I$ is a two-sided ideal. So without loss of generality, suppose $a_{11}\neq 0$.\\
+    \item Assume that $I$ is a non-zero ideal of $A$. Let $a=(a)_{ij}\neq 0$ be an arbitrary matrix in $I$. Then there exist permutation matrices $\sigma, \pi \in \gl_n(K)$, such that $(\sigma a \pi)_{11}\neq 0$, which is in $I$, as $I$ is a two-sided ideal. So without loss of generality, suppose $a_{11}\neq 0$.\\
     Define
     \[
     b\in \mat_n(k),(b)_{ij}:= \begin{cases} 1,&\text{if }i=j=1\\0,&\text{else}\\\end{cases}
@@ -43,7 +43,7 @@
     and $E_n$ as the identity of $\mat_n(k)$. Then we get
     \[
     \left(\frac{1}{a_{11}} E_n\right)\cdot b \cdot a\cdot b = b.\]
-    By repeatetly using permutation matrixes, it is possible to write any matrix as sum of products of $a$, $b$ and permutation matrices on the left- and right. As $I$ is a two-sided ideal, $a$ all of these combinations are in $I$ as well. Hence $a$ generates all of $A$, and $I=A$.
+    By repeatetly using permutation matrixes, it is possible to write any matrix as sum of products of $a$, $b$ and permutation matrices on the left- and right. As $I$ is a two-sided ideal, all of these combinations are in $I$ as well. Hence $a$ generates all of $A$, and $I=A$.
     %\item As $k$ is a field, $\mat_n(k)\cong \eno_k(k^n)$ holds for a choosen basis of $k^n$, and in particular, $\dim \eno_k(k^n)=n^2$. Hence $\dim \mat_n(k)=n^2$ as a $k$-vector space. Furthermore, $\dim \eno_k(M)=m^2$, where $m:=\dim M$ is the dimension of $M$ as a $k$-vector space.\\
     %Consider now the map
     %\[
@@ -55,12 +55,12 @@
     %Now i) implies that either $\ker \pphi=0$ or $\ker \pphi = \mat_n(k)$. But since $\pphi(E_n)=\id_{M}$, where $E_n$ is the $n\times n$ identity matrix, the latter one is not possible. Hence $\ker \pphi =0$, and $\pphi$ is an injective map of $k$-vector spaces. But this implies $\dim A\leq \dim \eno_K(V)$, so $m\geq n$.
     \item Consider $A$ as a $k$-vector space, then $\dim_KA=n^2$. Let $M$ be any left $A$-module. As shown in task 3, there is a homomorphism of $k$-algebras
     \[
-    \pphi A\to \eno_k(M),~a\mapsto a:(x\mapsto ax),
+    \pphi: A\to \eno_k(M),~a\mapsto a:(x\mapsto ax),
     \]
     which is in particular a homomorphism of $k$-vector spaces. The kernel of $\pphi$ is a two-sided ideal of $A$, as
     \[
     a0x=0ax=0\]
     for all $a\in A$ and $x\in M$.\\
-    Now $i)$ implies that $\ker \pphi$ is either zero or $\ker \pphi = A$. But since $\pphi(E_n)=\id_{M}$, the latter one is not possible. Hence $\pphi$ is injective, and in particular $\dim A\leq \dim \eno_k(V)$, so $n\leq m$.
+    Now i) implies that $\ker \pphi$ is either zero or $\ker \pphi = A$. But since $\pphi(E_n)=\id_{M}$, the latter one is not possible. Hence $\pphi$ is injective, and in particular $\dim A\leq \dim \eno_k(V)$, so $n\leq m$.
   \end{enumerate}
 \end{sol}

@@ -21,7 +21,8 @@
 \newcommand{\mpt}{mapsto}
 %%from  foundrep:
 
-
+%for field extensions:
+\newcommand{\fearr}{\ar[dash]{d}}
 
 
 
@@ -46,9 +47,13 @@
 \DeclareMathOperator{\eno}{End}
 \DeclareMathOperator{\sqm}{M}
 \DeclareMathOperator{\mat}{M}
+\DeclareMathOperator{\aut}{Aut}
+\DeclareMathOperator{\gal}{Gal}
+\DeclareMathOperator{\sgn}{sgn}
 \DeclareMathOperator{\coker}{coker}
 \DeclareMathOperator{\coim}{coim}
 \DeclareMathOperator{\rchar}{char}
+\newcommand{\cat}[1]{\mathcal{#1}}
 \newcommand{\objcat}{\text{Ob}}
 \newcommand{\objc}[1]{\objcat\left(\cat{#1}\right)}
 \newcommand{\pphi}{\varphi}
@@ -62,7 +67,7 @@
 \newcommand{\eukno}[1]{\left|\left|#1\right|\right|}
 \newcommand{\ip}[2]{\langle #1,#2\rangle}
 \DeclareMathOperator{\lin}{Lin}
-\DeclareMathOperator{\sgn}{sgn}
+%\DeclareMathOperator{\sgn}{sgn}
 %blackboard symbols
 \newcommand{\nn}{\mathbb{N}}
 \newcommand{\nne}{\mathbb{N}_1}
@@ -70,19 +75,46 @@
 \newcommand{\cc}{\mathbb{C}}
 \newcommand{\qq}{\mathbb{Q}}
 \newcommand{\zz}{\mathbb{Z}}
+\newcommand{\genstr}[1]{\langle #1\rangle}
 %set stuff
 \newcommand{\ssp}{~|~}
 \newcommand{\sse}{\subseteq}
 %%
 %categorystuf
-\newcommand{\cat}[1]{\mathcal{#1}}
+
 \newcommand{\cmod}{\mathsf{Mod}}
-\newcommand{\cab}{\mathsf{Ab}}
+\newcommand{\cab}{\cat{A}b}
 \newcommand{\op}[1]{#1^{\mathrm{op}}}
 \newcommand{\fcr}[1]{\mathscr{#1}}
 \newcommand{\nattraf}{\leadsto}
-\newcommand{\ccat}{\cat{C}}
+\newcommand{\stc}{\cat{S}et}
+\newcommand{\grpc}{\cat{G}rp}
+\newcommand{\mdc}{\cat{M}od}
+\newcommand{\tpc}{\cat{T}op}
+\newcommand{\alc}{\cat{A}lg}
+\newcommand{\repc}{\cat{R}ep}
+\newcommand{\fnc}{\cat{F}un}
 
+\DeclareMathOperator{\uptri}{T}
+\DeclareMathOperator{\lowtri}{L}
+\DeclareMathOperator{\ev}{ev}
+\newcommand{\mdas}{\mathrm{-}}
+\newcommand{\ccat}{\cat{C}}
+\newcommand{\dcat}{\cat{D}}
+\newcommand{\ecat}{\cat{E}}
+\newcommand{\qcat}{\cat{Q}}
+
+\newcommand{\ffunc}{\fcr{F}}
+\newcommand{\gfunc}{\fcr{G}}
+\newcommand{\hfunc}{\fcr{H}}
+\newcommand{\idfunc}{\text{Id}}
+\newcommand{\bast}{_{\ast}}
+\newcommand{\qct}{\qcat\bast}
+\newcommand{\tast}{^{\ast}}
+\newcommand{\oobj}{\text{on objects}}
+\newcommand{\omor}{\text{on morphism}}
+\newcommand{\far}[1]{\overset{#1}{\to}}
+\newcommand{\inar}{cramped, sep=small}
 %module stuff
 \DeclareMathOperator{\rad}{rad}
 
@@ -92,3 +124,6 @@
 \newcommand{\mip}[2]{\mu_{#1,#2}}
 
 %for tikzcd:
+
+%for num-symb:
+\newcommand{\itstp}[1]{^{(#1)}}

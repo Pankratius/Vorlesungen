@@ -1,0 +1,205 @@
+\begin{bsp}
+  \begin{enumerate}
+    \item The category $\stc$ of all sets, with
+    \begin{itemize}
+      \item $\objcat(\stc)$ are all sets in the given universe
+      \item $\stc(X,Y)=\{\text{maps }f:X\to Y\}$
+    \end{itemize}
+    \item The category $\grpc$ of groups, with group homomorphism as morphisms.
+    \item Let $A$ be a $k$-algebra. Let $A\mdas \mdc$ be the category of left $A$-modules, and $\mdc\mdas A$ the category of right $A$-modules.
+    \item The category $\tpc$ of topological spaces, with
+    \begin{itemize}
+      \item $\objcat(\tpc)$ the set of all topological spaces,
+      \item $\tpc(X,Y)=\{f:X\to Y\ssp f\text{ is continous}\}$
+    \end{itemize}
+    \item Let $G$ be a group. Let $\ccat$ be the category defined as
+    \begin{itemize}
+      \item $\objcat(\ccat)=\{\ast\}$
+      \item $\ccat(\ast,\ast)=G$, with composition defined as $h\circ g:= hg$.
+    \end{itemize}
+    \item Let $Q$ be a quiver. Let $\qcat_{\ast}$ be the \emph{category of paths}\index{category!of paths} of $Q$, defined as
+    \begin{itemize}
+      \item $\objcat(\qcat_{\ast})=Q_{\ast}$
+      \item for $i,j\in Q_{\ast}$, let $\qcat\bast(i,j):= \{\text{paths }p\text{ in }Q\ssp s(p)=i,t(p)=j\}$,
+      \item composition is given by concatination of paths.
+    \end{itemize}
+    This is a category, as composition is associative, and $\id_i=\eepsilon_i$ (the lazy path at $i$).
+  \end{enumerate}
+\end{bsp}
+\begin{defn}
+  Let $\ccat$ be a category. The \emph{opposite category} \index{category!opposite} $\op{\ccat}$ is defined as
+  \begin{itemize}
+    \item $\objcat(\op{\ccat})=\objcat(\ccat)$
+    \item for all $x,y\in \objcat(\op{\ccat})$, the morphisms are defined as $\op{\ccat}(X,Y):= \ccat(Y,X)$
+    \item for $f\in \op{\ccat}(X,Y),y\in \op{\ccat}(Y,Z)$, set
+    \[
+    g\circ_{\op{\ccat}}f:= f\circ_{\ccat}g\]
+  \end{itemize}
+\end{defn}
+
+\section{Functors}
+
+\begin{defn}
+  Let $\ccat,\dcat$ be two categories. A \toidx{functor} $\fcr{F}:\ccat\to \dcat$ consists of the following:
+  \begin{itemize}
+    \item a map
+    \[\fcr{F}:\objcat(\ccat)\to \objcat(D),~X\mapsto F(X)\]
+    \item for all $X,Y\in \objcat(\ccat)$, a map
+    \[
+    \ccat(X,Y)\to \ccat(\fcr{F}(X),\fcr{F}(Y)),~f\mapsto \fcr{F}(f),
+    \]
+  \end{itemize}
+  such that
+  \begin{itemize}
+    \item (F1): $\ffunc(\id_X)=\id_{\ffunc(X)}$
+    \item (F2): for all sequences
+    \[
+    \begin{tikzcd}
+      X\ar{r}{f}&Y\ar{r}{g}&Z
+    \end{tikzcd}
+    \]
+    in $\ccat$, the relation
+    \[
+    \ffunc(g\circ f)= \ffunc(g)\circ \ffunc(f),
+    \]
+  \end{itemize}
+  holds for all $X,Y,Z\in \objcat(\ccat)$.
+\end{defn}
+
+\begin{rem}
+  What we call a functor is sometimes called a \textit{covariant functor}. A \textit{contravariant functor} is a (covariant) functor $\gfunc:\op{\ccat}\to \dcat$.
+\end{rem}
+
+\begin{rem}
+  \begin{enumerate}
+    \item Let $\ccat$ be a category. The \toidx{identical functor} is given by
+    \[
+    \idfunc_{\ccat}:\ccat \to \ccat,\begin{cases}x\mapsto x&\oobj\\f\mapsto f&\omor\end{cases}\]
+    \item If
+    \[
+    \begin{tikzcd}
+      \ccat\ar{r}{\ffunc}&\dcat \ar{r}{\gfunc}&\ecat
+    \end{tikzcd}
+    \]
+    are two functors, then their composition is also a functor.
+  \end{enumerate}
+\end{rem}
+
+\begin{bsp}\label{5:funcexe}
+  \begin{enumerate}
+    \item Consider the category $\stc$, and let $P(X)$ denote the power set of a set $X$. Define
+    \[
+    \fcr{P}\bast: \stc \to \stc, \begin{cases}x\mapsto P(X)\\ (X\far{f}Y)\mapsto P\bast(f): P(X)\to P(Y),A\mapsto f(A)\end{cases}
+    \]
+    which is a covariant functor, and
+    \[
+    \fcr{P}\tast: \stc \to \stc, \begin{cases}x\mapsto P(X)\\ (X\far{f}Y)\mapsto P\tast(f): P(Y)\to P(X),B\mapsto f^{-1}(B)\end{cases},
+    \]
+    which is a contravariant functor.
+    \item Consider the functors
+    \[
+    \mdas\tast: k\mdas \alc \to \grpc, \begin{cases}A\mapsto A^{\times}\\ (A\far{f}B)\mapsto A^{\ast}\far{f^{\times}}B^{\times}\end{cases}
+    \] and
+    \[
+    k[\mdas]:\grpc\to k\mdas\alc, \begin{cases}G\mapsto k[G]\\(G\far{\pphi}H)\mapsto k[G]\far{\pphi}k[H]\end{cases}
+    \]
+    \item The functor
+    \[
+    \grpc\to \stc,\begin{cases}G\mapsto G\\f\mapsto f\end{cases}\]
+    is called a \emph{forgetful functor} \index{funtor!forgetful}. Other examples of forgetful functors are
+    \begin{itemize}
+      \item $\tpc\to \stc$
+      \item $A\mdas\mdc\to k\mdas\mdc$
+    \end{itemize}
+  \end{enumerate}
+\end{bsp}
+
+\begin{bsp}
+  Let $\ccat$ be a category and $X\in \objcat(\ccat)$ an object in $\ccat$. Consider
+  \begin{enumerate}
+    \item
+    \[
+    H^{X}:\ccat\to \stc,\begin{cases}Y\mapsto \ccat(X,Y)\\ (Y\far{f}Y')\mapsto H^X(f): \ccat(X,Y)\to \ccat(X,Y'),~g\mapsto f\circ g\end{cases}.
+    \] We also denote this as $H^X=:\ccat(X,\mdas)$. \coms This is a covariant functor.\come
+    \item
+    \[H_X:\ccat\to \stc,\begin{cases}Z\mapsto \ccat(Z,X)\\ (Z\far{f}Z')\mapsto H_X(f): \ccat(Z',X)\to \ccat(Z,X),~g\mapsto g\circ f\end{cases}.
+    \]
+    We also denote this as $H_X=:\ccat(\mdas,X)$. \coms This is a contravariant functor.\come
+  \end{enumerate}
+\end{bsp}
+\begin{defn}
+  Let $\ffunc:\ccat\to \dcat$ and consider the induced map
+  \[
+  \ccat(X,Y)\to \dcat(\ffunc(X),\ffunc(Y)).
+  \]
+  \begin{enumerate}
+    \item If this map is injective, then $F$ is called \emph{faithful}\index{functor!faithful}.
+    \item If this map is surjective, then $F$ is called \emph{full}\index{functor!full}.
+    \item $F$ is \emph{fully faithful}\index{functor!fully faithful}, if $F$ is full and faithful.
+    \item $F$ is \emph{dense} \index{functor!dense} or \emph{essentially surjective}\index{functor!essentially surjective}, if for any $Y\in \dcat$, there is an object $X\in \ccat$, such that $\ffunc(X)\cong Y$
+  \end{enumerate}
+\end{defn}
+
+\section{Isomorphism}
+\begin{defn}
+  Let $\ccat$ be a category. A morphism $f:X\to Y$ in $\ccat$ is called an \toidx{isomorphism}, if there is a $g:Y\to X$ such that $g\circ f = \id_X$ and $f\circ g=\id_Y$.
+\end{defn}
+\begin{rem}
+  \begin{enumerate}
+    \item Identities are isomorphism.
+    \item The morphism $g$ (\coms if it exists\come) is uniquely determined by $f$. We therefore call $g=: f^{-1}$.
+    \item If $\ffunc:\ccat\to \dcat$ is a functor and $f$ an isomorphism in $\ccat$, then $\ffunc(f)$ is an isomorphism in $\dcat$.
+  \end{enumerate}
+\end{rem}
+\begin{bsp}
+  \begin{enumerate}
+    \item In $\stc$, $\grpc$, $A\mdas\mdc$, the following are equivalent:
+    \begin{itemize}
+      \item $f$ is an isomorphism
+      \item $f$ is bijective.
+    \end{itemize}
+    \item In $\tpc$, not all bijective maps are isomorphism.
+    \item In $\qcat\bast$, the only isomorphisms are the lazy paths, \coms because lengths of paths are additive\come.
+  \end{enumerate}
+\end{bsp}
+\section{Natural transformations}
+\begin{defn}
+Let $\ffunc,\gfunc :\begin{tikzcd}[cramped, sep=small] \ccat\ar[shift left]{r}\ar[shift right]{r}&\dcat\end{tikzcd}$ be two functors. A \toidx{natural transformation}
+\[
+\eta:\ffunc\to\gfunc\]
+is a family of morphisms
+\[
+\{\eta_X\}_{X\in \objcat(\ccat)}:\ffunc X\to \gfunc X\]
+in $\dcat$, such that for all $X,Y\in \ccat$ and morphisms $f:X\to Y$ in $\ccat$, the following diagram commutes
+\[
+\begin{tikzcd}
+  \ffunc X\ar{r}{\eta_X}\ar[swap]{d}{\ffunc f}&\gfunc X\ar{d}{\gfunc f}\\
+  \ffunc Y\ar[swap]{r}{\eta_Y}&\gfunc Y.
+\end{tikzcd}
+\]
+\end{defn}
+\begin{rem}
+  \begin{enumerate}
+  \item For two natural transformations
+  \[
+  \begin{tikzcd}[cramped, sep = small]
+    \ffunc\ar{r}{\eta}&\gfunc\ar{r}{\xi}&\fcr{H},
+  \end{tikzcd}~(\ffunc,\gfunc,\hfunc:\ccat\to \dcat),
+  \]
+  we can define the composition
+  \[
+    \xi \circ \eta: \ffunc \to \hfunc
+  \] by
+  \[
+  (\xi\circ \eta)_X\ffunc X\to \hfunc X,~(\xi\circ \eta)_X:= \xi_X\circ \eta_X.
+  \]
+  \item For $\ffunc: \ccat\to \dcat$, we have \emph{identical transformation}
+  \[
+  \id_{\ffunc}\text{ given by }(\id_{\ffunc})_X\coloneqq\id_{\ffunc X}
+  \]
+\end{enumerate}
+\end{rem}
+\coms \textit{the part about the natural transformations on the exe-sheets is still missing.}\come
+
+
+\lec

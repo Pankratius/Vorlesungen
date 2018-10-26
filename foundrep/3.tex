@@ -50,7 +50,7 @@ Let $Q$ be a quiver over a field $k$.
     But in the case $f(q)=s(p)$,
     \[\tilde{X}_{p\circ q}(x)=\iota_{t(p)}\circ X_pX_q(x_{s(q)}).
     \]
-    The construction $F$ is factorial, i.e. for $f:X\to Y$ a homomorphism of representations, $F$ induces a homomorphism of $kQ$-algebras
+    The construction $F$ is functorial, i.e. for $f:X\to Y$ a homomorphism of representations, $F$ induces a homomorphism of $kQ$-algebras
     \[
     Ff:F(X)\to F(Y)\text{ by }(Ff)((x_i)_i):= (f_i(x_i))_i.
     \]
@@ -90,7 +90,7 @@ Let $Q$ be a quiver over a field $k$.
   \end{enumerate}
 \end{rem}
 
-\begin{thm}
+\begin{thm}\label{3:eqcat}
   \begin{enumerate}
     \item Let $M$ be a left $kQ$-module. Then $FG(M)\cong M$ as left $kQ$-modules.
     \item Let $X$ be a representation of $Q$ over $k$. Then $GF(X)\cong X$ as representations of $Q$.
@@ -147,8 +147,25 @@ Let $Q$ be a quiver over a field $k$.
   \left( G(M)\right)_{\alpha}(x_{s(\alpha)}) = \alpha.x_{s(\alpha)} = X_{\alpha}(x_{s(\alpha)}).
   \]
   \end{enumerate}
-\end{proof}
+  \coms Be careful! $X_i\subset \oplus X_j$ is still different from $X_i$ as part of the representation, because one is a subspace and one is just a space. So the appropriate isomorphism in this case would be
+  \[
+  \begin{tikzcd}
+    G(M)_i = X_i \ar{r}{x_i\mapsto x_i} &X_i,
+  \end{tikzcd}
+  \]
+  which is a morphism of representations, as for any $\alpha \in Q_1$
+  \[
+  \begin{tikzcd}
+    G(M)_{s(\alpha)} \ar[equal]{d}&\\
+    X_{s(\alpha)}\ar{r}\ar[swap]{d}{(G(M))_{\alpha}}&X_{s(\alpha)}\ar{d}{X_{\alpha}}\\
+    X_{t(\alpha)}\ar{r}&X_{t(\alpha)}\\
+    G(M)_{t(\alpha)} \ar[equal]{u}& \\
+  \end{tikzcd}
+  \]
+  commutes.
 
+\end{proof}
+\come
 
 \begin{rem}
   Let $M$ be a left $kQ$-module, with $Q$ finite and $k$ a field.

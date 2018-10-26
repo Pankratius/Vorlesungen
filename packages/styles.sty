@@ -11,9 +11,9 @@
 \setbeforesecskip{2em}
 \setaftersecskip{1em}
 %subsection style
-\newcommand{\subsec}[1]{\subsection{#1}:\parindent}
+\newcommand{\subsec}[1]{\subsection{#1\qquad}:}
 \setsubsecheadstyle{\itshape}
-\setaftersubsecskip{0pt}
+\setaftersubsecskip{1pt}
 \setbeforesubsecskip{3em}
 \setsecnumdepth{subsection}
 %----
@@ -67,3 +67,7 @@
 \newcommand{\coms}{\color{purple}}%comment - start
 \newcommand{\come}{\color{black}}%comment - end
 \newcommand{\tos}{\color{red}}
+
+%for numerics stuff
+\usepackage{listings}
+\lstset{numbers=left, numberstyle=\tiny, stepnumber=2, numbersep=5pt, escapeinside={(*}{*)}}

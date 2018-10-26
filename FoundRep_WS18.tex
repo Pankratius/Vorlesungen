@@ -11,13 +11,21 @@
 \usepackage{packages/theorems}
 \usepackage{packages/mymathtools}
 
-
+\usepackage{xparse}
+\NewDocumentCommand{\indmodule}{O{} m O{}}{%
+  {}_{#1} #2_{#3}
+}
 
 \usepackage{tikz-cd}
 \include{foundrep/titlepage}
 
 
-
+%for category theory symbols
+\usepackage[mathcal]{euscript}
+%from jendriks github
+\DeclareFieldFormat{postnote}{#1}
+\DeclareFieldFormat{multipostnote}{#1}
+  
 \makeatletter
 \newlength{\@thlabel@width}%
 \newcommand{\thmenumhspace}{\settowidth{\@thlabel@width}{\itshape1.}\sbox{\@labels}{\unhbox\@labels\hspace{\dimexpr-\leftmargin+\labelsep+\@thlabel@width-\itemindent}}}
@@ -35,12 +43,16 @@
 \input{foundrep/1}
 \input{foundrep/2}
 \input{foundrep/3}
+\input{foundrep/4}
+\input{foundrep/5}
+\input{foundrep/6}
 
 \thispagestyle{rlast}
 \appendix
 \chapter{Insights from the exercise sheets}
 \input{foundrep/exe0}
 \input{foundrep/exe1}
+\input{foundrep/exe2}
 
 \backmatter
 \printbibliography[heading = bibintoc]

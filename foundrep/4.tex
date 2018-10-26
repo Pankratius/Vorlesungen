@@ -1,5 +1,5 @@
 \begin{defn}
-  Let $A$ be a $k$-algebra, and $\indmodule{M}[A]$ be a right $A$-module, $\indmodule[A]{M}$ a left $A$-module.
+  Let $A$ be a $k$-algebra, and $\indmodule{M}[A]$ be a right $A$-module, $\indmodule[A]{N}$ a left $A$-module.
   \begin{enumerate}
     \item Let $P$ be a $k$-module. A map
     \[
@@ -196,7 +196,7 @@ is a homomorphism of $k$-algebras. So by \cref{2:endalg}, $M\otimes_BN$ is a lef
   Then $\psi(g)$ is $A$-balanced, so it factors through the tensor product:
   \[
   \begin{tikzcd}
-    M\times N\ar{r}{\otimes}\ar[swap]{d}{\psi(g)}&M\otimes_AN\ar[swap]{dl}{\exists!\hat{\psi}(g)~k\text{-linear}}\\
+    M\times N\ar{r}{\otimes}\ar[swap]{d}{\psi(g)}&M\otimes_AN\ar{dl}{\exists!\hat{\psi}(g)~k\text{-linear}}\\
     P&
   \end{tikzcd}
   \]
@@ -217,8 +217,8 @@ is a homomorphism of $k$-algebras. So by \cref{2:endalg}, $M\otimes_BN$ is a lef
 \begin{defn}
   A category $\cat{C}$ consists of:
   \begin{itemize}
-    \item A class $\objc{C}$, whose elements are called the \toidx{objects} of $\ccat$.
-    \item For all $X,Y\in \objc{C}$, a set $\ccat(X,Y)$. An element of $\ccat(X,Y)$ is called a \emph{morphism} \index{morphism!in a general category} from $X$ to $Y$ as is denoted by
+    \item A class $\objcat(\ccat)$, whose elements are called the \toidx{objects} of $\ccat$.
+    \item For all $X,Y\in \objcat(\ccat) $, a set $\ccat(X,Y)$. An element of $\ccat(X,Y)$ is called a \emph{morphism} \index{morphism!in a general category} from $X$ to $Y$ as is denoted by
     \[
     f:X\to Y.
     \]
@@ -256,4 +256,4 @@ is a homomorphism of $k$-algebras. So by \cref{2:endalg}, $M\otimes_BN$ is a lef
   \begin{rem}
     We sometimes want to consider categories whose objects are all sets (with additional conditions). But this can cause logical problems. As a solution, we introduce so called universes. We will always fix a universe, such that sets are elements of this universe, and classes are subsets of this universe. Consider \cite[1.6]{catwork} for further reference.
   \end{rem}
-  
+  \lec

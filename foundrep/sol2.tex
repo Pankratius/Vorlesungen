@@ -1,0 +1,108 @@
+\begin{sol}
+  Consider the two representations
+  \[
+  \begin{tikzcd}
+    k\ar[shift left]{r}{a}\ar[shift right,swap]{r}{b}&k
+  \end{tikzcd}
+  ~\text{and}~
+  \begin{tikzcd}
+    k\ar[shift left]{r}{c}\ar[shift right,swap]{r}{d}&k
+  \end{tikzcd}
+  \]
+  with $a,b,c,d\in k$.
+Morphism of representations are in this case $k$-linear maps $k\to k$, i.e. multiplication by elements $\mu,\nu\in k$, such that the diagrams
+\[
+\begin{tikzcd}
+  k\ar{r}{a}\ar[swap]{d}{\mu}&k\ar{d}{\nu}\\
+  k\ar[swap]{r}{c}&k
+\end{tikzcd}~\text{and}~
+\begin{tikzcd}
+  k\ar{r}{b}\ar[swap]{d}{\mu}&k\ar{d}{\nu}\\
+  k\ar[swap]{r}{d}&k
+\end{tikzcd}
+\]
+commute. This is the case if $(\mu,\nu)$ satisfies the system of equations
+\[
+\underbrace{\begin{pmatrix}
+  c&-a\\
+  d&-b
+\end{pmatrix}}_{=:A}\cdot \begin{pmatrix}\mu\\\nu\end{pmatrix}=0 \Longleftrightarrow \begin{pmatrix}\mu\\\nu\end{pmatrix} \in \ker A
+\]
+There are several cases to consider:
+\begin{itemize}
+  \item $\det A=ad-bc\neq 0$: As $A$ is invertible in this case, $\ker A$ is trivial, and hence
+  \[
+  \hom(X_{(a,b)},X_{(c,d)})=0
+  \]
+  \item $\det A = 0; a=b=c=0$. As $A=0$, $\ker A = k^2$ holds, and hence
+  \[
+  \hom(X_{(a,b)},X_{(c,d)})=k^2\]
+  \item $\det A =0;b\neq 0$ In this case, $c=ad/b$ holds.
+  \begin{itemize}
+    \item $a = 0,d=0 $:
+    \[
+    A = \begin{pmatrix}0&0\\0&-b\end{pmatrix}\implies \ker A = \lin \begin{pmatrix}1\\0\end{pmatrix}\]
+    \item $a=0,d\neq 0$
+    \[
+    A = \begin{pmatrix}0&0\\d&-b\end{pmatrix}\implies \ker A = \lin \begin{pmatrix}b/d\\1\end{pmatrix}\]
+  \end{itemize}
+  \item $\det A =0, b =0$: Consider the cases:
+  \begin{itemize}
+    \item $c,d\neq 0,a=0$:
+    \[
+    A = \begin{bmatrix} c&0\\d&0\end{bmatrix}\implies \ker A = \lin \begin{pmatrix}0\\1\end{pmatrix}\]
+    \item $c\neq 0, a,d=0$...
+  \end{itemize}
+\end{itemize}
+\end{sol}
+
+\begin{sol}
+  \begin{enumerate}
+    \item A representation of $V$ consits of a vector space $V$ together with an endomorphism $f\in \eno_k V$:
+    \[
+    X:=\begin{tikzcd}V\arrow[out=90,in=0,loop,"f"]\end{tikzcd}.
+    \]
+    A decomposition of $X$ into subrepresentations would correspond to a decomposition
+    \[
+    V = V_1\oplus V_2
+    \]
+    with subspaces $V_1$ and $V_2$ of $V$, such that both $V_1$ and $V_2$ are $f$-invariant.
+    Now, let $X$ be any representation of $Q$.
+    Assume first that $n:=\dim_kV<\infty$, and $f$ is any .
+    As $k$ is algebraically closed, there is a unique (up to permutation) basis $B$ of $V$ given by a disjoint unions of Jordan-Chains
+    \[
+    B =\bigcup_{\lambda \in k}\bigcup_{i\in I_{\lambda}}J(\lambda,\ell_i)~\text{where}~\sum_{\lambda \in k}\sum_{\lambda \in I_{\lambda} k} \ell_i =n,\]
+     $I_{\lambda}$ are finite index sets, unequal to zero for only finitely many $\lambda \in k$, and $J(\lambda,\ell_i)$ are Jordan-Chains of $f$ for the eigenvalue $\lambda$ with length $\ell_i$. This basis induces a unique direct sum decomposition
+     \[
+     V = \bigoplus_{\lambda \in k}\bigoplus_{i\in I_{\lambda}} \lin J(\lambda,\ell_i).
+     \]
+     By construction of the Jordan-Chains, $J(n,\lambda_i)$ can not be decomposed for
+  \end{enumerate}
+\end{sol}
+
+\setcounter{sol}{3}
+\begin{sol}
+  \begin{enumerate}
+    \item $R$ is a $k$-vector space,where the addition and scalar multiplication are defined component-wise. This gives $R$ the structure of a $k$-vector space, as $M$, $N$ and $X$ are in particual $k$-vector spaces.\\
+    Consider now the map
+    \[
+    R\times R \to R,~\begin{pmatrix}a&x\\0&b\end{pmatrix}, \begin{pmatrix}a'&x'\\0&b'\end{pmatrix}\mapsto \begin{pmatrix} aa'&ax'+xb'\\0&bb'\end{pmatrix},
+    \]
+    where the operation $ax'+xb'$ is well-defined, as $X$ is an $A$-$B$-bimodule. This makes $R$ into a ring, as:
+    \begin{itemize}
+      \item the unit is given by $\begin{pmatrix}1_A&0\\0&1_B\end{pmatrix}$:
+      \[
+      \begin{pmatrix}1_A&0\\0&1_B\end{pmatrix} \cdot \begin{pmatrix}a&x\\0&b\end{pmatrix} = \begin{pmatrix}a&x\\0&b\end{pmatrix} = \begin{pmatrix}a&x\\0&b\end{pmatrix}\cdot \begin{pmatrix}1_A&0\\0&1_B\end{pmatrix}
+      \]
+      \item the multiplication is associative, as
+      \begin{align*}
+      \begin{pmatrix}a''&x''\\0&b''\end{pmatrix}\cdot \left( \begin{pmatrix}a'&x'\\0&b'\end{pmatrix}\cdot  \begin{pmatrix}a&x\\0&b\end{pmatrix}\right)&= \begin{pmatrix}a''&x''\\0&b''\end{pmatrix}\cdot
+      \begin{pmatrix}a'a&a'x+x'b\\0&b'b\end{pmatrix} \\
+      &= \begin{pmatrix} a''(a'a)\end{pmatrix}...
+      \end{align*}
+      \item the distributivity holds, as
+    \end{itemize}
+    
+  \end{enumerate}
+
+\end{sol}
