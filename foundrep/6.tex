@@ -239,31 +239,23 @@ for an arbitrary category $\ccat$.
   \]
   We need to show that this implies $\xi=\eta$, i.e. $\xi_Y=\eta_Y$ for all $Y\in \objc{\ccat}$. As these are maps of sets, it suffices to show
   \[
-  \xi_Y(f)=\eta_Y(f)~\text{for all }f\in h_X(Y)=\ccat(X,Y).
+  \xi_Y(f)=\eta_Y(f)~\text{for all }f\in h_X(Y)=\op{\ccat}(X,Y).
   \]
   As $\xi,\eta$ are natural transformations, the diagrams
   \begin{equation}\tag{D1}\label{6:eq1}
   \begin{tikzcd}
-    %h_X(X)\ar[equal]{d}&\\
-    \ccat(X,X)\ar{r}{\eta_X}\ar[swap]{d}{h_X(f)}&\gfunc(X)\ar{d}{\gfunc(f)}\\
-    \ccat(X,Y)\ar{r}{\eta_Y}&\gfunc(Y)\\
-    %h_X(Y)\ar[equal]{u}&
+    h_X(X)\ar[equal]{d}&\\
+    \op{\ccat(X,X)}\ar[shift left]{r}{\eta_X}\ar[shift right,swap]{r}{\xi_X}\ar[swap]{d}{h_X(f)}&\gfunc(X)\ar{d}{\gfunc(f)}\\
+    \op{\ccat(X,Y)}\ar[shift left]{r}{\eta_Y}\ar[shift right, swap]{r}{\xi_X}&\gfunc(Y)\\
+    h_X(Y)\ar[equal]{u}&
   \end{tikzcd}
 \end{equation}
   and
-  \begin{equation}\tag{D2}\label{6:eq2}
-  \begin{tikzcd}
-  h_X(X)\ar[equal]{d}&\\
-  \ccat(X,X)\ar{r}{\xi_X}\ar[swap]{d}{h_X(f)}&\gfunc(X)\ar{d}{\gfunc(f)}\\
-  \ccat(X,Y)\ar{r}{\xi_Y}&\gfunc(Y)\\
-  h_X(Y)\ar[equal]{u}&
-\end{tikzcd}
-\end{equation}
 commute. This implies
 \begin{align*}
   \gfunc(f)&(\eta_X(\id_X)) \overset{\eqref{6:eq1}}{=}\eta_Y(h_X(f)(\id_X)) = \eta_Y(f)\\
   &\parallel\\
-  \gfunc(f)&(\xi_X(\id_X)) \overset{\eqref{6:eq2}}{=}\xi_Y(h_X(f)(\id_X)) = \xi_Y(f),
+  \gfunc(f)&(\xi_X(\id_X)) \overset{\eqref{6:eq1}}{=}\xi_Y(h_X(f)(\id_X)) = \xi_Y(f),
 \end{align*}
 so $Y_{\gfunc,X}$ is injective.\par
 $Y_{\gfunc,X}$ is surjective: Let $z\in \gfunc(X)$ be arbitrary. We need to find a natural transformation
