@@ -3,6 +3,7 @@
   $\eta$ is a natural transformation if and only iff there is a natural transformation $\zeta:\gfunc\to \ffunc$, such that $\zeta\circ \eta=\id_{\ffunc}$ and $\eta\circ \zeta = \id_{\gfunc}$.\\
   If $\eta$ is a natural isomorphism, we write $\eta: F\xrightarrow{\cong}G$. If there is a natural transformation between two functors, we denote this by $\ffunc \cong \gfunc$.
 \end{defn}
+\coms Being naturally isomorphic defines an equivalence relation on the functor catogory\come
 \begin{defn}
   A functor $\ffunc:\ccat\to \dcat$ is called an \toidx{equivalence of categories}, if there is a functor $\gfunc:\dcat\to \ccat$, such that
   \[
@@ -189,7 +190,7 @@ We now consider functors of the form
 \ccat \to \stc\text{ and }\op{\ccat}\to \stc,
 \]
 for an arbitrary category $\ccat$.
-\begin{lem}[Yoneda\index{Lemma!Yoneda}]
+\begin{lem}[Yoneda\index{Lemma!Yoneda}]\label{6:yonneda}
   Let $X\in \objcat(\ccat) = \objcat(\op{\ccat})$ be an object of $\ccat$.
   \begin{enumerate}
     \item Let $\ffunc: \ccat \to \stc$ be a (covariant) functor. The map

@@ -1,0 +1,234 @@
+\coms the recollection of Yonnedas Lemma is ommited.\come
+\begin{thm}[\toidx{Yonneda Embedding}]
+  Let $\ccat$ be a category.
+  \begin{enumerate}
+  \item The functor 
+  \[
+  h^{\mdas}:\op{\ccat}\fnc(\ccat,\stc),\begin{cases}X&\mapsto h^X=\ccat(X,-)\\
+  \ccat(Y,X)\ni X\to Y&\mapsto h^g:\ccat(X,-)\to \ccat(Y,-)\end{cases}
+  \]
+  is fully faithful (\coms i.e. induces a bijection on morphisms\come).
+  \item The functor
+  \[
+  h_{\mdas}:\ccat\to \fnc(\op{\ccat},\stc), \begin{cases}X&\mapsto h_X=\ccat(-,X)\\
+  \ccat(X,Y)\ni f&\mapsto h_f:\ccat(-,X)\to \ccat(-,Y)
+  \end{cases}
+  \]
+  is fully faithful.
+  \end{enumerate}
+\end{thm}
+
+\begin{proof}
+    Recall from \cref{5:fullfaithdef}, that we have to show:\\
+    For all $X,Y\in \ccat$ objecgts, the map 
+    \[
+    \ccat(X,Y)\to \ffunc(\op{\ccat},\stc)(h_X,h_Y),~f\mapsto h_f
+    \]
+    is a bijection.\\
+    Here we can use Yonnedas Lemma (\cref{6:yonneda}), by applying it to the functor $\gfunc:= h_Y$. Then we get a bijection
+    \[
+    \ffunc(\op{\ccat},\stc)(h_X,h_Y) \to h_Y(X) = \ccat(X,Y),~ \zeta \mapsto \zeta_X(\id_X).
+    \]
+    So we already have a bijection, but in the opposite direction. Now consider the natural transformation $\zeta:=h_f$, then 
+    \[
+    (h_f)X: \ccat(X,X)\to \ccat(X,Y)~g\mapsto \begin{tikzcd}[cramped, sep=small] X\ar{r}{g}&X\ar{r}{f}&Y\end{tikzcd},
+    \]
+    and in particular, $\zeta_X(\id_X)=f$.
+ \end{proof}
+
+\begin{defn}
+    A functor $\ffunc:\ccat\to\stc$ is called \emph{representable}\index{functor!representable}, if it is naturally isomorphic to the functor $h^X$ for an object $X\in \ccat$. A (contravariant) functor $\ccat\to \stc$ is called representable, if it is naturally isomorphic to $h_X$.\\
+    In both cases, $X$ is called an \emph{representing object} \index{object!representing} of $\ffunc$ or $\gfunc$ respectivley.
+\end{defn}
+
+\section{Equivalence of categories revisted}
+\coms Dr. Franzen pointed out that none of the topics discussed in the preceding section is relevant for this topic, and that we could have shown this theorem right after the definitions.\come
+\begin{thm}
+Let $\ffunc:\ccat \to \dcat$ be a functor. Then the following are equivalent:
+\begin{enumerate}
+    \item $\ffunc$ is an equivalence of categories.
+    \item $\ffunc$ is fully faithful and dense (c.f. \cref{5:fullfaithdef} for the definition)
+\end{enumerate}
+\end{thm}
+\begin{proof}
+i) $\implies$ ii): If $\ffunc$ is an equivalence of categories, then we find a functor 
+\[
+\gfunc: \dcat \to \ccat\text{ such that } \gfunc \circ \ffunc \cong \id_{\ccat}\text { and }\ffunc \circ \gfunc \cong \id_{\dcat}.\]
+\textit{Dense} Let $Y\in \dcat$. Then $\ffunc(\gfunc(Y))\cong Y$.\\
+\textit{fully faithful} Let $X,X'\in \ccat$ be two objects. \coms We want to show that the induced map 
+\[
+\ccat(X,X')\to \dcat(\ffunc(X),\ffunc(X'))
+\]
+is bijective. \come \\
+Consider the natural isomorphism $\eta: \id_{\ccat}\to \gfunc \ffunc$.
+\coms Applied to objects, this means that for all maps $f:X\to X'$, the diagram
+\[
+\begin{tikzcd}
+    X\ar{r}{\eta_X}\ar[swap]{d}{f}&\gfunc \ffunc(X)\ar{d}{\gfunc\ffunc(f)}\\
+    X'\ar[swap]{r}{\eta_{X'}}&\gfunc \ffunc X'
+\end{tikzcd}
+\]
+commutes, and $\eta_X,\eta_{X'}$ are isomorphisms in $\ccat$. In particular, this implies that $\eta$ induces a bijection 
+\[
+\ccat(X,X')\to \ccat(\gfunc \ffunc X,\gfunc \ffunc X'),~f\mapsto \eta_{X'}^{-1}\circ \gfunc \ffunc f \circ \eta_{X}, and hence:
+\]
+\come
+We have a commutative diagram
+\[
+\begin{tikzcd}
+    \ccat(X,X')\ar{rr}{\ffunc}\ar[equal]{d}&&\dcat(\ffunc X',\ffunc X)\ar{d}{\gfunc}\\
+    \ccat(X,X')\ar[leftrightarrow]{rr}&&\ccat(\gfunc\ffunc X', \gfunc \ffunc X)
+\end{tikzcd}
+\]
+and 
+\[
+\begin{tikzcd}
+\dcat(\ffunc X,\ffunc X')\ar{rr}{\gfunc}\ar[equal]{d}&&\ccat(\gfunc\ffunc X',\gfunc \ffunc X)\ar[leftrightarrow]{d}\\
+\dcat(\ffunc X',\ffunc X)&&\ar[swap]{ll}{\ffunc}\ccat(X,X')
+\end{tikzcd},
+\]
+so $\ffunc$ is indeed a bijection on morphisms.\par 
+ii) $\implies$ i): For every $Y\in \dcat$, there is an $X\in \ccat$ such that $\ffunc X \cong Y$ (\coms by density\come). Choose for any $Y\in \dcat$ such an object, and call it $X=:\gfunc Y\in \ccat$. In addition, fix an isomorphism:
+\[
+\xi_{Y}: \ffunc(\gfunc X)\xrightarrow{\cong} Y
+\]
+Now let $g:Y\to Y'$ be any morphism in $\dcat$, and consider the morphism
+\[
+\begin{tikzcd}
+\ffunc\gfunc(Y)\ar[r,"\cong","\xi_Y"']\ar[bend left]{rrr}{\xi_{Y'}^{-1}\circ g \circ \xi_Y}&Y\ar{r}{g}&Y'\ar[r,"\cong","\xi_{Y'}^{-1}"']&\ffunc \gfunc(Y')
+\end{tikzcd}
+\]
+As $\ffunc$ is fully faithful, there exists a unique 
+\[
+\gfunc(g)\in\ccat(\gfunc(Y),\gfunc(Y'))\text{ such that }\ffunc\gfunc(g) = \xi_{Y'}{-1}\circ g\circ\xi_Y.
+\]
+Now this assignement 
+\[
+\begin{tikzcd}[cramped, sep=small]
+\dcat\ar{rr}&&\ccat \\
+Y\ar[swap]{dd}{g}&\mapsto&\gfunc(Y)\ar{dd}{\gfunc(g)}\\
+&\mapsto&\\
+Y'&\mapsto&\gfunc(Y')
+\end{tikzcd}
+\]
+is functorial. In addition, the $\xi:= (\xi_Y)$ define a natural transformation 
+\[
+\xi: \begin{tikzcd}
+\dcat \arrow[r, bend left=50, "\ffunc \circ \gfunc"{name=U, below}]
+\arrow[r, bend right=50, "\id_{\dcat}"{name=D}]
+&\dcat
+\arrow[Rightarrow, from=U, to=D]
+\end{tikzcd},\]\coms 
+as for all $Y,Y'\in \dcat$, the diagram 
+\begin{equation}\label{7:etacom}\tag{$\ast$}
+\begin{tikzcd}
+\ffunc\gfunc(Y)\ar[swap]{d}{\ffunc\gfunc(g)}\ar{r}{\xi_Y}&Y\ar{d}{g}\\
+\ffunc\gfunc(Y')\ar[swap]{r}{\xi_{Y'}}&Y'
+\end{tikzcd}
+\end{equation}
+commutes by the definition of $\ffunc \gfunc(g)$.
+\come
+By construction, $\xi$ is even a natural isomorphism, \coms as all $\xi_Y$ are isomorphisms.\come\\
+We now show that for this functor $\gfunc$, $\gfunc \circ \ffunc \cong \id_{\ccat}$ holds as well. Let $X\in \ccat$ be an object, and consider the induced isomorphism
+\[
+\xi_{\ffunc X}: \ffunc\gfunc\ffunc(X)\xrightarrow{\cong}\ffunc X.
+\]
+As $\ffunc$ is a fully faithful functor, there is exactly one morphism 
+\begin{equation}\label{7:zetadef}\tag{$\ast\ast$}
+\zeta_X\in \ccat(\gfunc \ffunc(X),X)\text{ such that }\ffunc(\zeta_X)=\xi_{\ffunc(X)}.
+\end{equation}
+We now show that the collection $\zeta = (\zeta_X)$ defines indeed a natural transformation 
+\[
+\zeta: \begin{tikzcd}
+\ccat \arrow[r, bend left=50, "\gfunc \circ \ffunc"{name=U, below}]
+\arrow[r, bend right=50, "\id_{\ccat}"{name=D}]
+&\ccat
+\arrow[Rightarrow, from=U, to=D]
+\end{tikzcd}:\]
+Let $f:X\to X'$ be any morphism in $\ccat$. We need to show that the diagram 
+\[
+\begin{tikzcd}
+\gfunc \ffunc (X)\ar{r}{\zeta_X}\ar[swap]{d}{\gfunc\ffunc(f)}&X\ar{d}{f}\\
+\gfunc\ffunc(X')\ar[swap]{r}{\zeta_{X'}}&X'
+\end{tikzcd}
+\]
+does commute. For that, we apply $\ffunc$ to the two branches of the diagram:
+\begin{align*}
+    \ffunc(f\circ \zeta_X) &= \ffunc(f)\circ \ffunc(\zeta) \\
+    &\overset{\eqref{7:zetadef}}{=} \ffunc(f)\circ \xi_{\ffunc(X)}\\
+    &\overset{\eqref{7:etacom}}{=} \eta_{\ffunc(X')}\circ \ffunc \gfunc \ffunc(f)\\
+    &= \ffunc(\zeta_X\circ \gfunc\ffunc f).
+\end{align*}
+As $\ffunc$ is faithfull,
+\[
+f\circ \zeta_X = \zeta_{X'} \circ \gfunc\ffunc(f)
+\]
+follows. Furthermore, all $\zeta_X$ are isomorphisms, \coms as $\ffunc$ is fully faithful.
+
+
+
+\end{proof} 
+
+
+\section{Adjunction}
+\begin{defn}
+Let $\ccat,\dcat$ be two categories. An \toidx{adjunction} from $\ccat$ to $\dcat$ is a triple $(\ffunc,\gfunc,\pphi)$, consiting of 
+\begin{itemize}
+    \item two functors $\ffunc:\ccat \to \dcat$ and $\gfunc: \dcat \to \ccat$
+    \item a family $\pphi=(\pphi_{X,Y})$, indexed by the objects $X\in \ccat,Y\in \dcat$, of bijections 
+    \[
+    \pphi_{X,Y}:\dcat(\ffunc X,Y)\to \ccat(X,\gfunc Y)
+    \]
+    which are \emph{natural} in $X,Y$. In this context, naturality is defined as follows: \\
+    For any morphisms $f:X\to X'$ and $g:Y\to Y'$, the diagram 
+    \[
+    \begin{tikzcd}
+    \dcat(\ffunc X',Y) \ar{r}{\pphi_{X',Y}} \ar[swap]{d}{\coms h_Y(\ffunc(f)\come} & \ccat(X',\gfunc Y)\ar{d}{\coms h_{\gfunc Y}(f)\come}\\ \dcat(\ffunc X, Y)\ar[swap]{r}{\pphi_{X,Y}}&\ccat(X,\gfunc y)
+    \end{tikzcd}
+    \]
+    commutes. \coms the particular interpretation is still missing\come 
+    In this case, we call $\ffunc:\ccat \to \dcat$ a \emph{left-adjoint} and $\gfunc:\dcat \to \ccat$ a \emph{right-adjoint}.
+\end{itemize}
+\end{defn}
+\begin{bsp}
+    The following are adjoint pairs, where $\ffunc:\ccat \to \dcat$ is a left-adjoint and $\gfunc:\dcat \to \ccat$ is a right-adjoint.
+    \begin{enumerate} 
+        \item $\ccat = \stc$, $\dcat = \grpc$. Where $\ffunc X$ is the free group generated by $X$, and $\gfunc = \vfunc$ is the forgetful functor. 
+        \item $\ccat = \stc$, $\dcat = A-\mdc$, and again $\ffunc X$ is the free $A$-module over $X$, and $\gfunc = \vfunc$ is the forgetful functor.
+        \item Let $\ccat = \grpc$, $\dcat = k-\alc$. Set $\ffunc = k[\mdas]$ and $\gfunc = \mdas^{\ast}$. It was shown on Sheet I that this is indeed an adjunction.
+        \item Let $\ccat = \stc$, $\dcat = k\mdas\calc$ the category of commutative algebras. \coms For a set $I$\come, $F{t_i}_{i\in I}:= k[t_i]_{i\in I}$, and again $\gfunc = \vfunc$. 
+        \item Let $A,B$ be two $k$-algebras, and ${}_AN_B$ a $A$-$B$-bimodule. Let $\ccat=\mdc-A$ (the category of right $A$-modules) and $\dcat = \mdc-B$. Set $\ffunc(M_A):= M\otimes_AN$ and $\gfunc(P_B):= \hom_{B}(N,P)$. In \cref{4:homtensadj}, we showded that this is indeed an adjunction.
+        \item Let $\pphi:A\to B$ be a morphism of $k$-algebras, and set $\ccat = A\mdas\mdc$, $\dcat = B\mdas \mdc$, and consider $\ffunc({}_AM) := B\otimes_AM$ and $\gfunc$ is restriction of scalars.
+        \item $\ccat$ is given as follows:
+        \begin{itemize}
+            \item for objects:
+            \[
+            \objcat(\ccat) := \{ (A,S)\ssp A\text{ commutative ring and }S\subset A\text{ multiplicativley clossed} \}
+            \]
+            \item for morphisms: 
+            \[
+            \ccat\left((A,S),(B,T)\right) := \{f:A\to B\ssp f(S)\subseteq t\coms,f\text{ homomorphism of rings}\come\}
+            \] Set now 
+            \[
+            \ffunc(A,S):= S^{-1}A\text{ and }\gfunc(B):= (B,B^{\times})
+            \]
+        \end{itemize}
+    \end{enumerate}
+\end{bsp}
+
+\begin{rem}
+ Let $(\ffunc,\gfunc,\pphi)$ be an adjunction from $\ccat$ to $\dcat$.
+ \begin{enumerate}
+     \item Define a natural transformation
+     \[
+     \eta: \begin{tikzcd}
+\ccat \arrow[r, bend left=50, "\id_{\ccat}"{name=U, below}]
+\arrow[r, bend right=50, "\gfunc \circ \ffunc"{name=D}]
+&\ccat
+\arrow[Rightarrow, from=U, to=D]
+\end{tikzcd},\] as follows:\\
+Let $X\in \ccat$ be an object, and set $\eta_{X}:= \pphi_{X,\ffunc X}(\id_{\coms \ffunc\come X})$. This is indeed a natural transformation:\\
+Let $f:X\to X'$ be a morphism. We need to show that 
+ \end{enumerate}
+
+\end{rem}
