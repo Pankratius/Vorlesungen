@@ -1,0 +1,128 @@
+
+\section{Abstiegsverfahren - Basics}
+Ausgehend von einem Startwert $x^0\in \rr^n$ wollen wir iterativ zu einer lokalen kritischen Stelle kommen. Dazu gehen wir im $k$-ten Interationsschritt vom aktuellen Wert $x^k$ eine Schrittweite $\sigma_k\in \rr$ entlang des Abstiegsrichtungsvektors $d_k\in \rr^n$. Die Parameter wählen wir so, dass 
+\[
+f(x^k+\sigma_kd_k)<f(x^k)
+\]
+erfüllt ist, und setzen dann 
+\[
+x^{k+1}:= x^k+\sigma_kd_k.
+\]
+Es muss jetzt natürlich geklärt werden, unter welchen Bedingungen dieses Verfahren tatsächlich konvergier.
+\begin{lem}\label{6:smallsteps}
+	Sei $f:\rr^n\to \rr$ eine in $x\in \rr^n$ differenzierbare Funktion. Weiterhin sei $d\in \rr^n$ so dass $\nabla f(x)^Td<0$ gilt. Dann gibt es ein $\overline{\sigma}>0$, so dass 
+	\[
+	f(x+\sigma d)< f(x)\text{ für alle }\sigma \in (0,\overline{\sigma}).
+	\]
+\end{lem}
+
+\begin{proof}
+	Es gilt 
+	\[
+	0 > \nabla f(x)^Td = \lim_{\sigma \downarrow 0}\frac{f(x+\sigma d)-f(x)}{\sigma}
+	\]
+	Für $\sigma$ klein genug folgt damit schon die Behauptung.
+
+\end{proof}
+
+\begin{defn}
+	Sei $f:\rr^n\to \rr$ differnzierbar in $x\in \rr^n$. Ein $d\in \rr^n$ heißt \toidx{Abstiegsrichtung} \emph{von $f$ in $x$}, wenn 
+	\[
+	\nabla f(x)^Td < 0
+	\]
+	gilt.
+\end{defn}
+\begin{rem}\label{6:bounded}
+	Angenommen, $(f(x^k))_k$ ist monton fallend (also bspw. wie oben). Dann ist $x^k\in N_{f(x_0)}$ für alle $k$. Weil wir diese Menge als kompakt angenommen haben folgt, dass sowohl $(x^k)_k$ und $f(x^k)_k$ beschränkt sind. 
+\end{rem}
+\begin{bsp}
+	Angenommen, $\nabla f(x) \neq 0$. Dann gilt 
+	\[
+	\nabla f(x)^T\nabla f(x) = - \eukno{\nabla f(x)}^2 < 0.
+	\]
+	Es handelt sich bei $-\nabla f(x)$ also um eine Abstiegsrichtung. Wir $-\nabla f(x)$ auch den \toidx{Antigradienten} von $f$ in $x$.
+\end{bsp}
+
+\section{Konstruktion von Abstiegsverfahren}
+\subsection{effiziente Schrittweiten}
+Angenommen, wir haben im $k$-ten Schritt eine Abstiegsrichtung $d_k$ vorgegeben. Dann gibt es nach \cref{6:smallsteps} ein hinreichend kleines $\sigma_k$, sodass $f(x_k+\sigma_kd_k)<f(x_k)$ ist. Wir erhalten also eine streng monoton fallende Folge $(f(x_k))_k$. Das ist aber nicht ausreichend, um Konvergenz zu erhalten.
+\begin{bsp}\label{6:quadexa}
+	Betrachte die Funktion $f:\rr\to \rr,x\mapsto x^2$, die Abstiegsrichtung $d_k = -1$ und die Schrittweite $\sigma_k = (1/2)^k$. Dann ist 
+	\[
+	x^{k+1} = x^k - \sigma_k = x_0 - \sum_{i=0}^{k} \left(\frac{1}{2}\right)^i = 1/2 + \left(\frac{1}{2}\right)^{k+1}
+	\]
+	Also ist $x^{k+1}<x^k$ und $f(x_k)_k$ definiert tatsächlich eine monoton fallende Folge. Allerdings konvergiert $x_k\to 1/2$, und damit $f(x_k)\to 1/4\neq0$ nicht gegen einen kritischen Punkt.
+\end{bsp}
+	Wir müssen also (bei gegebenen Abstiegsrichtungen) bestimmte Vorraussetzungen an $(\sigma_k)_k$ stellen, um tatsächlich die Konvergenz 
+	\begin{equation}\label{6:cond}
+	\lim_{k\to \infty}\nabla f(x_k) = 0
+	\end{equation}
+	zu erhalten. \par 
+	Zunächst (\coms Warum?\come) wollen wir 
+	\begin{equation}\label{6:precond}
+	\lim_{k\to \infty}\frac{\nabla f(x^k)^Td^k}{\eukno{d^k}} = 0.
+	\end{equation}
+	erreichen. \par
+	Dazu stellen wir fest, dass für hinreichend kleine Schrittweiten in erster Näherung (Taylor) gilt 
+	\[
+	f(\underbrace{x^k+\sigma_kd^k}_{=x^{k+1}})-f(x^k) \approx \sigma_k \nabla f(x^k)^Td^k
+	\]
+	Ist die Folge $(f(x^k))_k$ streng monoton fallend, geht der linke Teil gegen Null $f(x_k)$ (vgl. \cref{6:bounded}). Es scheint also Sinn zu machen, 
+	\begin{equation}\label{6:condA}\tag{A}
+		f(x^k+\sigma^kd^k)-f(x^k)\leq C_1 \nabla f(x^k)^Td^k
+	\end{equation}
+	zu fordern, wobei $C_1>0\in \rr$ eine von $k$ unabhängige Konstante ist.\\
+	In \cref{6:quadexa} haben wir gesehen, dass die Schrittweite auch im Vergleich zu $\nabla f(x^k)^Td^k$ nicht zu schnell gegen null gehen darf, weil wir sonst  stecken bleiben. Also fordern wir zusätzlich direkt von der Schrittweite
+	\begin{equation}\tag{B}\label{6:condB}
+		\sigma_k \geq -C_2 \frac{\nabla f(x^k)^Td^k}{\eukno{d^k}^2},
+	\end{equation} 
+	mit $C_2>0$ unabhängig von $k$.\\
+	Diese Bedingung war in \cref{6:quadexa} auch nicht erfüllt, denn es hätte $\sigma_k\geq C_2x^k$ gelten müssen.\par 
+	Führen wir die beiden Bedingungen zusammen, erhalten wir die abgeleitete Bedingungen
+	\begin{equation}\label{6:condC}\tag{C}
+		f(x^k+\sigma_kd^k)\leq f(x^k) - \underbrace{(c_1c_2)}_{=:c}\left(\frac{\nabla f(x k)^Td^k}{\eukno{d^k}}\right)^2.
+	\end{equation}
+
+\begin{defn}
+	Eine Schrittweitenfolge $(\sigma_k)$ erfüllt das \toidx{Prinzip des hinreichenden Abstieges}, wenn \eqref{6:condA} und \eqref{6:condB} für sie gelten. Sie heiß \emph{effizient} \index{Schrittweite!effiziente}, wenn \eqref{6:condC} für sie gilt.
+\end{defn}
+Die Existenz von effizienten Schrittweiten wird auf Übungsblatt IV gezeigt (vgl. alternativ \cite[78]{alt2002nichtlineare}).\par 
+Wenn eine Schrittweite effizient ist, dann genügt sie schon der vorläufigen Bedingung \eqref{6:precond}, denn die Differenzfolge $f(x^{k+1})-f(x^k)$ ist eine Nullfolge.
+\subsection{Gradientenbezogene Suchrichtungen} 
+Das $(\sigma_k)_k$ effzient ist, ist aber noch nicht ausreichend, damit $(\sigma_k)_k$ auch tatsächlich \eqref{6:cond} erfüllt. Beispielsweise kann $d_k$ orthogonal zu $\nabla f(x^k)$ stehen. \\
+Setze 
+\[
+\beta_k := \frac{\nabla f(x^k)^Td^k}{\eukno{\nabla f(x^k)}\eukno{d^k}}= \cos (\angle \nabla f(x^k),d^k).
+\]
+Dann gilt
+\[
+\frac{\nabla f(x^k)^Td^k}{\eukno{\nabla f(x^k)}\eukno{d^k}} = \beta_k \eukno{\nabla f(x^k)}.
+\]
+Ist $(\sigma_k)_k$ so, dass \eqref{6:precond} erfüllt ist, und ist 
+\[
+-\beta_k\geq c>0
+\]
+für ein $c\in \rr$, dann ist auch \eqref{6:cond} erfüllt.
+\begin{defn}
+	Eine Richtung $d$ heißt \toidx{gradientenbezogen} in $x\in N_{f(x_0)}$, falls
+	\[
+		\nabla f(x)d \geq C_3\eukno{\nabla f(x)}\eukno{d}
+	\]
+	mit einer von $x$ und $d$ unabhängigen Konstate $C_3>0$ gilt. Sie heißt \emph{streng gradientenbezogen}, falls zusätzlich 
+	\[
+		C_4\eukno{\nabla f(x)}\geq \eukno{d}\geq \frac{1}{C_4}\eukno{\nabla f(x)}
+	\]
+	mit einer von $x$ und $d$ Konstanten $C_4>0$ gilt. 
+\end{defn}
+\begin{rem}
+	Setzt man $d = - \nabla f(x)$, so ist $d$ streng gradientenbezogen, mit $C_3=C_4=1$.
+\end{rem}
+\section{Schrittweitenbestimmung}
+Nachdem wir Kriterien an Schrittweite und Abstiegsrichtung gefunden haben, mit denen wir eine Konvergenz hin zu einem kritischen Punkt finden können, versuchen wir, genau solche exakten Schrittweiten zu berechnen.
+\subsection{exakte Schrittweiten}
+Angenommen, wir haben eine Abstiegsrichtung $d$ vorgegeben. Ein Ansatz für die Bestimmung der Schrittweite ist das Lösen des 1-dimensionalen Minimierungsproblem
+\begin{equation}
+\sigma := \text{arg}\min_{s\geq 0} \pphi(s)\text{ mit } \pphi:\rr^{\geq 0}\to \rr, s\mapsto f(x+sd).
+\end{equation}
+Das ist auch nicht wirklich einfacher. Nach der Voraussetzung der kompakten Niveaumenge hat $\phi'(s)$ aber eine kleineste positive Nullstelle $\sigma_E$. Diese heißt \emph{exakte Schrittweite}\index{Schrittweite!exakte}. Man kann dann zeigen, dass $\sigma_E$ auch effizient ist.
+\lec
